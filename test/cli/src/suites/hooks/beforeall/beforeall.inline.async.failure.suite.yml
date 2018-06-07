@@ -1,0 +1,21 @@
+meta:
+  name: Before all inline async failure suite
+configuration:
+  scheme: http
+  host: 127.0.0.1
+  port: 3027
+hooks:
+  before_all:
+    run_type: inline
+    inline:
+      function: !js/asyncFunction >
+        async function() {
+            throw new Error("error from before all");
+        }
+specs:
+  - name: get home
+    request: &default_request
+      path: /
+      method: get
+    response: &default_response
+      status_code: 200

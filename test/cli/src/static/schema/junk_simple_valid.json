@@ -1,0 +1,11 @@
+{
+  junk"$id": "http://example.com/example.json",
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "properties": {
+    "key": {
+      "$id": "/properties/key",
+      "type": "string"
+    }
+  }
+}

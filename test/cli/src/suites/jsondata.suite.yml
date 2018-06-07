@@ -1,0 +1,101 @@
+meta:
+  name: verifying JSON data suite
+configuration:
+  scheme: http
+  host: 127.0.0.1
+  port: 3027
+specs:
+  - name: validate json response with json data functionality
+    request: &default_request
+      path: /echoJSONBodyResponse
+      method: post
+      headers:
+        - name: content-type
+          value: application/json
+      payload:
+          body:
+            type: json
+            content: &default_json_content
+              key1: value1
+              key2: value2
+              keyn: 4
+    response:
+      json_data:
+        - path: $.key2
+          value: value2
+
+  - name: validate json response with json data functionality - should fail
+    request: *default_request
+    response:
+      json_data:
+        - path: $.key2
+          value: wrongvalue
+
+  - name: validate json response with json data functionality regex
+    request: *default_request
+    response:
+      json_data:
+        - path: $.key2
+          value: !!js/regexp /value(\d)/
+
+  - name: should fail when json data regex does not match the value
+    request: *default_request
+    response:
+      json_data:
+        - path: $.key2
+          value: !!js/regexp /valuex(\d)/
+
+  - name: validate json response with multiple json data expectations
+    request: *default_request
+    response:
+      json_data:
+        - path: $.key2
+          value: !!js/regexp /value(\d)/
+        - path: $.key1
+          value: value1
+        - path: $.keyn
+          value: 4
+
+  - name: validate json response with json data value as object
+    request: *default_request
+    response:
+      json_data:
+        - path: $
+          value: *default_json_content
+
+  - name: validate json response with json data value as non matching object - should fail
+    request: *default_request
+    response:
+      json_data:
+        - path: $
+          value:
+           <<: *default_json_content
+           key2: value3
+
+  - name: validate json response with json data value as Array
+    request: &array_json_request
+      path: /echoJSONBodyResponse
+      method: post
+      headers:
+        - name: content-type
+          value: application/json
+      payload:
+          body:
+            type: json
+            content: &array_json_content
+              - item1
+              - item2
+    response:
+      json_data:
+        - path: $
+          value: *array_json_content
+
+  - name: validate json response with json data value as non matching Array - should fail
+    request: *array_json_request
+    response:
+      json_data:
+        - path: $
+          value:
+             - item1
+             - item2
+             - item3

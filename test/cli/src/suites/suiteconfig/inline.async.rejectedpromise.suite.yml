@@ -1,0 +1,22 @@
+meta:
+  name: suite config inline async rejects promise
+configuration:
+  host: 127.0.0.1
+  custom_configuration:
+    run_type: inline
+    inline:
+      function: !js/asyncFunction >
+        async function() {
+          this.scheme = 'http';
+          var result = await new Promise(function(resolve, reject){
+                  setTimeout(function() { reject('abc') }, 1);
+              });
+          this.port = 3027;
+        }
+specs:
+  - name: basic request
+    request:
+      path: /echoHeaders
+      method: get
+    response:
+      status_code: 200
