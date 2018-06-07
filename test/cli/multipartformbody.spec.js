@@ -61,7 +61,7 @@ describe('Multipart form post', function () {
         let test = result.tests.find(t =>  t.name === this.test.title);
         expect(test.status).to.equal('fail');
         expect(test.error.name).to.equal('RequestBodyBuilderError');
-        expect(test.error.message).to.contain("ENOENT file at '/Users/admin/Documents/codebase/auto-api/test/cli/src/static/assets/logodoesnotexist.png' does not exist, Provide a valid path for content of form body");
+        expect(test.error.message).to.contain("Provide a valid path for content of form body");
     });
 
     it('post multipart form data single directory as file and field - should fail', function () {
@@ -69,7 +69,7 @@ describe('Multipart form post', function () {
         let test = result.tests.find(t =>  t.name === this.test.title);
         expect(test.status).to.equal('fail');
         expect(test.error.name).to.equal('RequestBodyBuilderError');
-        expect(test.error.message).to.contain("'/Users/admin/Documents/codebase/auto-api/test/cli/src/static/assets' is not a file, Provide a valid path for content of form body");
+        expect(test.error.message).to.contain("Provide a valid path for content of form body");
     });
 
 
