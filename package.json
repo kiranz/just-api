@@ -1,6 +1,6 @@
 {
   "name": "just-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Robust configuration based API testing framework",
   "keywords": [
     "API",
@@ -54,7 +54,8 @@
     "chalk": "2.4.1",
     "lodash": "4.17.10",
     "serialize-error": "2.1.0",
-    "semver": "5.5.0"
+    "semver": "5.5.0",
+    "he": "1.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
