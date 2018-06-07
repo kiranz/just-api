@@ -1,0 +1,37 @@
+{
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "properties": {
+    "host": {
+      "$id": "/properties/host",
+      "type": "string",
+      "minLength": 1
+    },
+    "scheme": {
+      "$id": "/properties/scheme",
+      "type": "string",
+      "enum": ["http", "https"],
+      "minLength": 4
+    },
+    "base_path": {
+      "$id": "/properties/base_path",
+      "type": "string"
+    },
+    "read_timeout": {
+      "$id": "/properties/read_timeout",
+      "type": "integer"
+    },
+    "port": {
+      "$id": "/properties/port",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "host",
+    "scheme",
+    "base_path",
+    "read_timeout"
+  ]
+}

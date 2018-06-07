@@ -1,0 +1,819 @@
+{
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "properties": {
+    "meta": {
+      "$id": "/properties/meta",
+      "type": "object",
+      "properties": {
+        "name": {
+          "$id": "/properties/meta/properties/name",
+          "type": "string",
+          "minLength": 1
+        },
+        "enabled": {
+          "$id": "/properties/meta/properties/enabled",
+          "type": "boolean"
+        },
+        "version": {
+          "$id": "/properties/meta/properties/version"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "configuration": {
+      "$id": "/properties/configuration",
+      "type": "object",
+      "properties": {
+        "host": {
+          "$id": "/properties/configuration/properties/host",
+          "type": "string",
+          "minLength": 1
+        },
+        "scheme": {
+          "$id": "/properties/configuration/properties/scheme",
+          "type": "string",
+          "enum": [
+            "http",
+            "https"
+          ]
+        },
+        "base_path": {
+          "$id": "/properties/configuration/properties/base_path",
+          "type": "string"
+        },
+        "read_timeout": {
+          "$id": "/properties/configuration/properties/read_timeout",
+          "type": "integer"
+        },
+        "common_headers": {
+          "$id": "/properties/configuration/properties/common_headers",
+          "type": "array",
+          "items": {
+            "$id": "/properties/configuration/properties/common_headers/items",
+            "type": "object",
+            "properties": {
+              "name": {
+                "$id": "/properties/configuration/properties/common_headers/items/properties/name",
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "$id": "/properties/configuration/properties/common_headers/items/properties/value",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "value"
+            ]
+          }
+        },
+        "custom_configuration": {
+          "$id": "/properties/configuration/properties/custom_configuration",
+          "type": "object",
+          "properties": {
+            "run_type": {
+              "$id": "/properties/configuration/properties/custom_configuration/properties/run_type",
+              "type": "string",
+              "enum": [
+                "inline",
+                "module"
+              ]
+            },
+            "inline": {
+              "$id": "/properties/configuration/properties/custom_configuration/properties/inline",
+              "type": "object",
+              "properties": {
+                "function": {
+                  "$id": "/properties/configuration/properties/custom_configuration/properties/inline/properties/function"
+                }
+              },
+              "required": [
+                "function"
+              ]
+            },
+            "module": {
+              "$id": "/properties/configuration/properties/custom_configuration/properties/module",
+              "type": "object",
+              "properties": {
+                "function_name": {
+                  "$id": "/properties/configuration/properties/custom_configuration/properties/module/properties/function_name",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "module_path": {
+                  "$id": "/properties/configuration/properties/custom_configuration/properties/module/properties/module_path",
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "function_name",
+                "module_path"
+              ]
+            }
+          },
+          "required": [
+            "run_type"
+          ]
+        }
+      },
+      "required": [
+      ]
+    },
+    "hooks": {
+      "$id": "/properties/hooks",
+      "type": "object",
+      "properties": {
+        "before_all": {
+          "$id": "/properties/hooks/properties/before_all",
+          "type": "object",
+          "properties": {
+            "run_type": {
+              "$id": "/properties/hooks/properties/before_all/properties/run_type",
+              "type": "string",
+              "enum": [
+                "inline",
+                "module"
+              ]
+            },
+            "inline": {
+              "$id": "/properties/hooks/properties/before_all/properties/inline",
+              "type": "object",
+              "properties": {
+                "function": {
+                  "$id": "/properties/hooks/properties/before_all/properties/inline/properties/function"
+                }
+              },
+              "required": [
+                "function"
+              ]
+            },
+            "module": {
+              "$id": "/properties/hooks/properties/before_all/properties/module",
+              "type": "object",
+              "properties": {
+                "function_name": {
+                  "$id": "/properties/hooks/properties/before_all/properties/module/properties/function_name",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "module_path": {
+                  "$id": "/properties/hooks/properties/before_all/properties/module/properties/module_path",
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "function_name",
+                "module_path"
+              ]
+            }
+          },
+          "required": [
+            "run_type"
+          ]
+        },
+        "after_all": {
+          "$id": "/properties/hooks/properties/after_all",
+          "type": "object",
+          "properties": {
+            "run_type": {
+              "$id": "/properties/hooks/properties/after_all/properties/run_type",
+              "type": "string",
+              "enum": [
+                "inline",
+                "module"
+              ]
+            },
+            "inline": {
+              "$id": "/properties/hooks/properties/after_all/properties/inline",
+              "type": "object",
+              "properties": {
+                "function": {
+                  "$id": "/properties/hooks/properties/after_all/properties/inline/properties/function"
+                }
+              },
+              "required": [
+                "function"
+              ]
+            },
+            "module": {
+              "$id": "/properties/hooks/properties/after_all/properties/module",
+              "type": "object",
+              "properties": {
+                "function_name": {
+                  "$id": "/properties/hooks/properties/after_all/properties/module/properties/function_name",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "module_path": {
+                  "$id": "/properties/hooks/properties/after_all/properties/module/properties/module_path",
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "function_name",
+                "module_path"
+              ]
+            }
+          },
+          "required": [
+            "run_type"
+          ]
+        },
+        "before_each": {
+          "$id": "/properties/hooks/properties/before_each",
+          "type": "object",
+          "properties": {
+            "run_type": {
+              "$id": "/properties/hooks/properties/before_each/properties/run_type",
+              "type": "string",
+              "enum": [
+                "inline",
+                "module"
+              ]
+            },
+            "inline": {
+              "$id": "/properties/hooks/properties/before_each/properties/inline",
+              "type": "object",
+              "properties": {
+                "function": {
+                  "$id": "/properties/hooks/properties/before_each/properties/inline/properties/function"
+                }
+              },
+              "required": [
+                "function"
+              ]
+            },
+            "module": {
+              "$id": "/properties/hooks/properties/before_each/properties/module",
+              "type": "object",
+              "properties": {
+                "function_name": {
+                  "$id": "/properties/hooks/properties/before_each/properties/module/properties/function_name",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "module_path": {
+                  "$id": "/properties/hooks/properties/before_each/properties/module/properties/module_path",
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "function_name",
+                "module_path"
+              ]
+            }
+          },
+          "required": [
+            "run_type"
+          ]
+        },
+        "after_each": {
+          "$id": "/properties/hooks/properties/after_each",
+          "type": "object",
+          "properties": {
+            "run_type": {
+              "$id": "/properties/hooks/properties/after_each/properties/run_type",
+              "type": "string",
+              "enum": [
+                "inline",
+                "module"
+              ]
+            },
+            "inline": {
+              "$id": "/properties/hooks/properties/after_each/properties/inline",
+              "type": "object",
+              "properties": {
+                "function": {
+                  "$id": "/properties/hooks/properties/after_each/properties/inline/properties/function"
+                }
+              },
+              "required": [
+                "function"
+              ]
+            },
+            "module": {
+              "$id": "/properties/hooks/properties/after_each/properties/module",
+              "type": "object",
+              "properties": {
+                "function_name": {
+                  "$id": "/properties/hooks/properties/after_each/properties/module/properties/function_name",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "module_path": {
+                  "$id": "/properties/hooks/properties/after_each/properties/module/properties/module_path",
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "function_name",
+                "module_path"
+              ]
+            }
+          },
+          "required": [
+            "run_type"
+          ]
+        }
+      },
+      "required": [
+      ]
+    },
+    "spec_dependencies": {
+      "$id": "/properties/spec_dependencies",
+      "type": "array",
+      "items": {
+        "$id": "/properties/spec_dependencies/items",
+        "type": "string"
+      }
+    },
+    "specs": {
+      "$id": "/properties/specs",
+      "type": "array",
+      "items": {
+        "$id": "/properties/specs/items",
+        "type": "object",
+        "properties": {
+          "name": {
+            "$id": "/properties/specs/items/properties/name",
+            "type": "string",
+            "minLength": 1
+          },
+          "enabled": {
+            "$id": "/properties/specs/items/properties/enabled",
+            "type": "boolean"
+          },
+          "before_test": {
+            "$id": "/properties/specs/items/properties/before_test",
+            "type": "object",
+            "properties": {
+              "run_type": {
+                "$id": "/properties/specs/items/properties/before_test/properties/run_type",
+                "type": "string",
+                "enum": [
+                  "inline",
+                  "module"
+                ]
+              },
+              "inline": {
+                "$id": "/properties/specs/items/properties/before_test/properties/inline",
+                "type": "object",
+                "properties": {
+                  "function": {
+                    "$id": "/properties/specs/items/properties/before_test/properties/inline/properties/function"
+                  }
+                },
+                "required": [
+                  "function"
+                ]
+              },
+              "module": {
+                "$id": "/properties/specs/items/properties/before_test/properties/module",
+                "type": "object",
+                "properties": {
+                  "function_name": {
+                    "$id": "/properties/specs/items/properties/before_test/properties/module/properties/function_name",
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "module_path": {
+                    "$id": "/properties/specs/items/properties/before_test/properties/module/properties/module_path",
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "function_name",
+                  "module_path"
+                ]
+              }
+            },
+            "required": [
+              "run_type"
+            ]
+          },
+          "after_test": {
+            "$id": "/properties/specs/items/properties/after_test",
+            "type": "object",
+            "properties": {
+              "run_type": {
+                "$id": "/properties/specs/items/properties/after_test/properties/run_type",
+                "type": "string",
+                "enum": [
+                  "inline",
+                  "module"
+                ]
+              },
+              "inline": {
+                "$id": "/properties/specs/items/properties/after_test/properties/inline",
+                "type": "object",
+                "properties": {
+                  "function": {
+                    "$id": "/properties/specs/items/properties/after_test/properties/inline/properties/function"
+                  }
+                },
+                "required": [
+                  "function"
+                ]
+              },
+              "module": {
+                "$id": "/properties/specs/items/properties/after_test/properties/module",
+                "type": "object",
+                "properties": {
+                  "function_name": {
+                    "$id": "/properties/specs/items/properties/after_test/properties/module/properties/function_name",
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "module_path": {
+                    "$id": "/properties/specs/items/properties/after_test/properties/module/properties/module_path",
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "function_name",
+                  "module_path"
+                ]
+              }
+            },
+            "required": [
+              "run_type"
+            ]
+          },
+          "request": {
+            "$id": "/properties/specs/items/properties/request",
+            "type": "object",
+            "properties": {
+              "path": {
+                "$id": "/properties/specs/items/properties/request/properties/path",
+                "type": "string"
+              },
+              "method": {
+                "$id": "/properties/specs/items/properties/request/properties/method",
+                "type": "string",
+                "enum": [
+                  "GET",
+                  "POST",
+                  "PUT",
+                  "HEAD",
+                  "PATCH",
+                  "DELETE",
+                  "OPTIONS",
+                  "get",
+                  "post",
+                  "put",
+                  "head",
+                  "patch",
+                  "delete",
+                  "options"
+                ]
+              },
+              "read_timeout": {
+                "$id": "/properties/specs/items/properties/request/properties/read_timeout",
+                "type": "integer"
+              },
+              "payload": {
+                "$id": "/properties/specs/items/properties/request/properties/payload",
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "$id": "/properties/specs/items/properties/request/properties/payload/properties/body",
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "$id": "/properties/specs/items/properties/request/properties/payload/properties/body/properties/type",
+                        "type": "string",
+                        "enum": [
+                          "binary",
+                          "text",
+                          "json"
+                        ]
+                      },
+                      "content": {
+                        "$id": "/properties/specs/items/properties/request/properties/payload/properties/body/properties/content"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "content"
+                    ]
+                  },
+                  "form": {
+                    "$id": "/properties/specs/items/properties/request/properties/payload/properties/form",
+                    "type": "object"
+                  },
+                  "form_data": {
+                    "$id": "/properties/specs/items/properties/request/properties/payload/properties/form_data",
+                    "type": "array",
+                    "items": {
+                      "$id": "/properties/specs/items/properties/request/properties/payload/properties/form_data/items",
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "$id": "/properties/specs/items/properties/request/properties/payload/properties/form_data/items/properties/name",
+                          "type": [
+                            "string",
+                            "number"
+                          ]
+                        },
+                        "content": {
+                          "$id": "/properties/specs/items/properties/request/properties/payload/properties/form_data/items/properties/content"
+                        },
+                        "type": {
+                          "$id": "/properties/specs/items/properties/request/properties/payload/properties/form_data/items/properties/type",
+                          "type": "string",
+                          "enum": [
+                            "file",
+                            "text",
+                            "json"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "name",
+                        "content"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additional_options": {
+                "$id": "/properties/specs/items/properties/request/properties/additional_options",
+                "type": "object",
+                "properties": {
+                  "followRedirect": {
+                    "$id": "/properties/specs/items/properties/request/properties/additional_options/properties/followRedirect",
+                    "type": "boolean"
+                  },
+                  "followAllRedirects": {
+                    "$id": "/properties/specs/items/properties/request/properties/additional_options/properties/followAllRedirects",
+                    "type": "boolean"
+                  },
+                  "followOriginalHttpMethod": {
+                    "$id": "/properties/specs/items/properties/request/properties/additional_options/properties/followOriginalHttpMethod",
+                    "type": "boolean"
+                  },
+                  "encoding": {
+                    "$id": "/properties/specs/items/properties/request/properties/additional_options/properties/followRedirect",
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "gzip": {
+                    "$id": "/properties/specs/items/properties/request/properties/additional_options/properties/followAllRedirects",
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "required": [
+              "method"
+            ]
+          },
+          "response": {
+            "$id": "/properties/specs/items/properties/response",
+            "type": "object",
+            "properties": {
+              "status_code": {
+                "$id": "/properties/specs/items/properties/response/properties/status_code",
+                "type": "integer"
+              },
+              "headers": {
+                "$id": "/properties/specs/items/properties/response/properties/headers",
+                "type": "array",
+                "items": {
+                  "$id": "/properties/specs/items/properties/response/properties/headers/items",
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "$id": "/properties/specs/items/properties/response/properties/headers/items/properties/name",
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "value": {
+                      "$id": "/properties/specs/items/properties/response/properties/headers/items/properties/value"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "value"
+                  ]
+                }
+              },
+              "json_schema": {
+                "$id": "/properties/specs/items/properties/response/properties/json_schema",
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "$id": "/properties/specs/items/properties/response/properties/json_schema/properties/type",
+                    "type": "string",
+                    "enum": [
+                      "inline",
+                      "file"
+                    ]
+                  },
+                  "$ref": {
+                    "$id": "/properties/specs/items/properties/response/properties/json_schema/properties/$ref",
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "type",
+                  "$ref"
+                ]
+              },
+              "json_data": {
+                "$id": "/properties/specs/items/properties/response/properties/json_data",
+                "type": "array",
+                "items": {
+                  "$id": "/properties/specs/items/properties/response/properties/json_data/items",
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "$id": "/properties/specs/items/properties/response/properties/json_data/items/properties/path",
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "value": {
+                      "$id": "/properties/specs/items/properties/response/properties/json_data/items/properties/value",
+                      "type": [
+                        "integer",
+                        "number",
+                        "string",
+                        "array",
+                        "object"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "value"
+                  ]
+                }
+              },
+              "custom_validator": {
+                "$id": "/properties/specs/items/properties/response/properties/custom_validator",
+                "type": "object",
+                "properties": {
+                  "run_type": {
+                    "$id": "/properties/specs/items/properties/response/properties/custom_validator/properties/run_type",
+                    "type": "string",
+                    "enum": [
+                      "inline",
+                      "module"
+                    ]
+                  },
+                  "inline": {
+                    "$id": "/properties/specs/items/properties/response/properties/custom_validator/properties/inline",
+                    "type": "object",
+                    "properties": {
+                      "function": {
+                        "$id": "/properties/specs/items/properties/response/properties/custom_validator/properties/inline/properties/function"
+                      }
+                    },
+                    "required": [
+                      "function"
+                    ]
+                  },
+                  "module": {
+                    "$id": "/properties/configuration/properties/custom_configuration/properties/module",
+                    "type": "object",
+                    "properties": {
+                      "function_name": {
+                        "$id": "/properties/configuration/properties/custom_configuration/properties/module/properties/function_name",
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "module_path": {
+                        "$id": "/properties/configuration/properties/custom_configuration/properties/module/properties/module_path",
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "function_name",
+                      "module_path"
+                    ]
+                  }
+                },
+                "required": [
+                  "run_type"
+                ]
+              }
+            },
+            "required": []
+          },
+          "retry": {
+            "$id": "/properties/specs/items/properties/retry",
+            "type": "object",
+            "properties": {
+              "count": {
+                "$id": "/properties/specs/items/properties/retry/properties/count",
+                "type": "integer"
+              },
+              "wait_before_each": {
+                "$id": "/properties/specs/items/properties/retry/properties/wait_before_each",
+                "type": "integer"
+              }
+            }
+          },
+          "loop": {
+            "$id": "/properties/specs/items/properties/loop",
+            "type": "object",
+            "properties": {
+              "type": {
+                "$id": "/properties/specs/items/properties/loop/properties/type",
+                "type": "string",
+                "enum": [
+                  "static",
+                  "dynamic"
+                ]
+              },
+              "static": {
+                "$id": "/properties/specs/items/properties/loop/properties/static",
+                "type": "array"
+              },
+              "dynamic": {
+                "$id": "/properties/specs/items/properties/loop/properties/dynamic",
+                "type": "object",
+                "properties": {
+                  "run_type": {
+                    "$id": "/properties/specs/items/properties/loop/properties/dynamic/properties/run_type",
+                    "type": "string",
+                    "enum": [
+                      "inline",
+                      "module"
+                    ]
+                  },
+                  "inline": {
+                    "$id": "/properties/specs/items/properties/loop/properties/dynamic/properties/inline",
+                    "type": "object",
+                    "properties": {
+                      "function": {
+                        "$id": "/properties/specs/items/properties/loop/properties/dynamic/properties/inline/properties/function"
+                      }
+                    },
+                    "required": [
+                      "function"
+                    ]
+                  },
+                  "module": {
+                    "$id": "/properties/specs/items/properties/loop/properties/dynamic/properties/module",
+                    "type": "object",
+                    "properties": {
+                      "function_name": {
+                        "$id": "/properties/specs/items/properties/loop/properties/dynamic/properties/module/properties/function_name",
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "module_path": {
+                        "$id": "/properties/specs/items/properties/loop/properties/dynamic/properties/module/properties/module_path",
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "function_name",
+                      "module_path"
+                    ]
+                  }
+                },
+                "required": [
+                  "run_type"
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "request",
+          "response"
+        ]
+      }
+    }
+  },
+  "required": [
+    "meta",
+    "configuration",
+    "specs"
+  ]
+}

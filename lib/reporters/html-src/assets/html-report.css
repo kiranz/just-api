@@ -1,0 +1,581 @@
+@charset "utf-8";
+
+body {
+    margin: 0;
+}
+
+#just-api {
+    font: 20px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 20px 20px;
+}
+
+#just-api ul,
+#just-api li {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 5px;
+}
+
+#just-api ul {
+    list-style: none;
+}
+
+#just-api h1,
+#just-api h2 {
+    margin: 0;
+}
+
+#just-api h1 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+#just-api h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#just-api h1 a:hover {
+    text-decoration: underline;
+}
+
+#just-api .suite .suite h1 {
+    margin-top: 0;
+    font-size: .8em;
+}
+
+#just-api .hidden {
+    display: none;
+}
+
+#just-api h2 {
+    font-size: 14px;
+    font-weight: 300;
+    /*cursor: pointer;*/
+}
+
+#just-api .test-name {
+    cursor: pointer;
+    font-weight: 300;
+    letter-spacing: 0.1px;
+}
+
+#just-api .suite {
+    margin-left: 15px;
+}
+
+#just-api .test {
+    margin-left: 23px;
+    overflow: hidden;
+    border: 2px;
+    border-style: solid;
+    border-color: aliceblue;
+    padding: 4px;
+    margin-bottom: 4px;
+}
+
+#just-api .test.skip:hover h2::after {
+    color: #888888;
+    content: "(skipped)";
+    font-family: arial;
+    font-size: 12px;
+    position: relative;
+    right: -10px;
+    top: 0;
+}
+
+#just-api .test.pass::before {
+    content: '✓';
+    font-size: 16px;
+    display: block;
+    float: left;
+    margin-right: 5px;
+    color: limegreen;
+}
+
+#just-api .test.duration {
+    font-size: 9px;
+    margin-left: 5px;
+    padding: 2px 5px;
+    color: #fff;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .2);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .2);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .2);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#just-api .duration {
+    font-size: 11px;
+    color: black;
+    font-style: italic;
+}
+
+#just-api .test.pass {
+    color: limegreen;
+}
+
+#just-api .test.skip {
+    color: gray;
+    font-weight: 100;
+}
+
+#just-api .suite.skip {
+    color: gray;
+    font-weight: 100;
+}
+
+#just-api .test.skip::before {
+    content: '-';
+    font-size: 16px;
+    font-weight: 900;
+    display: block;
+    float: left;
+    margin-right: 5px;
+    color: gray;
+    padding-right: 5px;
+}
+
+#just-api .test.fail {
+    color: #c00;
+}
+
+#just-api .test.fail pre {
+    color: black;
+}
+
+.suite-name-hidden {
+    display: none;
+}
+
+#just-api .test.fail::before {
+    content: '✖';
+    font-size: 16px;
+    display: block;
+    float: left;
+    margin-right: 5px;
+    color: #c00;
+}
+
+#just-api .test pre.error {
+    color: #c00;
+    max-height: 300px;
+    overflow: auto;
+}
+
+#just-api .test pre.show {
+    display: block;
+}
+
+#just-api .test pre.test-requests {
+    color: darkgray;
+    max-height: 200px;
+    overflow: auto;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0;
+    box-shadow: 0;
+    padding: 0;
+    margin: 0;
+    margin-top: 18px;
+    clear: left;
+    font: 12px/1.5 monaco, monospace;
+    margin: 5px;
+    padding: 15px;
+    border: 1px solid #eee;
+    max-width: 60%; /*(1)*/
+    /*max-width: -webkit-calc(100% - 42px);*/
+    /*max-width: -moz-calc(100% - 42px);*/
+    /*max-width: calc(100% - 42px); !*(2)*!*/
+    word-wrap: break-word;
+    border-bottom-color: #ddd;
+    -webkit-box-shadow: 0 1px 3px #eee;
+    -moz-box-shadow: 0 1px 3px #eee;
+    box-shadow: 0 1px 3px #eee;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#just-api .suite pre.suite-error {
+    color: #c00;
+    max-height: 200px;
+    overflow: auto;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0;
+    box-shadow: 0;
+    padding: 0;
+    margin: 0;
+    margin-top: 18px;
+    display: block;
+    clear: left;
+    font: 12px/1.5 monaco, monospace;
+    margin: 5px;
+    padding: 15px;
+    border: 1px solid #eee;
+    max-width: 60%; /*(1)*/
+    /*max-width: -webkit-calc(100% - 42px);*/
+    /*max-width: -moz-calc(100% - 42px);*/
+    /*max-width: calc(100% - 42px); !*(2)*!*/
+    word-wrap: break-word;
+    border-bottom-color: #ddd;
+    -webkit-box-shadow: 0 1px 3px #eee;
+    -moz-box-shadow: 0 1px 3px #eee;
+    box-shadow: 0 1px 3px #eee;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin-left: 23px;
+}
+
+#just-api .suite pre.suite-requests {
+    color: darkgray;
+    max-height: 200px;
+    overflow: auto;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0;
+    box-shadow: 0;
+    padding: 0;
+    margin: 0;
+    margin-top: 18px;
+    display: block;
+    clear: left;
+    font: 12px/1.5 monaco, monospace;
+    margin: 5px;
+    padding: 15px;
+    border: 1px solid #eee;
+    max-width: 60%; /*(1)*/
+    /*max-width: -webkit-calc(100% - 42px);*/
+    /*max-width: -moz-calc(100% - 42px);*/
+    /*max-width: calc(100% - 42px); !*(2)*!*/
+    word-wrap: break-word;
+    border-bottom-color: #ddd;
+    -webkit-box-shadow: 0 1px 3px #eee;
+    -moz-box-shadow: 0 1px 3px #eee;
+    box-shadow: 0 1px 3px #eee;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#just-api .test .html-error {
+    overflow: auto;
+    color: black;
+    line-height: 1.5;
+    display: block;
+    float: left;
+    clear: left;
+    font: 12px/1.5 monaco, monospace;
+    margin: 5px;
+    padding: 15px;
+    border: 1px solid #eee;
+    max-width: 85%; /*(1)*/
+    max-width: -webkit-calc(100% - 42px);
+    max-width: -moz-calc(100% - 42px);
+    max-width: calc(100% - 42px); /*(2)*/
+    max-height: 300px;
+    word-wrap: break-word;
+    border-bottom-color: #ddd;
+    -webkit-box-shadow: 0 1px 3px #eee;
+    -moz-box-shadow: 0 1px 3px #eee;
+    box-shadow: 0 1px 3px #eee;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#just-api .test .html-error pre.error {
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0;
+    box-shadow: 0;
+    padding: 0;
+    margin: 0;
+    margin-top: 18px;
+    max-height: none;
+}
+
+/**
+ * (1): approximate for browsers not supporting calc
+ * (2): 42 = 2*15 + 2*10 + 2*1 (padding + margin + border)
+ *      ^^ seriously
+ */
+#just-api .test pre {
+    display: block;
+    float: left;
+    clear: left;
+    font: 12px/1.5 monaco, monospace;
+    margin: 5px;
+    padding: 15px;
+    border: 1px solid #eee;
+    max-width: 85%; /*(1)*/
+    max-width: -webkit-calc(100% - 42px);
+    max-width: -moz-calc(100% - 42px);
+    max-width: calc(100% - 42px); /*(2)*/
+    word-wrap: break-word;
+    border-bottom-color: #ddd;
+    -webkit-box-shadow: 0 1px 3px #eee;
+    -moz-box-shadow: 0 1px 3px #eee;
+    box-shadow: 0 1px 3px #eee;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#just-api .test h2 {
+    position: relative;
+}
+
+#just-api .test a.replay {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    text-decoration: none;
+    vertical-align: middle;
+    display: block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    background: #eee;
+    font-size: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    -webkit-transition: opacity 200ms;
+    -moz-transition: opacity 200ms;
+    -o-transition: opacity 200ms;
+    transition: opacity 200ms;
+    opacity: 0.3;
+    color: #888;
+}
+
+#just-api .test:hover a.replay {
+    opacity: 1;
+}
+
+#just-api-report.pass .test.fail {
+    display: none;
+}
+
+#just-api-report.fail .test.pass {
+    display: none;
+}
+
+#just-api-report.skip .test.pass,
+#just-api-report.skip .test.fail {
+    display: none;
+}
+
+#just-api-report.skip .test.pass.skip {
+    display: block;
+}
+
+#just-api-error {
+    color: #c00;
+    font-size: 1.5em;
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+
+#just-api-stats {
+    position: fixed;
+    top: 15px;
+    right: 10px;
+    font-size: 12px;
+    margin: 0;
+    color: #888;
+    z-index: 1;
+}
+
+#just-api-stats .progress {
+    float: right;
+    padding-top: 0;
+
+    /**
+     * Set safe initial values, so just-apis .progress does not inherit these
+     * properties from Bootstrap .progress (which causes .progress height to
+     * equal line height set in Bootstrap).
+     */
+    height: auto;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: initial;
+}
+
+#just-api-stats em {
+    color: black;
+}
+
+#just-api-stats a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#just-api-stats a:hover {
+    border-bottom: 1px solid #eee;
+}
+
+#just-api-stats li {
+    display: inline-block;
+    margin: 0 5px;
+    list-style: none;
+    padding-top: 11px;
+}
+
+#just-api-stats canvas {
+    width: 40px;
+    height: 40px;
+}
+
+#just-api code .comment {
+    color: #ddd;
+}
+
+#just-api code .init {
+    color: #2f6fad;
+}
+
+#just-api code .string {
+    color: #5890ad;
+}
+
+#just-api code .keyword {
+    color: #8a6343;
+}
+
+#just-api code .number {
+    color: #2f6fad;
+}
+
+@media screen and (max-device-width: 480px) {
+    #just-api {
+        margin: 60px 0px;
+    }
+
+    #just-api #stats {
+        position: absolute;
+    }
+}
+
+/*simple html css*/
+/*#just-api .test.pass pre {*/
+/*display: none;*/
+/*}*/
+
+#just-api .test pre {
+    display: none;
+}
+
+/*#just-api .test pre.error {*/
+/*display: block;*/
+/*}*/
+
+#just-api .test .html-error pre.error {
+    box-shadow: none;
+}
+
+#just-api .test.fail:hover h2:after {
+    color: #888888;
+    font-weight: 200;
+    content: "(view more)";
+    font-family: arial;
+    font-size: 12px;
+    position: relative;
+    right: -10px;
+    top: 0;
+}
+
+#just-api .test.pass.skip h2 {
+    cursor: auto;
+}
+
+#just-api .just-api-header {
+    right: 30px;
+    position: fixed;
+    top: 15px;
+    font-size: 14px;
+    margin: 0;
+    color: #888;
+    z-index: 1;
+}
+
+.just-api-label {
+    color: cornflowerblue;
+    position: absolute;
+    left: 18px;
+    top: 12px;
+    font-weight: 400;
+    font-size: 26px;
+}
+
+.just-api-summary {
+    text-align: right;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+#just-api .just-api-header em {
+    font-style: normal;
+    color: black;
+}
+
+#just-api .just-api-header ul {
+    display: inline-block;
+}
+
+#just-api .just-api-stats li {
+    display: inline-block;
+    margin: 0 5px;
+    list-style: none;
+    padding-top: 11px;
+}
+
+#just-api .just-api-menu {
+    margin-right: 10px;
+}
+
+#just-api .just-api-menu li {
+    display: inline-block;
+    margin-left: 10px;
+    list-style: none;
+}
+
+#just-api .just-api-menu li span {
+    display: inline-block;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    padding: 3px 7px 2px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    user-select: none;
+}
+
+#just-api .just-api-menu li span.checked {
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .2);
+}
+
+#just-api .toggle-passes {
+    background: #b94a48;
+}

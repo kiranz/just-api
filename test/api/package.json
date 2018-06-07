@@ -1,0 +1,9 @@
+{
+  "name": "just-api-test-api",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "json-server": "0.12.2",
+    "multer": "1.3.0"
+  }
+}
