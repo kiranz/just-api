@@ -1,3 +1,12 @@
 #!/usr/bin/env node
 
+var semver = require('semver');
+var package = require('./../package');
+var version = package.engines.node;
+
+if (!semver.satisfies(process.version, version)) {
+  console.log('Required node version:' + version + ', current version:' + process.version + '. Please upgrade.');
+  process.exit(1);
+}
+
 require('../src/main.js');
