@@ -2,6 +2,7 @@
 .vscode/
 *.DS_Store
 .github/
+docs/
 lib/
 local/
 test/
