@@ -38,7 +38,7 @@ $ mkdir specs
 $ $EDITOR specs/starwars_service.yml # or open with your preferred editor
 ```
 
-In your editor (make sure yaml is properly indented)
+API test specification is written in yaml files, Enter below specification
 
 ```yaml
 meta:

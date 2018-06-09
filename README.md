@@ -10,7 +10,7 @@ Just-API allows users to test APIs without writing code.
 
 ## Links
 
-- **[Documentation](http://kiranz.github.io/just-api-docs)**
+- **[Documentation](http://kiranz.github.io/just-api/)**
 - [Gitter Chatroom](https://gitter.im/just-api/Lobby) (ask questions here!)
 - [Google Group](https://groups.google.com/forum/#!forum/just-api)
 - [Issue Tracker](https://github.com/kiranz/just-api/issues)
@@ -58,7 +58,7 @@ $ ./node_modules/.bin/just-api
 Duration: 1.6s
 ```
 
-See the [Just-API Website](http://kiranz.github.io/just-api-docs) for detailed documentation.
+See the [Just-API Website](http://kiranz.github.io/just-api/) for detailed documentation.
 
 ## License
 
