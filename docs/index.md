@@ -1,5 +1,4 @@
 ---
-layout: default
 title: 'Just-API - robust specification based API testing framework'
 ---
 
