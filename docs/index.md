@@ -1,4 +1,7 @@
-# Just-API
+---
+layout: default
+title: 'Just-API - robust specification based API testing framework'
+---
 
 Just-API is a robust, specification based API testing framework running on [node.js](http://nodejs.org/). Just-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. Just-API reports errors and test results in several formats including HTML and JSON.
 Just-API allows users to test APIs without writing code.
