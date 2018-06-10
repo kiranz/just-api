@@ -8,6 +8,43 @@ Just-API allows users to test APIs without writing code.
 
 [![Join the chat at https://gitter.im/just-api/Lobby](https://badges.gitter.im/just-api/Lobby.svg)](https://gitter.im/just-api/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+## Features
+
+<!-- toc -->
+
+- [supports all widely used http methods](#various-http-methods)
+- [specification includes headers, query params, path params, body]
+- [supports form, multipart requests, file uploads](#forms-multipart-requests-and-file-uploads)
+- [response status code validation]
+- [response headers validation]
+- [response json body validation]
+- [response json schema validation]
+- [supports user defined custom response validator functions]
+- [cutom inline and module functions]
+- [async support for custom functions with promises]
+- [suite level configuration]
+- [before all, after all, before each, after each, before test, after test hooks]
+- [dynamic request construction with headers, query params, path params, body]
+- [storing suite & test context for reuse]
+- [running suites in parallel]
+- [ability to skip suites]
+- [ability to skip tests]
+- [running test dependencies in hooks]
+- [inter-suite spec dependencies]
+- [reusing test specification]
+- [test retry support]
+- [loop support to test an endpoint with parameterized data]
+- [reports test duration]
+- [running only tests match with a given pattern/text]
+- [test specific timeout ]
+- [additional request options]
+- [Reporters]
+- [proper error reporting]
+- [proper exit status for CI support]
+- [logging HTTP request/response data for failed tests]
+
+<!-- tocstop -->
+<br>
 
 ## Table of Contents
 
@@ -15,8 +52,15 @@ Just-API allows users to test APIs without writing code.
 
 - [Installation](#installation)
 - [Getting Started](#getting-started)
-
+- [Hooks]
+- [Finding suites recursively]
+- [Reporters]
+- [no callbacks]
+- [A complex test]
+- [Examples]
 <!-- tocstop -->
+<br>
+<br>
 
 ## Installation
 
@@ -26,7 +70,7 @@ Install with [npm](https://npmjs.org):
 $ npm install just-api
 ```
 
->To run Mocha, you will need Node.js v7.10.0 or newer.
+>To run just-api, you will need Node.js v7.10.0 or newer.
 
 
 ## Getting Started

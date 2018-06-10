@@ -17,6 +17,8 @@ Just-API allows users to test APIs without writing code.
 
 ## Getting Started
 
+>To run just-api, you will need Node.js v7.10.0 or newer.
+
 ```
 $ npm install just-api
 $ mkdir specs
