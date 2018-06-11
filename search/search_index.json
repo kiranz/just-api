@@ -2,23 +2,13 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Welcome to MkDocs\n\n\nFor full documentation visit \nmkdocs.org\n.\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
-            "title": "Welcome to MkDocs"
+            "text": "Just-API Docs\n\n\n\n\n\n\n\n\nJust-API is a robust, specification based API testing framework running on \nnode.js\n. Just-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. Just-API reports errors and test results in several formats including HTML and JSON.\nJust-API allows users to test APIs without writing code.\n\n\n\nIn simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server\nand validates response as per the specification.\n\n\nYou can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.", 
+            "title": "Home"
         }, 
         {
-            "location": "/#welcome-to-mkdocs", 
-            "text": "For full documentation visit  mkdocs.org .", 
-            "title": "Welcome to MkDocs"
-        }, 
-        {
-            "location": "/#commands", 
-            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.", 
-            "title": "Commands"
-        }, 
-        {
-            "location": "/#project-layout", 
-            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
-            "title": "Project layout"
+            "location": "/#just-api-docs", 
+            "text": "Just-API is a robust, specification based API testing framework running on  node.js . Just-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. Just-API reports errors and test results in several formats including HTML and JSON.\nJust-API allows users to test APIs without writing code.  \nIn simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server\nand validates response as per the specification.  You can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.", 
+            "title": "Just-API Docs"
         }
     ]
 }
