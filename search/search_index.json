@@ -2,43 +2,408 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Just-API docs\n\n\n\n\n\n\n\n\nJust-API is a robust, specification based API testing framework running on \nnode.js\n. Just-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. Just-API reports errors and test results in several formats including HTML and JSON.\nJust-API allows users to test APIs without writing code.\n\n\n\nIn simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server\nand validates response as per the specification.\n\n\nYou can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.\n\n\n\nFeatures\n\n\n\n\n\n\n\nsupports all widely used HTTP methods\n\n\nspecification includes headers, query params, path params, body\n\n\nsupports form, multipart requests, file uploads\n\n\n[response status code validation]\n\n\n[response headers validation]\n\n\n[response json body validation]\n\n\n[response json schema validation]\n\n\n[supports user defined custom response validator functions]\n\n\n[cutom inline and module functions]\n\n\n[async support for custom functions with promises]\n\n\n[suite level configuration]\n\n\n[before all, after all, before each, after each, before test, after test hooks]\n\n\n[dynamic request construction with headers, query params, path params, body]\n\n\n[storing suite \n test context for reuse]\n\n\n[running suites in parallel]\n\n\n[ability to skip suites]\n\n\n[ability to skip tests]\n\n\n[running test dependencies in hooks]\n\n\n[inter-suite spec dependencies]\n\n\n[reusing test specification]\n\n\n[test retry support]\n\n\n[loop support to test an endpoint with parameterized data]\n\n\n[reports test duration]\n\n\n[running only tests match with a given pattern/text]\n\n\n[test specific timeout ]\n\n\n[additional request options]\n\n\n[Reporters]\n\n\n[proper error reporting]\n\n\n[proper exit status for CI support]\n\n\n[logging HTTP request/response data for failed tests]\n\n\n\n\n\n\n\n\n\nTable of Contents\n\n\n\n\n\n\n\nInstallation\n\n\nGetting Started\n\n\n[Hooks]\n\n\n[Finding suites recursively]\n\n\n[Reporters]\n\n\n[no callbacks]\n\n\n[A complex test]\n\n\n[Examples]\n\n\n\n\n\n\n\n\n\nInstallation\n\n\nInstall with \nnpm\n:\n\n\n$ npm install just-api\n\n\n\n\n\n\nTo run just-api, you will need Node.js v7.10.0 or newer.\n\n\n\n\nGetting Started\n\n\n$ npm install just-api\n$ mkdir specs\n$ $EDITOR specs/starwars_service.yml # or open with your preferred editor\n\n\n\n\nAPI test specification is written in yaml files, Enter below specification\n\n\nmeta:\n  name: StarWars suite\nconfiguration:\n  scheme: https\n  host: swapi.co\n  base_path: /api\nspecs:\n  - name: get \nLuke Skywalker\n info\n    request:\n      path: /people/1/\n      method: get\n    response:\n      status_code: 200\n      json_data:\n        - path: $.name\n          value: Luke Skywalker\n\n\n\n\nBack in the terminal\n\n\n$ ./node_modules/.bin/just-api\n\n   \u2713 get Luke Skywalker info (1516ms)\n\n  Done: specs/suite.yml (Passed)\n\n0 skipped, 0 failed, 1 passed (1 tests)\n0 skipped, 0 failed, 1 passed (1 suites)\nDuration: 1.6s\n\n\n\n\nSupports various HTTP methods\n\n\nJust-API supports following HTTP request methods. You can have a test specification which\nincludes any of these method.\n\n\n\n\nGET\n\n\nPOST\n\n\nPUT\n\n\nPATCH\n\n\nDELETE\n\n\nHEAD\n\n\nOPTIONS\n\n\n\n\nNote that when a request is POST, PUT or PATCH, payload details can be provided and it will\nbe sent as request body. More on this in later sections.\n\n\nRequest specification\n\n\nA typical request specification includes path, headers, query params, path params, payload (if applicable)", 
+            "text": "Just-API docs\n\n\n\n\nJust-API is a robust, specification based API testing framework running on \nnode.js\n. Just-API allows users to test APIs without writing code.\nJust-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.\n\n\n\nIn simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server\nand validates response as per the specification.\n\n\nYou can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.\n\n\n\nContents\n\n\nDocumentation\n\n\n\n\nGetting Started\n\n\nBasic Concepts\n\n\nCLI\n\n\nFeatures\n\n\nReporters\n\n\nExamples\n\n\n\n\n\n\nFind it on npm\n\n\n\n\nStay In Touch\n\n\nTwitter\n\n\nFor an occasional update on what we're up to, follow us on Twitter.\n\n\nFollow @just_api_\n\n\nGithub\n\n\nStar Just-API on Github.\n\n\nStar\n\n\nGitter\n\n\nIf you are having problems with Just-API, have a question, or just want to say hello, you can chat with the community on gitter.\n\n\n\nGoogle group\n\n\nJust-API", 
             "title": "Home"
         }, 
         {
             "location": "/#just-api-docs", 
-            "text": "Just-API is a robust, specification based API testing framework running on  node.js . Just-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. Just-API reports errors and test results in several formats including HTML and JSON.\nJust-API allows users to test APIs without writing code.  \nIn simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server\nand validates response as per the specification.  You can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.", 
+            "text": "Just-API is a robust, specification based API testing framework running on  node.js . Just-API allows users to test APIs without writing code.\nJust-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.  \nIn simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server\nand validates response as per the specification.  You can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.", 
             "title": "Just-API docs"
         }, 
         {
-            "location": "/#features", 
-            "text": "supports all widely used HTTP methods  specification includes headers, query params, path params, body  supports form, multipart requests, file uploads  [response status code validation]  [response headers validation]  [response json body validation]  [response json schema validation]  [supports user defined custom response validator functions]  [cutom inline and module functions]  [async support for custom functions with promises]  [suite level configuration]  [before all, after all, before each, after each, before test, after test hooks]  [dynamic request construction with headers, query params, path params, body]  [storing suite   test context for reuse]  [running suites in parallel]  [ability to skip suites]  [ability to skip tests]  [running test dependencies in hooks]  [inter-suite spec dependencies]  [reusing test specification]  [test retry support]  [loop support to test an endpoint with parameterized data]  [reports test duration]  [running only tests match with a given pattern/text]  [test specific timeout ]  [additional request options]  [Reporters]  [proper error reporting]  [proper exit status for CI support]  [logging HTTP request/response data for failed tests]", 
-            "title": "Features"
+            "location": "/#contents", 
+            "text": "", 
+            "title": "Contents"
         }, 
         {
-            "location": "/#table-of-contents", 
-            "text": "Installation  Getting Started  [Hooks]  [Finding suites recursively]  [Reporters]  [no callbacks]  [A complex test]  [Examples]", 
-            "title": "Table of Contents"
+            "location": "/#documentation", 
+            "text": "Getting Started  Basic Concepts  CLI  Features  Reporters  Examples", 
+            "title": "Documentation"
         }, 
         {
-            "location": "/#installation", 
+            "location": "/#find-it-on-npm", 
+            "text": "", 
+            "title": "Find it on npm"
+        }, 
+        {
+            "location": "/#stay-in-touch", 
+            "text": "", 
+            "title": "Stay In Touch"
+        }, 
+        {
+            "location": "/#twitter", 
+            "text": "For an occasional update on what we're up to, follow us on Twitter.  Follow @just_api_", 
+            "title": "Twitter"
+        }, 
+        {
+            "location": "/#github", 
+            "text": "Star Just-API on Github.  Star", 
+            "title": "Github"
+        }, 
+        {
+            "location": "/#gitter", 
+            "text": "If you are having problems with Just-API, have a question, or just want to say hello, you can chat with the community on gitter.", 
+            "title": "Gitter"
+        }, 
+        {
+            "location": "/#google-group", 
+            "text": "Just-API", 
+            "title": "Google group"
+        }, 
+        {
+            "location": "/getting-started/", 
+            "text": "Installation\n\n\nInstall with \nnpm\n:\n\n\n$ npm install just-api\n\n\n\n\n\n\nTo run just-api, you will need Node.js v7.10.0 or newer.\n\n\n\n\nGetting Started\n\n\n$ npm install just-api\n$ mkdir specs\n$ $EDITOR specs/starwars_service.yml # or open with your preferred editor\n\n\n\n\nAPI test specification is written in yaml files, Enter below specification\n\n\nmeta:\n  name: Star Wars suite\nconfiguration:\n  scheme: https\n  host: swapi.co\n  base_path: /api\nspecs:\n  - name: get \nLuke Skywalker\n info\n    request:\n      path: /people/1/\n      method: get\n    response:\n      status_code: 200\n      json_data:\n        - path: $.name\n          value: Luke Skywalker\n\n\n\n\nBack in the terminal\n\n\n$ ./node_modules/.bin/just-api\n\n   \u2713 get Luke Skywalker info (1516ms)\n\n  Done: specs/suite.yml (Passed)\n\n0 skipped, 0 failed, 1 passed (1 tests)\n0 skipped, 0 failed, 1 passed (1 suites)\nDuration: 1.6s", 
+            "title": "Getting Started"
+        }, 
+        {
+            "location": "/getting-started/#installation", 
             "text": "Install with  npm :  $ npm install just-api   To run just-api, you will need Node.js v7.10.0 or newer.", 
             "title": "Installation"
         }, 
         {
-            "location": "/#getting-started", 
-            "text": "$ npm install just-api\n$ mkdir specs\n$ $EDITOR specs/starwars_service.yml # or open with your preferred editor  API test specification is written in yaml files, Enter below specification  meta:\n  name: StarWars suite\nconfiguration:\n  scheme: https\n  host: swapi.co\n  base_path: /api\nspecs:\n  - name: get  Luke Skywalker  info\n    request:\n      path: /people/1/\n      method: get\n    response:\n      status_code: 200\n      json_data:\n        - path: $.name\n          value: Luke Skywalker  Back in the terminal  $ ./node_modules/.bin/just-api\n\n   \u2713 get Luke Skywalker info (1516ms)\n\n  Done: specs/suite.yml (Passed)\n\n0 skipped, 0 failed, 1 passed (1 tests)\n0 skipped, 0 failed, 1 passed (1 suites)\nDuration: 1.6s", 
+            "location": "/getting-started/#getting-started", 
+            "text": "$ npm install just-api\n$ mkdir specs\n$ $EDITOR specs/starwars_service.yml # or open with your preferred editor  API test specification is written in yaml files, Enter below specification  meta:\n  name: Star Wars suite\nconfiguration:\n  scheme: https\n  host: swapi.co\n  base_path: /api\nspecs:\n  - name: get  Luke Skywalker  info\n    request:\n      path: /people/1/\n      method: get\n    response:\n      status_code: 200\n      json_data:\n        - path: $.name\n          value: Luke Skywalker  Back in the terminal  $ ./node_modules/.bin/just-api\n\n   \u2713 get Luke Skywalker info (1516ms)\n\n  Done: specs/suite.yml (Passed)\n\n0 skipped, 0 failed, 1 passed (1 tests)\n0 skipped, 0 failed, 1 passed (1 suites)\nDuration: 1.6s", 
             "title": "Getting Started"
         }, 
         {
-            "location": "/#supports-various-http-methods", 
-            "text": "Just-API supports following HTTP request methods. You can have a test specification which\nincludes any of these method.   GET  POST  PUT  PATCH  DELETE  HEAD  OPTIONS   Note that when a request is POST, PUT or PATCH, payload details can be provided and it will\nbe sent as request body. More on this in later sections.", 
-            "title": "Supports various HTTP methods"
+            "location": "/basic-concepts/", 
+            "text": "Basic Concepts\n\n\nThis section covers some high level basic concepts that are important to understand for day to day Just-API usage. We highly recommend that you read this\npage before proceeding to use Just-API.\n\n\nThe High-level View\n\n\nJust-API is a framework that you can use to run HTTP based API tests.\n\n\nYou write your API test specification and tell Just-API to run them. API test specifications are written in YAML and we call each YAML file a test suite, with the option to write Javascript (using any \nnpm\n module if needed) to write custom logic.\n\n\nJust-API's main purpose is to test HTTP based APIs without code, and make API testing easy, free and fast for everyone.\n\n\nJust-API is written with parallelism as priority while running suites, so your test execution takes as less time as possible.\n\n\nPutting a test suite together\n\n\nA test suite has three required sections - \nmeta\n, \nconfiguration\n and \nspecs\n.\n\n\nAnd optional sections \nhooks\n and \nspec_dependencies\n (you can find more about these optional parts in later sections of the documentation).\n\n\nThe \nmeta\n Section\n\n\nThis is where you specify \nname\n for the suite and other suite related metadata.\n\n\nThe \nconfiguration\n Section\n\n\nYou can use \nconfiguration\n section to specify API's host, scheme, port etc. you can also provide a custom Javascript function to \ncustom_configuration\n key, so it's easy to \ndynamically configure your suite at runtime.\n\n\nThe \nspecs\n Section\n\n\nspecs\n section is a list of tests. Each test contains name, request, response validation specification etc.\n\n\nAn Example Suite\n\n\nA sample suite for Star Wars API service would look like this:\n\n\nmeta:\n  name: Star Wars service\nconfiguration:\n  scheme: https\n  base_path: /api\n  custom_configuration:\n    run_type: inline\n    inline:\n      function: !!js/function \n\n        function() {\n          this.host = 'swapi.co';\n        }  \nspecs:\n  - name: get Luke Skywalker info\n    request: \n      path: /people/1/\n      method: get\n    response:\n      status_code: 200\n      json_data:\n        - path: $.name\n          value: Luke Skywalker     \n  - name: get all Star Wars Films\n    request: \n      path: /films/   \n      method: get\n    response:\n      status_code: 200  \n\n\n\n\nNext:\n\n\n\n\nSee the full set of features available in \nFeatures\n.\n\n\nLearn about  \nreports\n in \nReporters\n.", 
+            "title": "Basic Concepts"
         }, 
         {
-            "location": "/#request-specification", 
-            "text": "A typical request specification includes path, headers, query params, path params, payload (if applicable)", 
-            "title": "Request specification"
+            "location": "/basic-concepts/#basic-concepts", 
+            "text": "This section covers some high level basic concepts that are important to understand for day to day Just-API usage. We highly recommend that you read this\npage before proceeding to use Just-API.", 
+            "title": "Basic Concepts"
+        }, 
+        {
+            "location": "/basic-concepts/#the-high-level-view", 
+            "text": "Just-API is a framework that you can use to run HTTP based API tests.  You write your API test specification and tell Just-API to run them. API test specifications are written in YAML and we call each YAML file a test suite, with the option to write Javascript (using any  npm  module if needed) to write custom logic.  Just-API's main purpose is to test HTTP based APIs without code, and make API testing easy, free and fast for everyone.  Just-API is written with parallelism as priority while running suites, so your test execution takes as less time as possible.", 
+            "title": "The High-level View"
+        }, 
+        {
+            "location": "/basic-concepts/#putting-a-test-suite-together", 
+            "text": "A test suite has three required sections -  meta ,  configuration  and  specs .  And optional sections  hooks  and  spec_dependencies  (you can find more about these optional parts in later sections of the documentation).", 
+            "title": "Putting a test suite together"
+        }, 
+        {
+            "location": "/basic-concepts/#the-meta-section", 
+            "text": "This is where you specify  name  for the suite and other suite related metadata.", 
+            "title": "The meta Section"
+        }, 
+        {
+            "location": "/basic-concepts/#the-configuration-section", 
+            "text": "You can use  configuration  section to specify API's host, scheme, port etc. you can also provide a custom Javascript function to  custom_configuration  key, so it's easy to \ndynamically configure your suite at runtime.", 
+            "title": "The configuration Section"
+        }, 
+        {
+            "location": "/basic-concepts/#the-specs-section", 
+            "text": "specs  section is a list of tests. Each test contains name, request, response validation specification etc.", 
+            "title": "The specs Section"
+        }, 
+        {
+            "location": "/basic-concepts/#an-example-suite", 
+            "text": "A sample suite for Star Wars API service would look like this:  meta:\n  name: Star Wars service\nconfiguration:\n  scheme: https\n  base_path: /api\n  custom_configuration:\n    run_type: inline\n    inline:\n      function: !!js/function  \n        function() {\n          this.host = 'swapi.co';\n        }  \nspecs:\n  - name: get Luke Skywalker info\n    request: \n      path: /people/1/\n      method: get\n    response:\n      status_code: 200\n      json_data:\n        - path: $.name\n          value: Luke Skywalker     \n  - name: get all Star Wars Films\n    request: \n      path: /films/   \n      method: get\n    response:\n      status_code: 200    Next:   See the full set of features available in  Features .  Learn about   reports  in  Reporters .", 
+            "title": "An Example Suite"
+        }, 
+        {
+            "location": "/CLI/", 
+            "text": "CLI Reference\n\n\nInvoke \njust-api\n from command-line\n\n\nUsage: just-api [options] [files]\n\nOptions:\n\n    -V, --version                       output the version number\n    --parallel \ninteger\n                specify the number of suites to be run in parallel\n    --reporter \nreporternames\n          specify the reporters to use, comma separated list e.g json,html\n    --reporter-options \nk=v,k2=v2,...\n  reporter-specific options\n    --grep \npattern\n                    only run tests matching \npattern\n\n    --recursive                         include sub directories when searching for suites\n    --reporters                         display available reporters\n    -h, --help                          output usage information", 
+            "title": "CLI Reference"
+        }, 
+        {
+            "location": "/CLI/#cli-reference", 
+            "text": "Invoke  just-api  from command-line  Usage: just-api [options] [files]\n\nOptions:\n\n    -V, --version                       output the version number\n    --parallel  integer                 specify the number of suites to be run in parallel\n    --reporter  reporternames           specify the reporters to use, comma separated list e.g json,html\n    --reporter-options  k=v,k2=v2,...   reporter-specific options\n    --grep  pattern                     only run tests matching  pattern \n    --recursive                         include sub directories when searching for suites\n    --reporters                         display available reporters\n    -h, --help                          output usage information", 
+            "title": "CLI Reference"
+        }, 
+        {
+            "location": "/features/", 
+            "text": "Just-API Features\n\n\nRequest Specification\n\n\nA typical request specification includes request path, headers, query params, path params, and payload (if applicable).\n\n\nRequest Methods\n\n\nJust-API supports following HTTP request methods. You can have a request specification which\nincludes any of these methods.\n\n\n\n\nGET\n\n\nPOST\n\n\nPUT\n\n\nPATCH\n\n\nDELETE\n\n\nHEAD\n\n\nOPTIONS\n\n\n\n\nNote that when a request is POST, PUT or PATCH, payload details can be provided and it will\nbe sent as request body. More on this in later sections.\n\n\nSpecifying Headers, Query params, Path params\n\n\nRequest headers can be specified to \nheaders\n key as list of name, value pair.\nRequest Query params can be specified to \nquery_params\n key as list of name, value pair.\nRequest Path params can be specified to \npath_params\n key as list of name, value pair.\n\n\nA sample test specification with method, headers, query params and path params:\n\n\n  - name: A sample test\n    request:\n       path: /user/{userId}/posts/{postId}\n       method: get\n       headers:\n         - name: Accept\n           value: application/json\n       path_params:\n          - name: userId\n            value: 12876\n          - name: postId\n            value: 92\n       query_params:\n          - name: limit\n            value: 10\n    response:\n       status_code: 200\n\n\n\n\nRequest Body Specification\n\n\nForm, multipart requests, file uploads\n\n\nResponse Validation\n\n\nheaders validation\n\n\njson body validation\n\n\njson schema validation\n\n\nuser defined custom response validator functions\n\n\nCustom Javascript functions\n\n\ncutom inline and module functions\n\n\nasync support for custom functions with promises\n\n\nSuite level configuration\n\n\nHooks\n\n\nbefore all\n\n\nafter all\n\n\nbefore each\n\n\nafter each\n\n\nbefore test\n\n\nafter test\n\n\nDynamic request construction\n\n\nheaders,\n\n\nquery params\n\n\npath params, body\n\n\nCustom context\n\n\nstoring suite \n test context for reuse\n\n\nSkipping\n\n\nability to skip suites\n\n\nability to skip tests\n\n\nSpec dependencies\n\n\nrunning test dependencies in hooks\n\n\ninter-suite spec dependencies\n\n\nreusing test specification\n\n\ntest retry support\n\n\nloop support to test an endpoint with parameterized data\n\n\nAdditional features\n\n\nreports test duration\n\n\nrunning only tests match with a given pattern/text\n\n\ntest specific timeout\n\n\nadditional request options\n\n\nFinding suites recursively\n\n\nproper error reporting\n\n\nproper exit status for CI support\n\n\nlogging HTTP request/response data for failed tests\n\n\nno callbacks\n\n\nRunning suites in parallel\n\n\nPlease see \npage\n \n\n\nReporters\n\n\nPlease see \npage", 
+            "title": "Just-API Features"
+        }, 
+        {
+            "location": "/features/#just-api-features", 
+            "text": "", 
+            "title": "Just-API Features"
+        }, 
+        {
+            "location": "/features/#request-specification", 
+            "text": "A typical request specification includes request path, headers, query params, path params, and payload (if applicable).", 
+            "title": "Request Specification"
+        }, 
+        {
+            "location": "/features/#request-methods", 
+            "text": "Just-API supports following HTTP request methods. You can have a request specification which\nincludes any of these methods.   GET  POST  PUT  PATCH  DELETE  HEAD  OPTIONS   Note that when a request is POST, PUT or PATCH, payload details can be provided and it will\nbe sent as request body. More on this in later sections.", 
+            "title": "Request Methods"
+        }, 
+        {
+            "location": "/features/#specifying-headers-query-params-path-params", 
+            "text": "Request headers can be specified to  headers  key as list of name, value pair.\nRequest Query params can be specified to  query_params  key as list of name, value pair.\nRequest Path params can be specified to  path_params  key as list of name, value pair.  A sample test specification with method, headers, query params and path params:    - name: A sample test\n    request:\n       path: /user/{userId}/posts/{postId}\n       method: get\n       headers:\n         - name: Accept\n           value: application/json\n       path_params:\n          - name: userId\n            value: 12876\n          - name: postId\n            value: 92\n       query_params:\n          - name: limit\n            value: 10\n    response:\n       status_code: 200", 
+            "title": "Specifying Headers, Query params, Path params"
+        }, 
+        {
+            "location": "/features/#request-body-specification", 
+            "text": "", 
+            "title": "Request Body Specification"
+        }, 
+        {
+            "location": "/features/#form-multipart-requests-file-uploads", 
+            "text": "", 
+            "title": "Form, multipart requests, file uploads"
+        }, 
+        {
+            "location": "/features/#response-validation", 
+            "text": "", 
+            "title": "Response Validation"
+        }, 
+        {
+            "location": "/features/#headers-validation", 
+            "text": "", 
+            "title": "headers validation"
+        }, 
+        {
+            "location": "/features/#json-body-validation", 
+            "text": "", 
+            "title": "json body validation"
+        }, 
+        {
+            "location": "/features/#json-schema-validation", 
+            "text": "", 
+            "title": "json schema validation"
+        }, 
+        {
+            "location": "/features/#user-defined-custom-response-validator-functions", 
+            "text": "", 
+            "title": "user defined custom response validator functions"
+        }, 
+        {
+            "location": "/features/#custom-javascript-functions", 
+            "text": "", 
+            "title": "Custom Javascript functions"
+        }, 
+        {
+            "location": "/features/#cutom-inline-and-module-functions", 
+            "text": "", 
+            "title": "cutom inline and module functions"
+        }, 
+        {
+            "location": "/features/#async-support-for-custom-functions-with-promises", 
+            "text": "", 
+            "title": "async support for custom functions with promises"
+        }, 
+        {
+            "location": "/features/#suite-level-configuration", 
+            "text": "", 
+            "title": "Suite level configuration"
+        }, 
+        {
+            "location": "/features/#hooks", 
+            "text": "", 
+            "title": "Hooks"
+        }, 
+        {
+            "location": "/features/#before-all", 
+            "text": "", 
+            "title": "before all"
+        }, 
+        {
+            "location": "/features/#after-all", 
+            "text": "", 
+            "title": "after all"
+        }, 
+        {
+            "location": "/features/#before-each", 
+            "text": "", 
+            "title": "before each"
+        }, 
+        {
+            "location": "/features/#after-each", 
+            "text": "", 
+            "title": "after each"
+        }, 
+        {
+            "location": "/features/#before-test", 
+            "text": "", 
+            "title": "before test"
+        }, 
+        {
+            "location": "/features/#after-test", 
+            "text": "", 
+            "title": "after test"
+        }, 
+        {
+            "location": "/features/#dynamic-request-construction", 
+            "text": "", 
+            "title": "Dynamic request construction"
+        }, 
+        {
+            "location": "/features/#headers", 
+            "text": "", 
+            "title": "headers,"
+        }, 
+        {
+            "location": "/features/#query-params", 
+            "text": "", 
+            "title": "query params"
+        }, 
+        {
+            "location": "/features/#path-params-body", 
+            "text": "", 
+            "title": "path params, body"
+        }, 
+        {
+            "location": "/features/#custom-context", 
+            "text": "", 
+            "title": "Custom context"
+        }, 
+        {
+            "location": "/features/#storing-suite-test-context-for-reuse", 
+            "text": "", 
+            "title": "storing suite &amp; test context for reuse"
+        }, 
+        {
+            "location": "/features/#skipping", 
+            "text": "", 
+            "title": "Skipping"
+        }, 
+        {
+            "location": "/features/#ability-to-skip-suites", 
+            "text": "", 
+            "title": "ability to skip suites"
+        }, 
+        {
+            "location": "/features/#ability-to-skip-tests", 
+            "text": "", 
+            "title": "ability to skip tests"
+        }, 
+        {
+            "location": "/features/#spec-dependencies", 
+            "text": "", 
+            "title": "Spec dependencies"
+        }, 
+        {
+            "location": "/features/#running-test-dependencies-in-hooks", 
+            "text": "", 
+            "title": "running test dependencies in hooks"
+        }, 
+        {
+            "location": "/features/#inter-suite-spec-dependencies", 
+            "text": "", 
+            "title": "inter-suite spec dependencies"
+        }, 
+        {
+            "location": "/features/#reusing-test-specification", 
+            "text": "", 
+            "title": "reusing test specification"
+        }, 
+        {
+            "location": "/features/#test-retry-support", 
+            "text": "", 
+            "title": "test retry support"
+        }, 
+        {
+            "location": "/features/#loop-support-to-test-an-endpoint-with-parameterized-data", 
+            "text": "", 
+            "title": "loop support to test an endpoint with parameterized data"
+        }, 
+        {
+            "location": "/features/#additional-features", 
+            "text": "", 
+            "title": "Additional features"
+        }, 
+        {
+            "location": "/features/#reports-test-duration", 
+            "text": "", 
+            "title": "reports test duration"
+        }, 
+        {
+            "location": "/features/#running-only-tests-match-with-a-given-patterntext", 
+            "text": "", 
+            "title": "running only tests match with a given pattern/text"
+        }, 
+        {
+            "location": "/features/#test-specific-timeout", 
+            "text": "", 
+            "title": "test specific timeout"
+        }, 
+        {
+            "location": "/features/#additional-request-options", 
+            "text": "", 
+            "title": "additional request options"
+        }, 
+        {
+            "location": "/features/#finding-suites-recursively", 
+            "text": "", 
+            "title": "Finding suites recursively"
+        }, 
+        {
+            "location": "/features/#proper-error-reporting", 
+            "text": "", 
+            "title": "proper error reporting"
+        }, 
+        {
+            "location": "/features/#proper-exit-status-for-ci-support", 
+            "text": "", 
+            "title": "proper exit status for CI support"
+        }, 
+        {
+            "location": "/features/#logging-http-requestresponse-data-for-failed-tests", 
+            "text": "", 
+            "title": "logging HTTP request/response data for failed tests"
+        }, 
+        {
+            "location": "/features/#no-callbacks", 
+            "text": "", 
+            "title": "no callbacks"
+        }, 
+        {
+            "location": "/features/#running-suites-in-parallel", 
+            "text": "Please see  page", 
+            "title": "Running suites in parallel"
+        }, 
+        {
+            "location": "/features/#reporters", 
+            "text": "Please see  page", 
+            "title": "Reporters"
+        }, 
+        {
+            "location": "/running-suites-in-parallel/", 
+            "text": "Executing suites in parallel\n\n\nWhen you have lots of test suites, it might take a while to execute all of them serially. \nTo reduce the test execution time, Just-API is built with parallelism as high priority. You can invoke just-api with \n--parallel\n option to trigger parallel execution mode.\nAll reporters respect parallel mode and generate correct reports with properly mapped errors if any.\n\n\nThis is how you can execute suites in parallel with just-api\n\n\n./node_modules/.bin/just-api --parallel 8\n\n\n\n\nAbove command will start test execution in parallel mode with 8 suites at a time. \n\n\nNote\n: Maximum number of suites you can run in parallel is 24.", 
+            "title": "Executing suites in parallel"
+        }, 
+        {
+            "location": "/running-suites-in-parallel/#executing-suites-in-parallel", 
+            "text": "When you have lots of test suites, it might take a while to execute all of them serially. \nTo reduce the test execution time, Just-API is built with parallelism as high priority. You can invoke just-api with  --parallel  option to trigger parallel execution mode.\nAll reporters respect parallel mode and generate correct reports with properly mapped errors if any.  This is how you can execute suites in parallel with just-api  ./node_modules/.bin/just-api --parallel 8  Above command will start test execution in parallel mode with 8 suites at a time.   Note : Maximum number of suites you can run in parallel is 24.", 
+            "title": "Executing suites in parallel"
+        }, 
+        {
+            "location": "/reporters/", 
+            "text": "Reporters\n\n\nGenerating a report\n\n\nJust-API has several built-in reporters, \njson\n, 'specs', 'html' etc.\n\n\nWhen you need an HTML report, you can invoke just-api with the \n--reporter\n option\n\n\n./node_modules/.bin/just-api --reporter html\n\n\n\n\nGenerating reports in multiple formats\n\n\nJust-API has the ability to generate reports in multiple formats.\n\n\nWhen you need an HTML report and a JSON report too, you could do something like this\n\n\n./node_modules/.bin/just-api --reporter html,json\n\n\n\n\nThis way you can generate reports in multiple formats for the same run.", 
+            "title": "Reporters"
+        }, 
+        {
+            "location": "/reporters/#reporters", 
+            "text": "", 
+            "title": "Reporters"
+        }, 
+        {
+            "location": "/reporters/#generating-a-report", 
+            "text": "Just-API has several built-in reporters,  json , 'specs', 'html' etc.  When you need an HTML report, you can invoke just-api with the  --reporter  option  ./node_modules/.bin/just-api --reporter html", 
+            "title": "Generating a report"
+        }, 
+        {
+            "location": "/reporters/#generating-reports-in-multiple-formats", 
+            "text": "Just-API has the ability to generate reports in multiple formats.  When you need an HTML report and a JSON report too, you could do something like this  ./node_modules/.bin/just-api --reporter html,json  This way you can generate reports in multiple formats for the same run.", 
+            "title": "Generating reports in multiple formats"
+        }, 
+        {
+            "location": "/examples/", 
+            "text": "Examples\n\n\nYou can find some examples on how to write test suites and tests in Just-API's test directory.\n\n\nJust-API itself is filled with lots of tests covering all supported features.\n\n\nPlease checkout test suites available \nhere\n\n\nTest suites available there should be able to help you build tests for your APIs.", 
+            "title": "Examples"
+        }, 
+        {
+            "location": "/examples/#examples", 
+            "text": "You can find some examples on how to write test suites and tests in Just-API's test directory.  Just-API itself is filled with lots of tests covering all supported features.  Please checkout test suites available  here  Test suites available there should be able to help you build tests for your APIs.", 
+            "title": "Examples"
         }
     ]
 }

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    <title>Just-API Features - Just-API</title>
+
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="..">Just-API</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../getting-started/">Getting Started</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../basic-concepts/">Basic Concepts</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../CLI/">CLI Reference</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Just-API Features</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../running-suites-in-parallel/">Running suites in parallel</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../reporters/">Reporters</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../examples/">Examples</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fa fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../CLI/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../running-suites-in-parallel/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#just-api-features">Just-API Features</a></li>
+            <li class="second-level"><a href="#request-specification">Request Specification</a></li>
+                
+                <li class="third-level"><a href="#request-methods">Request Methods</a></li>
+                <li class="third-level"><a href="#specifying-headers-query-params-path-params">Specifying Headers, Query params, Path params</a></li>
+                <li class="third-level"><a href="#request-body-specification">Request Body Specification</a></li>
+                <li class="third-level"><a href="#form-multipart-requests-file-uploads">Form, multipart requests, file uploads</a></li>
+            <li class="second-level"><a href="#response-validation">Response Validation</a></li>
+                
+                <li class="third-level"><a href="#headers-validation">headers validation</a></li>
+                <li class="third-level"><a href="#json-body-validation">json body validation</a></li>
+                <li class="third-level"><a href="#json-schema-validation">json schema validation</a></li>
+                <li class="third-level"><a href="#user-defined-custom-response-validator-functions">user defined custom response validator functions</a></li>
+            <li class="second-level"><a href="#custom-javascript-functions">Custom Javascript functions</a></li>
+                
+                <li class="third-level"><a href="#cutom-inline-and-module-functions">cutom inline and module functions</a></li>
+                <li class="third-level"><a href="#async-support-for-custom-functions-with-promises">async support for custom functions with promises</a></li>
+            <li class="second-level"><a href="#suite-level-configuration">Suite level configuration</a></li>
+                
+            <li class="second-level"><a href="#hooks">Hooks</a></li>
+                
+                <li class="third-level"><a href="#before-all">before all</a></li>
+                <li class="third-level"><a href="#after-all">after all</a></li>
+                <li class="third-level"><a href="#before-each">before each</a></li>
+                <li class="third-level"><a href="#after-each">after each</a></li>
+                <li class="third-level"><a href="#before-test">before test</a></li>
+                <li class="third-level"><a href="#after-test">after test</a></li>
+            <li class="second-level"><a href="#dynamic-request-construction">Dynamic request construction</a></li>
+                
+                <li class="third-level"><a href="#headers">headers,</a></li>
+                <li class="third-level"><a href="#query-params">query params</a></li>
+                <li class="third-level"><a href="#path-params-body">path params, body</a></li>
+            <li class="second-level"><a href="#custom-context">Custom context</a></li>
+                
+                <li class="third-level"><a href="#storing-suite-test-context-for-reuse">storing suite &amp; test context for reuse</a></li>
+            <li class="second-level"><a href="#skipping">Skipping</a></li>
+                
+                <li class="third-level"><a href="#ability-to-skip-suites">ability to skip suites</a></li>
+                <li class="third-level"><a href="#ability-to-skip-tests">ability to skip tests</a></li>
+            <li class="second-level"><a href="#spec-dependencies">Spec dependencies</a></li>
+                
+                <li class="third-level"><a href="#running-test-dependencies-in-hooks">running test dependencies in hooks</a></li>
+                <li class="third-level"><a href="#inter-suite-spec-dependencies">inter-suite spec dependencies</a></li>
+            <li class="second-level"><a href="#reusing-test-specification">reusing test specification</a></li>
+                
+            <li class="second-level"><a href="#test-retry-support">test retry support</a></li>
+                
+            <li class="second-level"><a href="#loop-support-to-test-an-endpoint-with-parameterized-data">loop support to test an endpoint with parameterized data</a></li>
+                
+            <li class="second-level"><a href="#additional-features">Additional features</a></li>
+                
+                <li class="third-level"><a href="#reports-test-duration">reports test duration</a></li>
+                <li class="third-level"><a href="#running-only-tests-match-with-a-given-patterntext">running only tests match with a given pattern/text</a></li>
+                <li class="third-level"><a href="#test-specific-timeout">test specific timeout</a></li>
+                <li class="third-level"><a href="#additional-request-options">additional request options</a></li>
+                <li class="third-level"><a href="#finding-suites-recursively">Finding suites recursively</a></li>
+                <li class="third-level"><a href="#proper-error-reporting">proper error reporting</a></li>
+                <li class="third-level"><a href="#proper-exit-status-for-ci-support">proper exit status for CI support</a></li>
+                <li class="third-level"><a href="#logging-http-requestresponse-data-for-failed-tests">logging HTTP request/response data for failed tests</a></li>
+                <li class="third-level"><a href="#no-callbacks">no callbacks</a></li>
+            <li class="second-level"><a href="#running-suites-in-parallel">Running suites in parallel</a></li>
+                
+            <li class="second-level"><a href="#reporters">Reporters</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="just-api-features">Just-API Features</h1>
+<h2 id="request-specification">Request Specification</h2>
+<p>A typical request specification includes request path, headers, query params, path params, and payload (if applicable).</p>
+<h3 id="request-methods">Request Methods</h3>
+<p>Just-API supports following HTTP request methods. You can have a request specification which
+includes any of these methods.</p>
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>PUT</li>
+<li>PATCH</li>
+<li>DELETE</li>
+<li>HEAD</li>
+<li>OPTIONS</li>
+</ul>
+<p>Note that when a request is POST, PUT or PATCH, payload details can be provided and it will
+be sent as request body. More on this in later sections.</p>
+<h3 id="specifying-headers-query-params-path-params">Specifying Headers, Query params, Path params</h3>
+<p>Request headers can be specified to <code>headers</code> key as list of name, value pair.
+Request Query params can be specified to <code>query_params</code> key as list of name, value pair.
+Request Path params can be specified to <code>path_params</code> key as list of name, value pair.</p>
+<p>A sample test specification with method, headers, query params and path params:</p>
+<pre><code class="yaml">  - name: A sample test
+    request:
+       path: /user/{userId}/posts/{postId}
+       method: get
+       headers:
+         - name: Accept
+           value: application/json
+       path_params:
+          - name: userId
+            value: 12876
+          - name: postId
+            value: 92
+       query_params:
+          - name: limit
+            value: 10
+    response:
+       status_code: 200
+</code></pre>
+
+<h3 id="request-body-specification">Request Body Specification</h3>
+<h3 id="form-multipart-requests-file-uploads">Form, multipart requests, file uploads</h3>
+<h2 id="response-validation">Response Validation</h2>
+<h3 id="headers-validation">headers validation</h3>
+<h3 id="json-body-validation">json body validation</h3>
+<h3 id="json-schema-validation">json schema validation</h3>
+<h3 id="user-defined-custom-response-validator-functions">user defined custom response validator functions</h3>
+<h2 id="custom-javascript-functions">Custom Javascript functions</h2>
+<h3 id="cutom-inline-and-module-functions">cutom inline and module functions</h3>
+<h3 id="async-support-for-custom-functions-with-promises">async support for custom functions with promises</h3>
+<h2 id="suite-level-configuration">Suite level configuration</h2>
+<h2 id="hooks">Hooks</h2>
+<h3 id="before-all">before all</h3>
+<h3 id="after-all">after all</h3>
+<h3 id="before-each">before each</h3>
+<h3 id="after-each">after each</h3>
+<h3 id="before-test">before test</h3>
+<h3 id="after-test">after test</h3>
+<h2 id="dynamic-request-construction">Dynamic request construction</h2>
+<h3 id="headers">headers,</h3>
+<h3 id="query-params">query params</h3>
+<h3 id="path-params-body">path params, body</h3>
+<h2 id="custom-context">Custom context</h2>
+<h3 id="storing-suite-test-context-for-reuse">storing suite &amp; test context for reuse</h3>
+<h2 id="skipping">Skipping</h2>
+<h3 id="ability-to-skip-suites">ability to skip suites</h3>
+<h3 id="ability-to-skip-tests">ability to skip tests</h3>
+<h2 id="spec-dependencies">Spec dependencies</h2>
+<h3 id="running-test-dependencies-in-hooks">running test dependencies in hooks</h3>
+<h3 id="inter-suite-spec-dependencies">inter-suite spec dependencies</h3>
+<h2 id="reusing-test-specification">reusing test specification</h2>
+<h2 id="test-retry-support">test retry support</h2>
+<h2 id="loop-support-to-test-an-endpoint-with-parameterized-data">loop support to test an endpoint with parameterized data</h2>
+<h2 id="additional-features">Additional features</h2>
+<h3 id="reports-test-duration">reports test duration</h3>
+<h3 id="running-only-tests-match-with-a-given-patterntext">running only tests match with a given pattern/text</h3>
+<h3 id="test-specific-timeout">test specific timeout</h3>
+<h3 id="additional-request-options">additional request options</h3>
+<h3 id="finding-suites-recursively">Finding suites recursively</h3>
+<h3 id="proper-error-reporting">proper error reporting</h3>
+<h3 id="proper-exit-status-for-ci-support">proper exit status for CI support</h3>
+<h3 id="logging-http-requestresponse-data-for-failed-tests">logging HTTP request/response data for failed tests</h3>
+<h3 id="no-callbacks">no callbacks</h3>
+<h2 id="running-suites-in-parallel">Running suites in parallel</h2>
+<p>Please see <a href="../../running-suites-in-parallel">page</a> </p>
+<h2 id="reporters">Reporters</h2>
+<p>Please see <a href="../../reporters">page</a> </p></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '..';
+    </script>
+    <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+    <script src="../js/base.js"></script>
+    <script src="../search/require.js"></script>
+    <script src="../search/search.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

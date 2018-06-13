@@ -5,18 +5,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <link rel="shortcut icon" href="./img/favicon.ico">
+    <link rel="shortcut icon" href="../img/favicon.ico">
 
-    <title>Home - Just-API</title>
+    <title>Examples - Just-API</title>
 
-    <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
     <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
-    <link href="./css/base.css" rel="stylesheet">
-    <link href="./css/cinder.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/highlight.css">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -36,7 +36,7 @@
     
 </head>
 
-<body class="homepage" >
+<body>
 
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -54,7 +54,7 @@
 
             <!-- Main title -->
 
-            <a class="navbar-brand" href=".">Just-API</a>
+            <a class="navbar-brand" href="..">Just-API</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -63,55 +63,55 @@
                 <ul class="nav navbar-nav">
                 
                 
-                    <li class="active">
-                        <a href=".">Home</a>
+                    <li >
+                        <a href="..">Home</a>
                     </li>
                 
                 
                 
                     <li >
-                        <a href="getting-started/">Getting Started</a>
+                        <a href="../getting-started/">Getting Started</a>
                     </li>
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="basic-concepts/">Basic concepts</a>
+    <a href="../basic-concepts/">Basic Concepts</a>
 </li>
 
                         
                             
 <li >
-    <a href="CLI/">CLI</a>
+    <a href="../CLI/">CLI Reference</a>
 </li>
 
                         
                             
 <li >
-    <a href="features/">Features</a>
+    <a href="../features/">Just-API Features</a>
 </li>
 
                         
                             
 <li >
-    <a href="running-suites-in-parallel/">Running suites in parallel</a>
+    <a href="../running-suites-in-parallel/">Executing suites in parallel</a>
 </li>
 
                         
                             
 <li >
-    <a href="reporters/">Reporters</a>
+    <a href="../reporters/">Reporters</a>
 </li>
 
                         
                             
-<li >
-    <a href="examples/">Examples</a>
+<li class="active">
+    <a href="./">Examples</a>
 </li>
 
                         
@@ -127,13 +127,13 @@
                             <i class="fa fa-search"></i> Search
                         </a>
                     </li>
-                    <li class="disabled">
-                        <a rel="next" >
+                    <li >
+                        <a rel="next" href="../reporters/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li >
-                        <a rel="prev" href="getting-started/">
+                    <li class="disabled">
+                        <a rel="prev" >
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -146,56 +146,16 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#just-api-docs">Just-API docs</a></li>
-            <li class="second-level"><a href="#contents">Contents</a></li>
-                
-                <li class="third-level"><a href="#documentation">Documentation</a></li>
-            <li class="second-level"><a href="#find-it-on-npm">Find it on npm</a></li>
-                
-            <li class="second-level"><a href="#stay-in-touch">Stay In Touch</a></li>
-                
-                <li class="third-level"><a href="#twitter">Twitter</a></li>
-                <li class="third-level"><a href="#github">Github</a></li>
-                <li class="third-level"><a href="#gitter">Gitter</a></li>
-                <li class="third-level"><a href="#google-group">Google group</a></li>
+        <li class="first-level active"><a href="#examples">Examples</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="just-api-docs">Just-API docs</h1>
-<p><br></p>
-<p>Just-API is a robust, specification based API testing framework running on <a href="http://nodejs.org/">node.js</a>. Just-API allows users to test APIs without writing code.
-Just-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.</p>
-<p><br>
-In simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server
-and validates response as per the specification.</p>
-<p>You can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.
-<br></p>
-<h2 id="contents">Contents</h2>
-<h3 id="documentation">Documentation</h3>
-<ul>
-<li><a href="./getting-started">Getting Started</a></li>
-<li><a href="./basic-concepts">Basic Concepts</a></li>
-<li><a href="./cli-reference">CLI</a></li>
-<li><a href="./features">Features</a></li>
-<li><a href="./reporters">Reporters</a></li>
-<li><a href="./examples">Examples</a></li>
-</ul>
-<p><br></p>
-<h2 id="find-it-on-npm">Find it on npm</h2>
-<p><a href="https://www.npmjs.com/package/just-api"><img alt="npm package" src="https://nodei.co/npm/just-api.png?downloads=true&amp;downloadRank=true&amp;stars=true" /></a></p>
-<h2 id="stay-in-touch">Stay In Touch</h2>
-<h3 id="twitter">Twitter</h3>
-<p>For an occasional update on what we're up to, follow us on Twitter.</p>
-<p><a href="https://twitter.com/just_api_" class="twitter-follow-button" data-show-count="false">Follow @just_api_</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-<h3 id="github">Github</h3>
-<p>Star Just-API on Github.</p>
-<p><a class="github-button" href="https://github.com/kiranz/just-api" data-style="small" data-count-href="/kiranz/just-api/stargazers" data-count-api="/repos/kiranz/just-api#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star kiranz/just-api on GitHub">Star</a></p>
-<h3 id="gitter">Gitter</h3>
-<p>If you are having problems with Just-API, have a question, or just want to say hello, you can chat with the community on gitter.
-<a href="https://gitter.im/just-api/Lobby?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img alt="Join the chat at https://gitter.im/just-api/Lobby" src="https://badges.gitter.im/just-api/Lobby.svg" /></a></p>
-<h3 id="google-group">Google group</h3>
-<p><a href="https://groups.google.com/forum/#!forum/just-api">Just-API</a></p></div>
+<h1 id="examples">Examples</h1>
+<p>You can find some examples on how to write test suites and tests in Just-API's test directory.</p>
+<p>Just-API itself is filled with lots of tests covering all supported features.</p>
+<p>Please checkout test suites available <a href="https://github.com/kiranz/just-api/tree/master/test/cli/src/suites">here</a></p>
+<p>Test suites available there should be able to help you build tests for your APIs.</p></div>
         
     </div>
 
@@ -205,17 +165,17 @@ and validates response as per the specification.</p>
         <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
     </footer>
 
-    <script src="./js/jquery-1.10.2.min.js"></script>
-    <script src="./js/bootstrap-3.0.3.min.js"></script>
-    <script src="./js/highlight.pack.js"></script>
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script>
-    var base_url = '.';
+    var base_url = '..';
     </script>
-    <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
-    <script src="./js/base.js"></script>
-    <script src="./search/require.js"></script>
-    <script src="./search/search.js"></script>
+    <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+    <script src="../js/base.js"></script>
+    <script src="../search/require.js"></script>
+    <script src="../search/search.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
         <div class="modal-dialog">
@@ -247,8 +207,3 @@ and validates response as per the specification.</p>
     </body>
 
 </html>
-
-<!--
-MkDocs version : 0.17.4
-Build Date UTC : 2018-06-13 17:53:02
--->
