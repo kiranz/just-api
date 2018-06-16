@@ -171,20 +171,20 @@
         <li class="first-level "><a href="#todo-below">TODO (below)</a></li>
             <li class="second-level"><a href="#dynamic-request-construction">Dynamic request construction</a></li>
                 
-                <li class="third-level"><a href="#headers">headers,</a></li>
+                <li class="third-level"><a href="#headers">Headers</a></li>
                 <li class="third-level"><a href="#query-params">query params</a></li>
                 <li class="third-level"><a href="#path-params-body">path params, body</a></li>
             <li class="second-level"><a href="#custom-context">Custom context</a></li>
                 
                 <li class="third-level"><a href="#storing-suite-test-context-for-reuse">storing suite &amp; test context for reuse</a></li>
-            <li class="second-level"><a href="#skipping">Skipping</a></li>
-                
-                <li class="third-level"><a href="#ability-to-skip-suites">ability to skip suites</a></li>
-                <li class="third-level"><a href="#ability-to-skip-tests">ability to skip tests</a></li>
             <li class="second-level"><a href="#spec-dependencies">Spec dependencies</a></li>
                 
                 <li class="third-level"><a href="#running-test-dependencies-in-hooks">running test dependencies in hooks</a></li>
                 <li class="third-level"><a href="#inter-suite-spec-dependencies">inter-suite spec dependencies</a></li>
+            <li class="second-level"><a href="#skipping">Skipping</a></li>
+                
+                <li class="third-level"><a href="#skipping-a-suite">Skipping a suite</a></li>
+                <li class="third-level"><a href="#skipping-a-test">Skipping a test</a></li>
             <li class="second-level"><a href="#reusing-test-specification">reusing test specification</a></li>
                 
             <li class="second-level"><a href="#test-retry-support">test retry support</a></li>
@@ -195,13 +195,12 @@
                 
                 <li class="third-level"><a href="#reports-test-duration">reports test duration</a></li>
                 <li class="third-level"><a href="#running-only-tests-match-with-a-given-patterntext">running only tests match with a given pattern/text</a></li>
-                <li class="third-level"><a href="#test-specific-timeout">test specific timeout</a></li>
                 <li class="third-level"><a href="#additional-request-options">additional request options</a></li>
                 <li class="third-level"><a href="#finding-suites-recursively">Finding suites recursively</a></li>
-                <li class="third-level"><a href="#proper-error-reporting">proper error reporting</a></li>
-                <li class="third-level"><a href="#proper-exit-status-for-ci-support">proper exit status for CI support</a></li>
+                <li class="third-level"><a href="#proper-error-reporting">Proper error reporting</a></li>
+                <li class="third-level"><a href="#exit-code-for-ci-support">Exit code for CI support</a></li>
                 <li class="third-level"><a href="#logging-http-requestresponse-data-for-failed-tests">logging HTTP request/response data for failed tests</a></li>
-                <li class="third-level"><a href="#no-callbacks">no callbacks</a></li>
+                <li class="third-level"><a href="#no-callbacks">No callbacks</a></li>
             <li class="second-level"><a href="#running-suites-in-parallel">Running suites in parallel</a></li>
                 
             <li class="second-level"><a href="#reporters">Reporters</a></li>
@@ -575,30 +574,95 @@ and provide a custom JS function to set suite configuration.</p>
 <p>Checkout some samples of hooks <a href="https://github.com/kiranz/just-api/tree/master/test/cli/src/suites/hooks">here</a></p>
 <h1 id="todo-below">TODO (below)</h1>
 <h2 id="dynamic-request-construction">Dynamic request construction</h2>
-<h3 id="headers">headers,</h3>
+<p>Static specification of request is not possible for all sort of test. Sometimes a test depends on data returned by another request, where you would want 
+to run the dependency spec first and fetch required data from it and pass it on to request. To handle usecases like this, Just-API provides a
+<code>before_test</code> hook for every test. Using this hook you can run test prequisites and update request data for actual test.</p>
+<h3 id="headers">Headers</h3>
 <h3 id="query-params">query params</h3>
 <h3 id="path-params-body">path params, body</h3>
 <h2 id="custom-context">Custom context</h2>
 <h3 id="storing-suite-test-context-for-reuse">storing suite &amp; test context for reuse</h3>
-<h2 id="skipping">Skipping</h2>
-<h3 id="ability-to-skip-suites">ability to skip suites</h3>
-<h3 id="ability-to-skip-tests">ability to skip tests</h3>
 <h2 id="spec-dependencies">Spec dependencies</h2>
 <h3 id="running-test-dependencies-in-hooks">running test dependencies in hooks</h3>
 <h3 id="inter-suite-spec-dependencies">inter-suite spec dependencies</h3>
+<h2 id="skipping">Skipping</h2>
+<p>You can explicitly skip suites and tests with specification.</p>
+<h3 id="skipping-a-suite">Skipping a suite</h3>
+<p>When you have written a suite in a directory, but want to skip running it for some reason, you can do so by providing
+  <code>false</code> as value for enabled key under <code>meta</code> in a suite, Just-API will skip the suite.</p>
+<pre><code class="yaml"> meta:
+  name: Disabled sute
+  enabled: false
+configuration:
+  scheme: http
+  host: 127.0.0.1
+specs:
+  - name: get users
+    request:
+      path: /users
+      method: get
+    response:
+      status_code: 200
+</code></pre>
+
+<p>Note that if any error occurs before Just-API reads <code>meta</code> info of the suite, then suite will be marked as failure.</p>
+<h3 id="skipping-a-test">Skipping a test</h3>
+<p>When you written a set of specs in a suite, but want to skip a spec, you can do so by providing <code>false</code> as value for enabled key of the spec.</p>
+<pre><code class="yaml">  - name: disabled spec
+    enabled: false
+    request:
+      path: /
+      method: get
+    response:
+      status_code: 200
+</code></pre>
+
+<p>Just-API will mark the spec as a skipped test.</p>
 <h2 id="reusing-test-specification">reusing test specification</h2>
+<p>Apart from readability, an awesome thing about yaml is that you can reuse parts of your specification.</p>
+<p>Refer to <a href="https://blog.daemonl.com/2016/02/yaml.html">dry</a> to see how you can reuse stuff in yaml.</p>
+<p>you can see how response specification is being reused below</p>
+<pre><code class="yaml">meta:
+  name: suite name
+configuration:
+  scheme: http
+  host: example.com
+specs:
+  - name: get user1
+    request:
+      path: /users/1
+      method: get
+    response: &amp;default_response
+      status_code: 200
+
+  - name: get user2
+    request: &amp;default_request
+      path: /users/1
+      method: get
+    response: *default_response
+</code></pre>
+
 <h2 id="test-retry-support">test retry support</h2>
 <h2 id="loop-support-to-test-an-endpoint-with-parameterized-data">loop support to test an endpoint with parameterized data</h2>
 <h2 id="additional-features">Additional features</h2>
 <h3 id="reports-test-duration">reports test duration</h3>
 <h3 id="running-only-tests-match-with-a-given-patterntext">running only tests match with a given pattern/text</h3>
-<h3 id="test-specific-timeout">test specific timeout</h3>
 <h3 id="additional-request-options">additional request options</h3>
 <h3 id="finding-suites-recursively">Finding suites recursively</h3>
-<h3 id="proper-error-reporting">proper error reporting</h3>
-<h3 id="proper-exit-status-for-ci-support">proper exit status for CI support</h3>
+<p>When you want to run suites stored in a directory hierarchy spanning more than one nested level, you can invoke the Just-API with <code>--recursive</code> option.</p>
+<pre><code class="sh">./node_modules/.bin/just-api --recursive specs
+</code></pre>
+
+<h3 id="proper-error-reporting">Proper error reporting</h3>
+<p>When a test or suite fails, Just-API provides the correct error, that caused the failure in reports.</p>
+<h3 id="exit-code-for-ci-support">Exit code for CI support</h3>
+<p>Just-API exits with proper exit code, so you can use it in CI to determine the status of your tests.</p>
+<p>Usually exit code is equal to number of failed suite unless some unexpected error occurs.</p>
 <h3 id="logging-http-requestresponse-data-for-failed-tests">logging HTTP request/response data for failed tests</h3>
-<h3 id="no-callbacks">no callbacks</h3>
+<h3 id="no-callbacks">No callbacks</h3>
+<p>you might have observed that there is mention of callbacks anywhere. yes, Just-API does not support callback mechanism when running custom JS functions.
+This is to encourage usage of promises for asynchronous operations.</p>
+<p>When you are dealing asynchronous tasks, wrap them in an async function.</p>
 <h2 id="running-suites-in-parallel">Running suites in parallel</h2>
 <p>Please see <a href="../running-suites-in-parallel">page</a> </p>
 <h2 id="reporters">Reporters</h2>
