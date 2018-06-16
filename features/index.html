@@ -155,10 +155,11 @@
                 <li class="third-level"><a href="#form-multipart-requests-file-uploads">Form, multipart requests, file uploads</a></li>
             <li class="second-level"><a href="#response-validation">Response Validation</a></li>
                 
-                <li class="third-level"><a href="#headers-validation">headers validation</a></li>
-                <li class="third-level"><a href="#json-body-validation">json body validation</a></li>
-                <li class="third-level"><a href="#json-schema-validation">json schema validation</a></li>
-                <li class="third-level"><a href="#user-defined-custom-response-validator-functions">user defined custom response validator functions</a></li>
+                <li class="third-level"><a href="#status-code-validation">Status code validation</a></li>
+                <li class="third-level"><a href="#headers-validation">Headers validation</a></li>
+                <li class="third-level"><a href="#response-json-schema-validation">Response JSON schema validation</a></li>
+                <li class="third-level"><a href="#response-json-body-validation">Response JSON body validation</a></li>
+                <li class="third-level"><a href="#user-defined-custom-response-validator-functions">User defined custom response validator functions</a></li>
             <li class="second-level"><a href="#custom-javascript-functions">Custom Javascript functions</a></li>
                 
                 <li class="third-level"><a href="#cutom-inline-and-module-functions">cutom inline and module functions</a></li>
@@ -256,12 +257,227 @@ Request Path params can be specified to <code>path_params</code> key as list of 
 </code></pre>
 
 <h3 id="request-body-specification">Request Body Specification</h3>
+<p>When you need to send body for POST, PUT and PATCH requests, you can specify the body to <code>payload</code> key.</p>
+<p>You will need to specify <code>content-type</code> header and body <code>type</code> as shown below
+Here's how to send JSON body with a POST request</p>
+<pre><code class="yaml">  - name: create a new user
+    request: 
+      path: /users
+      method: post
+      headers:
+        - name: content-type
+          value: application/json
+      payload:
+          body:
+            type: json
+            content:
+              firstName: john
+              lastName: doe
+    response:
+      status_code: 201
+</code></pre>
+
+<p>You can also send binary data as body by reading from a file as shown below.</p>
+<pre><code class="yaml">  - name: post binary data (file) as body
+    request:
+      path: /uploadImage
+      method: post
+      headers:
+        - name: content-type
+          value: image/png
+      payload:
+          body:
+            type: binary
+            content: static/assets/image.png
+    response:
+      status_code: 200
+</code></pre>
+
+<p>Note that the image path should be relative to process's current working directory.</p>
+<p>Please checkout more examples on how to specify request body <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/postrawbody.suite.yml">here</a></p>
 <h3 id="form-multipart-requests-file-uploads">Form, multipart requests, file uploads</h3>
+<p>Just-API supports <code>x-www-form-urlencoded</code> and <code>multipart/form-data</code> requests using which you can upload files and perform tests on complex requests.</p>
+<h4 id="specify-x-www-form-urlencoded-request"><strong>specify <code>x-www-form-urlencoded</code> request</strong></h4>
+<p>To create a <code>x-www-form-urlencoded</code> request test, you will need to specify the <code>content-type</code> header and form body like below:</p>
+<p>Note that <code>payload</code> should have a key <code>form</code> and it should contain form data in key value pairs.</p>
+<pre><code class="yaml">  - name: Authenticate a user
+    request:
+      path: /authenticate
+      method: post
+      headers:
+        - name: content-type
+          value: application/x-www-form-urlencoded
+      payload:
+          form:
+            userName: john.doe
+            password: john.doe.password
+    response:
+      status_code: 200
+</code></pre>
+
+<p>More examples on <code>x-www-form-urlencoded</code> tests can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/urlencodeformpost.suite.yml">here</a></p>
+<h4 id="specify-multipartform-data-request"><strong>specify <code>multipart/form-data</code> request</strong></h4>
+<p>Here's how you can specify a multipart request.</p>
+<p>Note that <code>payload</code> should have a key <code>form_data</code> and it should contain list of form data fields.</p>
+<pre><code class="yaml">  - name: post multipart form data - single file and field
+    request:
+      path: /imageNText
+      method: post
+      headers:
+        - name: content-type
+          value: multipart/form-data
+      payload:
+          form_data:
+            - name: image_name
+              content: static/assets/logo.png
+              type: file
+            - name: field1
+              content: value1
+              type: text
+    response:
+      status_code: 200
+</code></pre>
+
+<p>More examples on <code>multipart/form-data</code> tests can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/multipartformpost.suite.yml">here</a></p>
 <h2 id="response-validation">Response Validation</h2>
-<h3 id="headers-validation">headers validation</h3>
-<h3 id="json-body-validation">json body validation</h3>
-<h3 id="json-schema-validation">json schema validation</h3>
-<h3 id="user-defined-custom-response-validator-functions">user defined custom response validator functions</h3>
+<p>Just-API allows you to validate responses without writing any code, you can validate following in a response by specifying what to validate.</p>
+<ul>
+<li>Status code</li>
+<li>Headers</li>
+<li>JSON schema</li>
+<li>JSON body</li>
+</ul>
+<p>You can also have a custom validator function that will validate the response.</p>
+<h3 id="status-code-validation">Status code validation</h3>
+<p>You can provide <code>status_code</code> attribute in response and Just-API matches actual response's Status code against the specification.
+Test will fail when actual response's Status code does not match with specified value.</p>
+<p>A sample:</p>
+<pre><code class="yaml">  - name: get users
+    request:
+      path: /users
+      method: get
+    response:
+      status_code: 400
+</code></pre>
+
+<h3 id="headers-validation">Headers validation</h3>
+<p>When you specify headers in response, Just-API will validate response headers against your specification.</p>
+<p>A sample on how to specify headers validation.</p>
+<pre><code class="yaml">  - name: get users
+    request:
+      path: /users
+      method: get
+    response:
+      headers:
+        - name: content-type
+          value: application/json
+</code></pre>
+
+<p>You can even match header against a regex instead of exact value, like below:</p>
+<p>Following response specification would check if response header <em>content-type</em> matches with regex pattern <em>'json'</em>.</p>
+<pre><code class="yaml">  - name: get users
+    request:
+      path: /users
+      method: get
+    response:
+      headers:
+        - name: content-type
+          value: !!js/regexp json
+</code></pre>
+
+<p>More examples on response header validation can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/headers.suite.yaml">here</a></p>
+<h3 id="response-json-schema-validation">Response JSON schema validation</h3>
+<p>Some times you may want to validate the schema of JSON received in response's body, which will allow you to ensure that server is sending data exactly what you are expecting.</p>
+<p>with Just-API, you can validate the response JSON schema by specifying the <code>json_schema</code> attribute in response.</p>
+<p>Following sample shows how to read expected schema from a file and validate response JSON body against it. Here json_schema has two fields, <code>type</code> key can be either file or inline.
+When <code>type</code> is file, you need to provide the relative path to schema file to <code>$ref</code> key.</p>
+<pre><code class="yaml">  - name: get users
+    request: 
+      path: /users
+      method: get
+    response:
+      json_schema:
+          type: file
+          $ref: static/schema/expected_schema_for_users.json
+</code></pre>
+
+<p>You can also specify expected JSON schema in yaml by setting type as <code>inline</code> and assigning a string to <code>$ref</code> like below:</p>
+<pre><code class="yaml">  - name: get users
+    request: 
+      path: /users
+      method: get
+    response:
+      json_schema:
+          type: inline
+          $ref: &gt;
+                {
+                  &quot;$id&quot;: &quot;http://example.com/example.json&quot;,
+                  &quot;type&quot;: &quot;object&quot;,
+                  &quot;$schema&quot;: &quot;http://json-schema.org/draft-06/schema#&quot;,
+                  &quot;properties&quot;: {
+                    &quot;firstName&quot;: {
+                      &quot;$id&quot;: &quot;/properties/firstName&quot;,
+                      &quot;type&quot;: &quot;string&quot;
+                    }
+                  }
+                }
+</code></pre>
+
+<p>If you are not sure about JSON schema standard, Please refer to <a href="http://json-schema.org/">JSON schema</a></p>
+<p>More examples on response JSON schema validation can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/jsonschema.suite.yml">here</a></p>
+<h3 id="response-json-body-validation">Response JSON body validation</h3>
+<p>When you want to validate one or many fields of response JSON, you can do so by providing <code>json_data</code> as part of response specification.</p>
+<p><code>json_data</code> should have a list of pair of path &amp; value, where path tells Just-API how to locate the field, and value is the expected value for that field.</p>
+<p>Following sample shows that.</p>
+<pre><code class="yaml">  - name: get users
+    request: 
+      path: /users
+      method: get
+    response:
+      json_data:
+        - path: $.[0].firstName
+          value: john
+</code></pre>
+
+<p>If you are not sure on how to generate JSON path, Please refer to <a href="https://github.com/dchester/jsonpath">JSON path</a></p>
+<p>More examples on response JSON data validation can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/jsondata.suite.yml">here</a></p>
+<h3 id="user-defined-custom-response-validator-functions">User defined custom response validator functions</h3>
+<p>When you need to validate a response using your custom logic, you can do so by providing a <code>inline</code> or <code>module</code> custom javascript function to <code>custom_validator</code> attribute.</p>
+<p>Just-API will invoke the custom function by passing the response to function's this context, so you can access the response using <code>this.response</code>: </p>
+<p>Here's a sample on how to specify a custom inline Javascript function to validate the response</p>
+<pre><code class="yaml">  - name: get users
+    request:
+      path: /users
+      method: get
+    response:
+      status_code: 200
+      custom_validator:
+        run_type: inline
+        inline:
+          function: !!js/function &gt;
+            function() {
+              var body = JSON.parse(this.response.body);
+
+              if (body.users[0].firstName !== 'john')
+                  throw new Error(&quot;first user's name is not john&quot;);
+            }
+</code></pre>
+
+<p>You can also specify a custom function defined and exported in a module by providing <code>run_type</code> as module and module path like below.</p>
+<pre><code class="yaml">  - name: get users
+    request:
+      path: /users
+      method: get
+    response:
+      status_code: 200
+      custom_validator:
+        run_type: module
+        module:
+          module_path: modules/custom_module.js
+          function_name: validateUsersResponse
+</code></pre>
+
+<p>More examples on validating response using custom functions can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/customvalidator.suite.yml">here</a></p>
 <h2 id="custom-javascript-functions">Custom Javascript functions</h2>
 <h3 id="cutom-inline-and-module-functions">cutom inline and module functions</h3>
 <h3 id="async-support-for-custom-functions-with-promises">async support for custom functions with promises</h3>
