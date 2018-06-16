@@ -163,17 +163,12 @@
             <li class="second-level"><a href="#custom-javascript-functions">Custom Javascript functions</a></li>
                 
                 <li class="third-level"><a href="#cutom-inline-and-module-functions">cutom inline and module functions</a></li>
-                <li class="third-level"><a href="#async-support-for-custom-functions-with-promises">async support for custom functions with promises</a></li>
-            <li class="second-level"><a href="#suite-level-configuration">Suite level configuration</a></li>
+                <li class="third-level"><a href="#async-support-for-custom-functions-with-promises">Async support for custom functions with promises</a></li>
+            <li class="second-level"><a href="#suite-configuration">Suite configuration</a></li>
                 
             <li class="second-level"><a href="#hooks">Hooks</a></li>
                 
-                <li class="third-level"><a href="#before-all">before all</a></li>
-                <li class="third-level"><a href="#after-all">after all</a></li>
-                <li class="third-level"><a href="#before-each">before each</a></li>
-                <li class="third-level"><a href="#after-each">after each</a></li>
-                <li class="third-level"><a href="#before-test">before test</a></li>
-                <li class="third-level"><a href="#after-test">after test</a></li>
+        <li class="first-level "><a href="#todo-below">TODO (below)</a></li>
             <li class="second-level"><a href="#dynamic-request-construction">Dynamic request construction</a></li>
                 
                 <li class="third-level"><a href="#headers">headers,</a></li>
@@ -479,16 +474,106 @@ When <code>type</code> is file, you need to provide the relative path to schema 
 
 <p>More examples on validating response using custom functions can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/customvalidator.suite.yml">here</a></p>
 <h2 id="custom-javascript-functions">Custom Javascript functions</h2>
+<p>Just-API allows users to specify custom Javascript functions for (hooks and custom validator).</p>
+<p>These custom Javascript function can be inline or defined in a module. They can synchronous or asynchronous defined with (async keyword). </p>
 <h3 id="cutom-inline-and-module-functions">cutom inline and module functions</h3>
-<h3 id="async-support-for-custom-functions-with-promises">async support for custom functions with promises</h3>
-<h2 id="suite-level-configuration">Suite level configuration</h2>
+<h4 id="custom-inline-function">custom inline function</h4>
+<p>An <code>inline</code> synchronous function is defined as below.</p>
+<pre><code class="yaml">  custom_validator:
+    run_type: inline
+    inline:
+      function: !!js/function &gt;
+        function() {
+          // some custom code here...
+        }
+</code></pre>
+
+<p>Note that run_type is <code>inline</code> and function is mapped to function key of <code>inline</code> attribute. <code>!!js/function</code> is how you tell Just-API parse to consider it as custom synchronous functions.</p>
+<h4 id="custom-module-function">custom module function</h4>
+<p>A <code>module</code> synchronous function is specified as below.</p>
+<pre><code class="yaml"> custom_validator:
+   run_type: module
+   module:
+     module_path: modules/custom_module.js
+     function_name: customFunctionName
+</code></pre>
+
+<p>Note that run_type is <code>module</code> and function details are mapped to <code>module</code> attribute. <code>module_path</code> has the relative path to the JS file.
+The JS file is expected to be a standard Node.js module.
+<code>function_name</code> is the function exported in the module.</p>
+<h3 id="async-support-for-custom-functions-with-promises">Async support for custom functions with promises</h3>
+<p>Custom functions can be asynchronous defined with async keyword, Just-API waits until promise returned by function is resolved or rejected.</p>
+<p>An <code>inline</code> asynchronous function is defined as below.</p>
+<pre><code class="yaml">  custom_validator:
+    run_type: inline
+    inline:
+      function: !js/asyncFunction &gt;
+        async function() {
+          // some custom asynchrounous code here...
+        }
+</code></pre>
+
+<p>Note that run_type is <code>inline</code> and function is mapped to function key of <code>inline</code> attribute. <code>!js/asyncFunction</code> is how you tell Just-API parse to consider it as custom asynchronous functions.</p>
+<p>A <code>module</code> asynchronous function is specified as below.</p>
+<pre><code class="yaml"> custom_validator:
+   run_type: module
+   module:
+     module_path: modules/custom_module.js
+     function_name: customAsyncFunctionName
+</code></pre>
+
+<p>Note that run_type is <code>module</code> and function details are mapped to <code>module</code> attribute. <code>module_path</code> has the relative path to the JS file.The JS file is expected to be a standard Node.js module.
+<code>function_name</code> is the async function defined async keyword in the module.</p>
+<h2 id="suite-configuration">Suite configuration</h2>
+<p>When you are running tests, you would want to configure API host, port etc according to the environment you are testing against.</p>
+<p>In order to facilitate this, Just-API provides a <code>configuration</code> section in each suite, where you can have a <code>custom_configuration</code> attribute 
+and provide a custom JS function to set suite configuration.</p>
+<p>Here's an example to do that with an inline custom JS function.</p>
+<pre><code class="yaml">configuration:
+  scheme: https
+  custom_configuration:
+    run_type: inline
+    inline:
+      function: !!js/function &gt;
+        function() {
+          if (process.env.TEST_ENVIRONMENT === 'Dev') {
+             this.host = 'dev-host.com'
+          }
+
+          if (process.env.TEST_ENVIRONMENT === 'QA') { 
+            this.host = 'qa-host.com';
+          }
+        }
+</code></pre>
+
+<p>you can also have a module based custom JS function to configure the suite.</p>
+<p>Note that <code>custom_configuration</code> is optional. you can always specify static suite configuration if test environment details does not change for you.</p>
+<pre><code class="yaml">configuration:
+  scheme: https
+  host: testhost.com
+  port: 8000
+  base_path: /api
+</code></pre>
+
+<p>More examples <a href="https://github.com/kiranz/just-api/tree/master/test/cli/src/suites/suiteconfig">here</a></p>
 <h2 id="hooks">Hooks</h2>
-<h3 id="before-all">before all</h3>
-<h3 id="after-all">after all</h3>
-<h3 id="before-each">before each</h3>
-<h3 id="after-each">after each</h3>
-<h3 id="before-test">before test</h3>
-<h3 id="after-test">after test</h3>
+<p>If you are familiar with mocha, you might have used hooks. Just-API supports following hooks so it's easy setup your tests.</p>
+<p><strong>Suite specific hooks</strong></p>
+<p>These can be specified as part of <code>hooks</code> attribute.</p>
+<ul>
+<li>Before all  (runs before all specs in a suite)</li>
+<li>After all   (runs after all specs in a suite)</li>
+<li>Before each  (runs before each spec in a suite )</li>
+<li>After each  (runs after each passed spec in a suite )</li>
+</ul>
+<p><strong>Test specific hooks</strong></p>
+<p>These can be specified for each as required.</p>
+<ul>
+<li>Before test  (runs before a spec, you can use this hook to setup test prerequisites )</li>
+<li>After test  (runs after a passed spec, you can use this hook to teardown/clear any test specific data  )</li>
+</ul>
+<p>Checkout some samples of hooks <a href="https://github.com/kiranz/just-api/tree/master/test/cli/src/suites/hooks">here</a></p>
+<h1 id="todo-below">TODO (below)</h1>
 <h2 id="dynamic-request-construction">Dynamic request construction</h2>
 <h3 id="headers">headers,</h3>
 <h3 id="query-params">query params</h3>
