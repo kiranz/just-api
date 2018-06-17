@@ -199,7 +199,7 @@
                 <li class="third-level"><a href="#finding-suites-recursively">Finding suites recursively</a></li>
                 <li class="third-level"><a href="#proper-error-reporting">Proper error reporting</a></li>
                 <li class="third-level"><a href="#exit-code-for-ci-support">Exit code for CI support</a></li>
-                <li class="third-level"><a href="#logging-http-requestresponse-data-for-failed-tests">logging HTTP request/response data for failed tests</a></li>
+                <li class="third-level"><a href="#logging-http-requestresponse-data-for-failed-tests">Logging HTTP request/response data for failed tests</a></li>
                 <li class="third-level"><a href="#no-callbacks">No callbacks</a></li>
             <li class="second-level"><a href="#running-suites-in-parallel">Running suites in parallel</a></li>
                 
@@ -645,8 +645,15 @@ specs:
 <h2 id="test-retry-support">test retry support</h2>
 <h2 id="loop-support-to-test-an-endpoint-with-parameterized-data">loop support to test an endpoint with parameterized data</h2>
 <h2 id="additional-features">Additional features</h2>
+<p>Following are some additional features offered by Just-API.</p>
 <h3 id="reports-test-duration">reports test duration</h3>
+<p>Just-API includes duration of each test run in all formats of reports.</p>
 <h3 id="running-only-tests-match-with-a-given-patterntext">running only tests match with a given pattern/text</h3>
+<p>If you want to run only specs matches with a given text or pattern, you can do so by using <code>--grep</code> option.</p>
+<p>Following invocation will run all specs whose name matches with 'user' string.</p>
+<pre><code class="sh">./node_modules/.bin/just-api --grep user specs
+</code></pre>
+
 <h3 id="additional-request-options">additional request options</h3>
 <h3 id="finding-suites-recursively">Finding suites recursively</h3>
 <p>When you want to run suites stored in a directory hierarchy spanning more than one nested level, you can invoke the Just-API with <code>--recursive</code> option.</p>
@@ -658,7 +665,13 @@ specs:
 <h3 id="exit-code-for-ci-support">Exit code for CI support</h3>
 <p>Just-API exits with proper exit code, so you can use it in CI to determine the status of your tests.</p>
 <p>Usually exit code is equal to number of failed suite unless some unexpected error occurs.</p>
-<h3 id="logging-http-requestresponse-data-for-failed-tests">logging HTTP request/response data for failed tests</h3>
+<h3 id="logging-http-requestresponse-data-for-failed-tests">Logging HTTP request/response data for failed tests</h3>
+<p>When a test with multiple dependencies fails it's hard to track which request has failed. To make failure tracking easy, Just-API allows you to 
+ask for HTTP call details for failed tests. You would be able to see all HTTP calls made for a failed test n HTML or JSON report.</p>
+<p>To enable this feature you need to invoke Just-API with <code>--reporter-options logRequests</code></p>
+<pre><code class="sh">./node_modules/.bin/just-api --reporter html --reporter-options logRequests specs
+</code></pre>
+
 <h3 id="no-callbacks">No callbacks</h3>
 <p>you might have observed that there is mention of callbacks anywhere. yes, Just-API does not support callback mechanism when running custom JS functions.
 This is to encourage usage of promises for asynchronous operations.</p>
