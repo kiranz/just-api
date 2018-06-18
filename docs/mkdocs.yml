@@ -1,0 +1,19 @@
+site_name: Just-API
+theme:
+  name: null
+  custom_dir: cinder
+pages:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Docs:
+      - basic-concepts.md
+      - CLI.md
+      - features.md
+      - running-suites-in-parallel.md
+      - reporters.md
+      - examples.md
+google_analytics:
+  - UA-120233669-1
+  - auto
+
+

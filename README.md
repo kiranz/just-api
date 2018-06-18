@@ -5,8 +5,14 @@
 [![Join the chat at https://gitter.im/just-api/Lobby](https://badges.gitter.im/just-api/Lobby.svg)](https://gitter.im/just-api/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
-Just-API is a robust, specification based API testing framework running on [node.js](http://nodejs.org/). Just-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. Just-API reports errors and test results in several formats including HTML and JSON.
-Just-API allows users to test APIs without writing code.
+Just-API is a robust, specification based, codeless API testing framework running on [node.js](http://nodejs.org/). Just-API allows users to test APIs without writing code.
+Just-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.
+<br>
+
+In simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server
+and validates response as per the specification.
+You can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.
+<br>
 
 ## Links
 
@@ -19,7 +25,7 @@ Just-API allows users to test APIs without writing code.
 
 >To run just-api, you will need Node.js v7.10.0 or newer.
 
-```
+```sh
 $ npm install just-api
 $ mkdir specs
 $ $EDITOR specs/starwars_service.yml # or open with your preferred editor
@@ -29,7 +35,7 @@ In your editor (make sure yaml is properly indented)
 
 ```yaml
 meta:
-  name: StarWars suite
+  name: Star Wars suite
 configuration:
   scheme: https
   host: swapi.co
@@ -48,7 +54,7 @@ specs:
 
 Back in the terminal
 
-```
+```sh
 $ ./node_modules/.bin/just-api
 
    ✓ get Luke Skywalker info (1516ms)
@@ -60,7 +66,7 @@ $ ./node_modules/.bin/just-api
 Duration: 1.6s
 ```
 
-See the [Just-API Website](http://kiranz.github.io/just-api/) for detailed documentation.
+Refer to [Just-API Website](http://kiranz.github.io/just-api/) for detailed documentation.
 
 ## License
 

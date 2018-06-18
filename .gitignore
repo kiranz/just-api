@@ -11,6 +11,7 @@ test/cli/src/logs/
 test/cli/src/*.html
 test/cli/src/*.json
 node_modules/
+docs/site/
 logs/
 *.txt
 *.html

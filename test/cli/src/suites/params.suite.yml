@@ -106,7 +106,7 @@ specs:
               - value1
               - value2
 
-  - name: query params added to test context
+  - name: path params added to test context
     before_test:
       run_type: inline
       inline:
@@ -124,7 +124,7 @@ specs:
            value:
               - value2
 
-  - name: query params overidden in test context
+  - name: path params overidden in test context
     before_test:
       run_type: inline
       inline:
