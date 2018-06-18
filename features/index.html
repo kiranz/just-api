@@ -180,8 +180,8 @@
             <li class="second-level"><a href="#spec-dependencies">Spec dependencies</a></li>
                 
                 <li class="third-level"><a href="#running-dependencies">Running dependencies</a></li>
-                <li class="third-level"><a href="#intra-suite-spec-dependencies">intra-suite spec dependencies</a></li>
-                <li class="third-level"><a href="#inter-suite-spec-dependencies">inter-suite spec dependencies</a></li>
+                <li class="third-level"><a href="#intrasuite-spec-dependencies">Intrasuite spec dependencies</a></li>
+                <li class="third-level"><a href="#intersuite-spec-dependencies">Intersuite spec dependencies</a></li>
             <li class="second-level"><a href="#skipping">Skipping</a></li>
                 
                 <li class="third-level"><a href="#skipping-a-suite">Skipping a suite</a></li>
@@ -638,7 +638,8 @@ can run the dependency spec in before_test hook and use the response to build th
       inline:
         function: !!js/function &gt;
           function() {
-            this.test.payload = { body: {type: 'json', content: { firstName: 'john', lastName: 'doe'}} };
+            this.test.payload = { body: {type: 'json', content: { firstName: 'john',
+             lastName: 'doe'}} };
           }
     request:
        path: /users
@@ -651,12 +652,49 @@ can run the dependency spec in before_test hook and use the response to build th
 </code></pre>
 
 <h2 id="custom-context">Custom context</h2>
-<p>You will have access to suite context and test context in respective hooks, So you can use them as a way to store custom data to use in later hooks.</p>
+<p>You will have access to suite context and test context in hooks, So you can use them as a way to store custom data to use in later hooks.</p>
+<p>Suite context can be accessed in hooks using <code>this.suite</code>.
+Test context can be accessed in test specific hooks using 'this.test'.</p>
 <h3 id="storing-suite-test-data-in-context-for-reuse">Storing suite &amp; test data in context for reuse</h3>
+<p>When you have some data that you want to use later in some tests, you can store the data into suite context in <code>before_all</code> hook.</p>
+<pre><code class="yaml">  before_all:
+    run_type: inline
+    inline:
+      function: !!js/function &gt;
+        function() {
+           this.suite.serviceSecret = 'secret';
+        }
+</code></pre>
+
+<p>and later when you need the secret in a test, you can access it in before_test hook.</p>
+<pre><code class="yaml">  - name: using suite context in before test hook
+    before_test:
+      run_type: inline
+      inline:
+        function: !!js/function &gt;
+          function() {
+              this.test.headers = { Authorization: this.suite.serviceSecret };
+          }
+    request:
+      path: /users
+      method: get
+    response: 
+      status_code: 200
+</code></pre>
+
+<p>Similarly you can set test context in before_test hook using <code>this.test</code> and access it using `this.test' in after_test hook.</p>
 <h2 id="spec-dependencies">Spec dependencies</h2>
+<p>Just-API allows testing APIs in flow, where one request depends response data from another request. This is really useful when you are
+testing complex transaction APIs etc.</p>
 <h3 id="running-dependencies">Running dependencies</h3>
-<h3 id="intra-suite-spec-dependencies">intra-suite spec dependencies</h3>
-<h3 id="inter-suite-spec-dependencies">inter-suite spec dependencies</h3>
+<p>Running pre-requiste requests can be done using hooks. There is <code>before_each</code> and <code>before_test</code> hooks.</p>
+<p>If you have a dependency specific to a test, then you might want to use <code>before_test</code> hook to run the dependecy spec.</p>
+<p>There is support for 2 types of dependencies, <code>Intrasuite</code> &amp; <code>Intersuite</code> spec.</p>
+<p>You will need to first provide dependency specification so that you can run it from other specs.</p>
+<h3 id="intrasuite-spec-dependencies">Intrasuite spec dependencies</h3>
+<p>TODO</p>
+<h3 id="intersuite-spec-dependencies">Intersuite spec dependencies</h3>
+<p>TODO </p>
 <h2 id="skipping">Skipping</h2>
 <p>You can explicitly skip suites and tests with specification.</p>
 <h3 id="skipping-a-suite">Skipping a suite</h3>
