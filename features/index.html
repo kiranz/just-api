@@ -168,18 +168,19 @@
                 
             <li class="second-level"><a href="#hooks">Hooks</a></li>
                 
-        <li class="first-level "><a href="#todo-below">TODO (below)</a></li>
             <li class="second-level"><a href="#dynamic-request-construction">Dynamic request construction</a></li>
                 
                 <li class="third-level"><a href="#headers">Headers</a></li>
-                <li class="third-level"><a href="#query-params">query params</a></li>
-                <li class="third-level"><a href="#path-params-body">path params, body</a></li>
+                <li class="third-level"><a href="#query-params">Query params</a></li>
+                <li class="third-level"><a href="#path-params">Path params</a></li>
+                <li class="third-level"><a href="#body">Body</a></li>
             <li class="second-level"><a href="#custom-context">Custom context</a></li>
                 
-                <li class="third-level"><a href="#storing-suite-test-context-for-reuse">storing suite &amp; test context for reuse</a></li>
+                <li class="third-level"><a href="#storing-suite-test-data-in-context-for-reuse">Storing suite &amp; test data in context for reuse</a></li>
             <li class="second-level"><a href="#spec-dependencies">Spec dependencies</a></li>
                 
-                <li class="third-level"><a href="#running-test-dependencies-in-hooks">running test dependencies in hooks</a></li>
+                <li class="third-level"><a href="#running-dependencies">Running dependencies</a></li>
+                <li class="third-level"><a href="#intra-suite-spec-dependencies">intra-suite spec dependencies</a></li>
                 <li class="third-level"><a href="#inter-suite-spec-dependencies">inter-suite spec dependencies</a></li>
             <li class="second-level"><a href="#skipping">Skipping</a></li>
                 
@@ -187,9 +188,9 @@
                 <li class="third-level"><a href="#skipping-a-test">Skipping a test</a></li>
             <li class="second-level"><a href="#reusing-test-specification">reusing test specification</a></li>
                 
-            <li class="second-level"><a href="#test-retry-support">test retry support</a></li>
+            <li class="second-level"><a href="#retrying-failed-tests">Retrying failed tests</a></li>
                 
-            <li class="second-level"><a href="#loop-support-to-test-an-endpoint-with-parameterized-data">loop support to test an endpoint with parameterized data</a></li>
+            <li class="second-level"><a href="#looping">Looping</a></li>
                 
             <li class="second-level"><a href="#additional-features">Additional features</a></li>
                 
@@ -572,18 +573,89 @@ and provide a custom JS function to set suite configuration.</p>
 <li>After test  (runs after a passed spec, you can use this hook to teardown/clear any test specific data  )</li>
 </ul>
 <p>Checkout some samples of hooks <a href="https://github.com/kiranz/just-api/tree/master/test/cli/src/suites/hooks">here</a></p>
-<h1 id="todo-below">TODO (below)</h1>
 <h2 id="dynamic-request-construction">Dynamic request construction</h2>
 <p>Static specification of request is not possible for all sort of test. Sometimes a test depends on data returned by another request, where you would want 
 to run the dependency spec first and fetch required data from it and pass it on to request. To handle usecases like this, Just-API provides a
-<code>before_test</code> hook for every test. Using this hook you can run test prequisites and update request data for actual test.</p>
+<code>before_test</code> hook for every test. Using this hook you can run test prerequisites and update request data for actual test.</p>
+<p>Typically we need to build dynamic requests when a request depends on the data received from another request. In such cases, you 
+can run the dependency spec in before_test hook and use the response to build the actual request for test.</p>
 <h3 id="headers">Headers</h3>
-<h3 id="query-params">query params</h3>
-<h3 id="path-params-body">path params, body</h3>
+<p>Updating or overriding request headers in before test:</p>
+<pre><code class="yaml">  - name: send headers specified in before test hook
+    before_test:
+      run_type: inline
+      inline:
+        function: !!js/function &gt;
+          function() {
+            this.test.headers = { Authorization: 'some token' };
+          }
+    request:
+      path: /users
+      method: get
+    response:
+      status_code: 200
+</code></pre>
+
+<h3 id="query-params">Query params</h3>
+<p>Updating or overriding request query params in before test:</p>
+<pre><code class="yaml">  - name: Query params added in hook
+    before_test:
+      run_type: inline
+      inline:
+        function: !!js/function &gt;
+          function() {
+            this.test.query_params = { limit: 10 };
+          }
+    request:
+       path: /users
+       method: get
+    response:
+       status_code: 200
+</code></pre>
+
+<h3 id="path-params">Path params</h3>
+<p>Updating or overriding request Path params in before test:</p>
+<pre><code class="yaml">  - name: path params added in hook
+    before_test:
+      run_type: inline
+      inline:
+        function: !!js/function &gt;
+          function() {
+            this.test.path_params = { id: 1 };
+          }
+    request:
+       path: /user/{id}
+       method: get
+    response:
+       status_code: 200
+</code></pre>
+
+<h3 id="body">Body</h3>
+<p>You can also define request payload at runtime using hooks</p>
+<pre><code class="yaml">  - name: Payload defined in hook
+    before_test:
+      run_type: inline
+      inline:
+        function: !!js/function &gt;
+          function() {
+            this.test.payload = { body: {type: 'json', content: { firstName: 'john', lastName: 'doe'}} };
+          }
+    request:
+       path: /users
+       method: post
+       headers:
+         - name: content-type
+           value: application/json
+    response:
+       status_code: 201
+</code></pre>
+
 <h2 id="custom-context">Custom context</h2>
-<h3 id="storing-suite-test-context-for-reuse">storing suite &amp; test context for reuse</h3>
+<p>You will have access to suite context and test context in respective hooks, So you can use them as a way to store custom data to use in later hooks.</p>
+<h3 id="storing-suite-test-data-in-context-for-reuse">Storing suite &amp; test data in context for reuse</h3>
 <h2 id="spec-dependencies">Spec dependencies</h2>
-<h3 id="running-test-dependencies-in-hooks">running test dependencies in hooks</h3>
+<h3 id="running-dependencies">Running dependencies</h3>
+<h3 id="intra-suite-spec-dependencies">intra-suite spec dependencies</h3>
 <h3 id="inter-suite-spec-dependencies">inter-suite spec dependencies</h3>
 <h2 id="skipping">Skipping</h2>
 <p>You can explicitly skip suites and tests with specification.</p>
@@ -642,8 +714,75 @@ specs:
     response: *default_response
 </code></pre>
 
-<h2 id="test-retry-support">test retry support</h2>
-<h2 id="loop-support-to-test-an-endpoint-with-parameterized-data">loop support to test an endpoint with parameterized data</h2>
+<h2 id="retrying-failed-tests">Retrying failed tests</h2>
+<p>Sometimes a resource takes a bit of time to get to a state you expect, for instance when you are polling a job status and it goes 
+to completed state after a while. In such cases, you would want to retry hitting the same request few times. </p>
+<p>If you see below sample, response validation says expect 200 status code. If the response validation fails then Just-API attempt to retry the request
+if you have specified <code>retry</code> attribute.
+Here the request is attempted 3 times denoted by <code>count</code> with 10ms wait before each attempt.</p>
+<p><code>wait_before_each</code> is an optional attribute to specify how many milliseconds you want to wait before each attempt.</p>
+<pre><code class="yaml">  - name: retry example
+    request:
+      path: /retryPath
+      method: get
+    retry:
+      count: 3
+      wait_before_each: 10
+    response:
+      status_code: 200
+</code></pre>
+
+<h2 id="looping">Looping</h2>
+<p>You can use the loop construct to loop through a list of items, each item generating a test.</p>
+<p>The list of items can be specified in spec beforehand or you can specify a custom JS function which returns a list of items.</p>
+<p>Here's how a static loop is specified, <code>type</code> is static and loop list is mapped to <code>static</code> field as list of items.
+You will have access to that item in before_test hook by accessing <code>this.loopItem</code>.</p>
+<pre><code class="yaml">  - name: static loop test
+    loop:
+      type: static
+      static:
+        - 2
+        - 3
+    before_test:
+      run_type: inline
+      inline:
+        function: !!js/function &gt;
+          function() {
+            this.test.query_params = { limit : this.loopItem };
+          }
+    request:
+      path: /users
+      method: get
+    response:
+      status_code: 200
+</code></pre>
+
+<p>There's another way to provide a list of items, with <code>dynamic</code> type and a custom JS function.</p>
+<pre><code class="yaml">  - name: dynamic loop test
+    loop:
+      type: dynamic
+      dynamic:
+        run_type: inline
+        inline:
+          function: !!js/function  &gt;
+            function() {
+              return [2, 3];
+            }           
+    before_test:
+      run_type: inline
+      inline:
+        function: !!js/function &gt;
+          function() {
+            this.test.query_params = { limit : this.loopItem };
+          }           
+    request:
+      path: /users
+      method: get
+    response:
+      status_code: 200
+</code></pre>
+
+<p>Note that if your loop has a list of n items, n tests will be generated at runtime.</p>
 <h2 id="additional-features">Additional features</h2>
 <p>Following are some additional features offered by Just-API.</p>
 <h3 id="reports-test-duration">reports test duration</h3>
@@ -655,6 +794,26 @@ specs:
 </code></pre>
 
 <h3 id="additional-request-options">additional request options</h3>
+<p>Following additional request options are supported.</p>
+<ul>
+<li>followRedirect - follow HTTP 3xx responses as redirects.</li>
+<li>followAllRedirects - follow non-GET HTTP 3xx responses as redirects.</li>
+<li>followOriginalHttpMethod - by default we redirect to HTTP method GET. you can enable this property to redirect to the original HTTP method (default: false)</li>
+<li>encoding - encoding to be used on setEncoding of response data. If null, the body is returned as a Buffer. 
+   Anything else (including the default value of undefined) will be passed as the encoding parameter to toString() (meaning this is effectively utf8 by default). (Note: if you expect binary data, you should set encoding: null.)</li>
+<li>gzip - if true, add an Accept-Encoding header to request compressed content encodings from the server (if not already present) and decode supported content encodings in the response.</li>
+</ul>
+<p>A sample spec on how to specify these options:</p>
+<pre><code class="yaml">  - name: spec with redirection disabled
+    request: 
+      path: /home
+      method: get
+      additional_options:
+        followRedirect: false
+    response:
+      status_code: 200
+</code></pre>
+
 <h3 id="finding-suites-recursively">Finding suites recursively</h3>
 <p>When you want to run suites stored in a directory hierarchy spanning more than one nested level, you can invoke the Just-API with <code>--recursive</code> option.</p>
 <pre><code class="sh">./node_modules/.bin/just-api --recursive specs
