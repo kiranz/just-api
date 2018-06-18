@@ -684,17 +684,56 @@ Test context can be accessed in test specific hooks using 'this.test'.</p>
 
 <p>Similarly you can set test context in before_test hook using <code>this.test</code> and access it using `this.test' in after_test hook.</p>
 <h2 id="spec-dependencies">Spec dependencies</h2>
-<p>Just-API allows testing APIs in flow, where one request depends response data from another request. This is really useful when you are
+<p>This is probably one of best features of Just-API.</p>
+<p>Just-API allows testing APIs in flow, where one request depends on response data from another request. This is really useful when you are
 testing complex transaction APIs etc.</p>
 <h3 id="running-dependencies">Running dependencies</h3>
-<p>Running pre-requiste requests can be done using hooks. There is <code>before_each</code> and <code>before_test</code> hooks.</p>
+<p>Running pre-requisite requests can be done using hooks. There is <code>before_each</code> and <code>before_test</code> hooks.</p>
 <p>If you have a dependency specific to a test, then you might want to use <code>before_test</code> hook to run the dependecy spec.</p>
 <p>There is support for 2 types of dependencies, <code>Intrasuite</code> &amp; <code>Intersuite</code> spec.</p>
 <p>You will need to first provide dependency specification so that you can run it from other specs.</p>
 <h3 id="intrasuite-spec-dependencies">Intrasuite spec dependencies</h3>
-<p>TODO</p>
+<p>Intrasuite dependency is when you have a dependency that is specified in the same suite. You can then run the dependency by
+using <code>this.runSpec()</code> in a hook. runSpec function takes 2 arguments. First argument is the name of your dependency spec and second argument
+is an object with additional information you want to pass to the request such as headers, query params, path params, and body.</p>
+<p>Following set of specs show how to run dependencies as part of a test and use the data for subsequent requests.</p>
+<pre><code class="yaml">specs:
+  - name: thisis the dependency
+    enabled: false
+    request:
+      path: /token
+      method: get
+    response:
+      status_code: 200
+
+  - name: actual test spec
+    before_test:
+      run_type: inline
+      inline:
+        function: !js/asyncFunction &gt;
+          async function() {
+            var response = await this.runSpec('thisis the dependency');
+            var tokenResponse = JSON.parse(response.body);
+            this.test.headers = {Authorization:  tokenResponse.token};
+          }
+    request:
+      path: /users
+      method: get
+    response:
+      status_code: 200
+</code></pre>
+
 <h3 id="intersuite-spec-dependencies">Intersuite spec dependencies</h3>
-<p>TODO </p>
+<p>Intersuite is when you have a dependency that is specified in the another suite but you import it using <code>spec_dependencies</code> construct.</p>
+<p>Running Intersuite dependency is similar to running Intrasuite dependency.</p>
+<p>You can import specs defined in another by specifying relative path to the suite.</p>
+<pre><code class="yaml">spec_dependencies:
+  - suites/anothersuite.yml
+</code></pre>
+
+<p>And you can import specs from multiple suites by listing their relative paths.</p>
+<p>Note that these imported specs will only be available when you run them using <code>this.runSpec</code>.</p>
+<p>Please find some examples on dependencies <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/suitedependencies/intersuitedeps.suite.yml">here</a></p>
 <h2 id="skipping">Skipping</h2>
 <p>You can explicitly skip suites and tests with specification.</p>
 <h3 id="skipping-a-suite">Skipping a suite</h3>
@@ -870,9 +909,9 @@ ask for HTTP call details for failed tests. You would be able to see all HTTP ca
 </code></pre>
 
 <h3 id="no-callbacks">No callbacks</h3>
-<p>you might have observed that there is mention of callbacks anywhere. yes, Just-API does not support callback mechanism when running custom JS functions.
+<p>You might have observed that there is mention of callbacks anywhere. yes, Just-API does not support callback mechanism when running custom JS functions.
 This is to encourage usage of promises for asynchronous operations.</p>
-<p>When you are dealing asynchronous tasks, wrap them in an async function.</p>
+<p>When you are dealing with asynchronous tasks, wrap them in an async function.</p>
 <h2 id="running-suites-in-parallel">Running suites in parallel</h2>
 <p>Please see <a href="../running-suites-in-parallel">page</a> </p>
 <h2 id="reporters">Reporters</h2>
