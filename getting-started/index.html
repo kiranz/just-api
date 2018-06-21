@@ -148,6 +148,8 @@
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#installation">Installation</a></li>
         <li class="first-level "><a href="#getting-started">Getting Started</a></li>
+            <li class="second-level"><a href="#testing-graphql-apis">Testing GraphQL APIs</a></li>
+                
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -195,6 +197,44 @@ specs:
 0 skipped, 0 failed, 1 passed (1 tests)
 0 skipped, 0 failed, 1 passed (1 suites)
 Duration: 1.6s
+</code></pre>
+
+<h3 id="testing-graphql-apis">Testing GraphQL APIs</h3>
+<p>Following example tests a GraphQL API that returns location for a given ip address.</p>
+<p>Create the yaml suite file and run just-api.</p>
+<pre><code class="yaml">meta:
+  name: GraphQL location service
+configuration:
+  host: api.graphloc.com
+  scheme: https
+specs:
+  - name: Get Location of a an ip address
+    request:
+      method: post
+      path: /graphql
+      headers:
+        - name: content-type
+          value: application/json
+      payload:
+        body:
+          type: json
+          content:
+            query: &gt;
+                   {
+                    getLocation(ip: &quot;8.8.8.8&quot;) {
+                      country {
+                        iso_code
+                      }
+                     }
+                    }
+            variables: null
+            operationName: null
+    response:
+      status_code: 200
+      json_data:
+        - path: $.data.getLocation.country.iso_code
+          value: &quot;US&quot;
+
 </code></pre></div>
         
     </div>
