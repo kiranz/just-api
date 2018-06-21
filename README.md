@@ -5,13 +5,15 @@
 [![Join the chat at https://gitter.im/just-api/Lobby](https://badges.gitter.im/just-api/Lobby.svg)](https://gitter.im/just-api/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
-Just-API is a robust, specification based, codeless API testing framework running on [node.js](http://nodejs.org/). Just-API allows users to test APIs without writing code.
+Just-API is a robust, specification based, codeless testing framework that tests REST, GraphQL (or any HTTP based) APIs.  It runs on [node.js](http://nodejs.org/). Just-API allows users to test APIs without writing code.
 Just-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.
 <br>
 
 In simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server
 and validates response as per the specification.
 You can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.
+
+Find more about it [here](http://kiranz.github.io/just-api/)
 <br>
 
 ## Links
@@ -22,6 +24,9 @@ You can choose to validate any or all of response status code, headers, JSON dat
 - [Issue Tracker](https://github.com/kiranz/just-api/issues)
 
 ## Getting Started
+
+Following is a simple example showing usage of Just-API. 
+
 
 >To run just-api, you will need Node.js v7.10.0 or newer.
 
@@ -65,6 +70,49 @@ $ ./node_modules/.bin/just-api
 0 skipped, 0 failed, 1 passed (1 suites)
 Duration: 1.6s
 ```
+
+### Testing GraphQL APIs
+
+Following example tests a GraphQL API that returns location for a given ip address.
+
+Create the yaml suite file and run just-api.
+
+```yaml
+meta:
+  name: GraphQL location service
+configuration:
+  host: api.graphloc.com
+  scheme: https
+specs:
+  - name: Get Location of a an ip address
+    request:
+      method: post
+      path: /graphql
+      headers:
+        - name: content-type
+          value: application/json
+      payload:
+        body:
+          type: json
+          content:
+            query: >
+                   {
+                    getLocation(ip: "8.8.8.8") {
+                      country {
+                        iso_code
+                      }
+                     }
+                    }
+            variables: null
+            operationName: null
+    response:
+      status_code: 200
+      json_data:
+        - path: $.data.getLocation.country.iso_code
+          value: "US"
+
+```
+
 
 Refer to [Just-API Website](http://kiranz.github.io/just-api/) for detailed documentation.
 
