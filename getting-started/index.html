@@ -150,6 +150,8 @@
         <li class="first-level "><a href="#getting-started">Getting Started</a></li>
             <li class="second-level"><a href="#testing-graphql-apis">Testing GraphQL APIs</a></li>
                 
+            <li class="second-level"><a href="#a-complex-suite">A complex suite</a></li>
+                
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -235,7 +237,57 @@ specs:
         - path: $.data.getLocation.country.iso_code
           value: &quot;US&quot;
 
-</code></pre></div>
+</code></pre>
+
+<h3 id="a-complex-suite">A complex suite</h3>
+<p>When you need to test complex chained API flows, you can run dependencies in hooks to fetch prerequisite data 
+and pass it to actual test.</p>
+<p>Following example shows how to get data from dependencies with hooks and using custom validator functions to validate the response.</p>
+<pre><code class="yaml">meta:
+  name: Starwars suite
+configuration:
+  scheme: https
+  host: swapi.co
+  base_path: /api
+specs:
+  - name: get R2-D2 info
+    request:
+      path: /people/3/
+      method: get
+    response:
+      status_code: 200
+      json_data:
+        - path: $.name
+          value: R2-D2
+
+  - name: search R2-D2 info
+    before_test:
+      run_type: inline
+      inline:
+        function: !js/asyncFunction &gt;
+          async function() {
+            var response = await this.runSpec('get R2-D2 info');
+            var jsonData = JSON.parse(response.body);
+            this.test.query_params = { name:  jsonData.name };
+          }
+    request:
+      path: /people
+      method: get
+    response:
+      status_code: 200
+      custom_validator:
+        run_type: inline
+        inline:
+          function: !!js/function &gt;
+            function() {
+              var jsonData = JSON.parse(this.response.body);
+              var r2d2 = jsonData.results.find(result =&gt; result.name === 'R2-D2');
+
+              if (!r2d2) throw new Error('R2-D2 not returned in search results');
+            }
+</code></pre>
+
+<p>Note that you can also place your custom JS functions in separate JS file and specify the function name in YAML to import.</p></div>
         
     </div>
 
