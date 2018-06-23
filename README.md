@@ -6,7 +6,7 @@
 
 
 Just-API is a robust, specification based, codeless testing framework that tests REST, GraphQL (or any HTTP based) APIs.  It runs on [node.js](http://nodejs.org/). Just-API allows users to test APIs without writing code.
-Just-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.
+It takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.
 <br>
 
 In simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server
@@ -113,8 +113,8 @@ specs:
 
 ```
 
-
-Refer to [Just-API Website](http://kiranz.github.io/just-api/) for detailed documentation.
+You can do much more advanced stuff with Just-API. Our documentation says it all.
+Take a look at [Just-API Website](http://kiranz.github.io/just-api/) for detailed documentation.
 
 ## License
 

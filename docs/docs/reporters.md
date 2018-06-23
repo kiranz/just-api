@@ -10,6 +10,12 @@ When you need an HTML report, you can invoke just-api with the `--reporter` opti
 ./node_modules/.bin/just-api --reporter html
 ```
 
+####A sample html report:
+
+![Report](../img/html-report.png)
+
+_Did you notice that the report has all request, response details for failed tests?_
+
 ### Generating reports in multiple formats ###
 
 Just-API has the ability to generate reports in multiple formats.

@@ -16,7 +16,7 @@ gulp.task('copy_files',function(){
   return gulp.src([
       './lib/schema/yaml/*.json',
       './lib/reporters/html-src/assets/*.css'
-  ],  { base: './lib/' })
+  ], { base: './lib/' })
   .pipe(gulp.dest('src'));
 });
 
