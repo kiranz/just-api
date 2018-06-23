@@ -113,6 +113,59 @@ specs:
 
 ```
 
+### A complex suite
+
+When you need to test complex chained API flows, you can run dependencies in hooks to fetch prerequisite data 
+and pass it to actual test.
+
+Following example shows how to get data from dependencies with hooks and using custom validator functions to validate the response.
+
+```yaml
+meta:
+  name: Starwars suite
+configuration:
+  scheme: https
+  host: swapi.co
+  base_path: /api
+specs:
+  - name: get R2-D2 info
+    request:
+      path: /people/3/
+      method: get
+    response:
+      status_code: 200
+      json_data:
+        - path: $.name
+          value: R2-D2
+
+  - name: search R2-D2 info
+    before_test:
+      run_type: inline
+      inline:
+        function: !js/asyncFunction >
+          async function() {
+            var response = await this.runSpec('get R2-D2 info');
+            var jsonData = JSON.parse(response.body);
+            this.test.query_params = { name:  jsonData.name };
+          }
+    request:
+      path: /people
+      method: get
+    response:
+      status_code: 200
+      custom_validator:
+        run_type: inline
+        inline:
+          function: !!js/function >
+            function() {
+              var jsonData = JSON.parse(this.response.body);
+              var r2d2 = jsonData.results.find(result => result.name === 'R2-D2');
+              
+              if (!r2d2) throw new Error('R2-D2 not returned in search results');
+            }
+```
+Note that you can also place your custom JS functions in separate JS file and specify the function name in YAML to import.
+
 You can do much more advanced stuff with Just-API. Our documentation says it all.
 Take a look at [Just-API Website](http://kiranz.github.io/just-api/) for detailed documentation.
 
