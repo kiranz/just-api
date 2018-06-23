@@ -382,7 +382,7 @@
         }, 
         {
             "location": "/reporters/", 
-            "text": "Reporters\n\n\nGenerating a report\n\n\nJust-API has several built-in reporters, \njson\n, 'specs', 'html' etc.\n\n\nWhen you need an HTML report, you can invoke just-api with the \n--reporter\n option\n\n\n./node_modules/.bin/just-api --reporter html\n\n\n\n\nGenerating reports in multiple formats\n\n\nJust-API has the ability to generate reports in multiple formats.\n\n\nWhen you need an HTML report and a JSON report too, you could do something like this\n\n\n./node_modules/.bin/just-api --reporter html,json\n\n\n\n\nThis way you can generate reports in multiple formats for the same run.", 
+            "text": "Reporters\n\n\nGenerating a report\n\n\nJust-API has several built-in reporters, \njson\n, 'specs', 'html' etc.\n\n\nWhen you need an HTML report, you can invoke just-api with the \n--reporter\n option\n\n\n./node_modules/.bin/just-api --reporter html\n\n\n\n\nA sample html report:\n\n\n\n\nDid you notice that the report has all request, response details for failed tests?\n\n\nGenerating reports in multiple formats\n\n\nJust-API has the ability to generate reports in multiple formats.\n\n\nWhen you need an HTML report and a JSON report too, you could do something like this\n\n\n./node_modules/.bin/just-api --reporter html,json\n\n\n\n\nThis way you can generate reports in multiple formats for the same run.", 
             "title": "Reporters"
         }, 
         {
@@ -394,6 +394,11 @@
             "location": "/reporters/#generating-a-report", 
             "text": "Just-API has several built-in reporters,  json , 'specs', 'html' etc.  When you need an HTML report, you can invoke just-api with the  --reporter  option  ./node_modules/.bin/just-api --reporter html", 
             "title": "Generating a report"
+        }, 
+        {
+            "location": "/reporters/#a-sample-html-report", 
+            "text": "Did you notice that the report has all request, response details for failed tests?", 
+            "title": "A sample html report:"
         }, 
         {
             "location": "/reporters/#generating-reports-in-multiple-formats", 
