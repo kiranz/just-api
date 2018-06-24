@@ -184,6 +184,9 @@ specs:
       method: get
     response:
       status_code: 200
+      headers:
+        - name: content-type
+          value: !!js/regexp application/json      
       json_data:
         - path: $.name
           value: Luke Skywalker
