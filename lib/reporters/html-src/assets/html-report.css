@@ -1,12 +1,16 @@
 @charset "utf-8";
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
-    margin: 0;
+    margin: 20px;
 }
 
 #just-api {
     font: 20px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin: 20px 20px;
 }
 
 #just-api ul,
@@ -578,4 +582,18 @@ body {
 
 #just-api .toggle-passes {
     background: #b94a48;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 25px;
+    color: grey;
+    text-align: center;
+    font-family: "Trebuchet MS", Helvetica;
+    font-size: 12px;
+    font-weight: 300;
+    padding-bottom: 10px;
+    overflow: hidden;
 }

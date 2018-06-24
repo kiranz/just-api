@@ -19,7 +19,7 @@ You can choose to validate any or all of response status code, headers, JSON dat
 
 - [Getting Started](getting-started)
 - [Basic Concepts](basic-concepts)
-- [CLI](cli-reference)
+- [CLI](CLI)
 - [Features](features)
 - [Reporters](reporters)
 - [Examples](examples)
