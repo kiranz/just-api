@@ -23,6 +23,8 @@ Find more about it [here](http://kiranz.github.io/just-api/)
 - [Google Group](https://groups.google.com/forum/#!forum/just-api)
 - [Issue Tracker](https://github.com/kiranz/just-api/issues)
 
+## Features
+
 ## Getting Started
 
 Following is a simple example showing usage of Just-API. 
@@ -52,6 +54,9 @@ specs:
       method: get
     response:
       status_code: 200
+      headers:
+        - name: content-type
+          value: !!js/regexp application/json     
       json_data:
         - path: $.name
           value: Luke Skywalker
