@@ -172,7 +172,6 @@ Note that you can also place your custom JS functions in separate JS file and sp
 You can do much more advanced stuff with Just-API. Our documentation says it all.
 Take a look at [Just-API Website](http://kiranz.github.io/just-api/) for detailed documentation.
 
-## User
 
 ## License
 
