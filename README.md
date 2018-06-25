@@ -13,7 +13,7 @@ In simple terms, how it works is that you provide request and response validatio
 and validates response as per the specification.
 You can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.
 
-Find more about it [here](http://kiranz.github.io/just-api/)
+[Find more](http://kiranz.github.io/just-api/)
 <br>
 
 ## Links
@@ -23,10 +23,37 @@ Find more about it [here](http://kiranz.github.io/just-api/)
 - [Google Group](https://groups.google.com/forum/#!forum/just-api)
 - [Issue Tracker](https://github.com/kiranz/just-api/issues)
 
+## Features
+
+- Running suites in parallel
+- Support all widely used HTTP methods
+- Supports Form, Multipart requests, File uploads too
+- Response Validation (Headers, Status code, JSON body, JSON schema, Custom Response Validation function)
+- Can run imported functions from external modules
+- Custom inline and module Javascript sync/async functions
+- Hooks (Before all, After all, Before each, After each, Before test, After test)
+- Custom suite configuration
+- Chained Request flows
+- Ability to define/override Request path, query params, path params, headers, body at runtime
+- Storing suite & test data in context for reuse
+- Importing specs from multiple external suites
+- Intrasuite and Intersuite spec dependencies
+- Reusing test specification
+- Retry failed tests with wait time
+- Looping - Generate n number of tests with a list
+- Ability to generate reports in multiple formats for the same run
+- Logging HTTP request/response data for failed tests
+- Proper error reporting
+- Runs only tests matching with a given pattern/text
+- Skipping tests with specification
+- Disable or Enable redirections
+
+[Find out all features](https://kiranz.github.io/just-api/features/)
+
+
 ## Getting Started
 
 Following is a simple example showing usage of Just-API. 
-
 
 >To run just-api, you will need Node.js v7.10.0 or newer.
 
@@ -116,7 +143,7 @@ specs:
 
 ```
 
-### A complex suite
+### Chained Dynamic request construction with hooks and Custom response validation
 
 When you need to test complex chained API flows, you can run dependencies in hooks to fetch prerequisite data 
 and pass it to actual test.
