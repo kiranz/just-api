@@ -26,8 +26,8 @@ You can choose to validate any or all of response status code, headers, JSON dat
 ## Features
 
 - Running suites in parallel
-- Support all widely used HTTP methods
-- Supports Form, Multipart requests, File uploads too
+- Supports all widely used HTTP methods
+- Supports Form, Multipart requests, File uploads
 - Response Validation (Headers, Status code, JSON body, JSON schema, Custom Response Validation function)
 - Can run imported functions from external modules
 - Custom inline and module Javascript sync/async functions
@@ -40,7 +40,7 @@ You can choose to validate any or all of response status code, headers, JSON dat
 - Intrasuite and Intersuite spec dependencies
 - Reusing test specification
 - Retry failed tests with wait time
-- Looping - Generate n number of tests with a list
+- Looping: Generate 'n' number of tests with a list
 - Ability to generate reports in multiple formats for the same run
 - Logging HTTP request/response data for failed tests
 - Proper error reporting
