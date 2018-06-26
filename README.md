@@ -39,14 +39,17 @@ You can choose to validate any or all of response status code, headers, JSON dat
 - Importing specs from multiple external suites
 - Intrasuite and Intersuite spec dependencies
 - Reusing test specification
-- Retry failed tests with wait time
+- Retry failed tests
 - Looping: Generate 'n' number of tests with a list
+- Built-in HTML, JSON reporters
 - Ability to generate reports in multiple formats for the same run
 - Logging HTTP request/response data for failed tests
 - Proper error reporting
 - Runs only tests matching with a given pattern/text
 - Skipping tests with specification
 - Disable or Enable redirections
+- Reports test duration
+- Allows user to plug-in custom reporters
 
 [Find out all features](https://kiranz.github.io/just-api/features/)
 

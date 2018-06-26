@@ -661,6 +661,7 @@ And you can import specs from multiple suites by listing their relative paths.
 Note that these imported specs will only be available when you run them using `this.runSpec`.
 
 Please find some examples on dependencies [here](https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/suitedependencies/intersuitedeps.suite.yml)
+
 ## Skipping
 You can explicitly skip suites and tests with specification.
 

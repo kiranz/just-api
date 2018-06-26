@@ -1,6 +1,6 @@
 {
   "name": "just-api",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Specification based API test framework for HTTP APIs (REST, GraphQL)",
   "keywords": [
     "API",
