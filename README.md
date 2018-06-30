@@ -25,19 +25,19 @@ You can choose to validate any or all of response status code, headers, JSON dat
 
 ## Features
 
-- Running suites in parallel
+- Runs test suites in parallel/serial mode
 - Supports all widely used HTTP methods
 - Supports Form, Multipart requests, File uploads
 - Response Validation (Headers, Status code, JSON body, JSON schema, Custom Response Validation function)
-- Can run imported functions from external modules
+- Runs imported custom functions from modules
 - Custom inline and module Javascript sync/async functions
 - Hooks (Before all, After all, Before each, After each, Before test, After test)
 - Custom suite configuration
 - Chained Request flows
 - Ability to define/override Request path, query params, path params, headers, body at runtime
 - Storing suite & test data in context for reuse
-- Importing specs from multiple external suites
-- Intrasuite and Intersuite spec dependencies
+- Importing specs from multiple suites
+- Intrasuite and Intersuite spec dependency execution
 - Reusing test specification
 - Retry failed tests
 - Looping: Generate 'n' number of tests with a list
@@ -45,7 +45,7 @@ You can choose to validate any or all of response status code, headers, JSON dat
 - Ability to generate reports in multiple formats for the same run
 - Logging HTTP request/response data for failed tests
 - Proper error reporting
-- Runs only tests matching with a given pattern/text
+- Runs only tests matching with a given pattern/string
 - Skipping tests with specification
 - Disable or Enable redirections
 - Reports test duration
@@ -202,6 +202,9 @@ Note that you can also place your custom JS functions in separate JS file and sp
 You can do much more advanced stuff with Just-API. Our documentation says it all.
 Take a look at [Just-API Website](http://kiranz.github.io/just-api/) for detailed documentation.
 
+## Maintainer
+
+Kiran kiran.6d.hex@gmail.com
 
 ## License
 
