@@ -9,7 +9,7 @@ Just-API is a robust, specification based, codeless testing framework that tests
 It takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.
 <br>
 
-In simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server
+In simple terms, you provide request and response validation specification in a YAML file. Just-API builds the request, makes a call to server
 and validates response as per the specification.
 You can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.
 
@@ -66,7 +66,7 @@ $ mkdir specs
 $ $EDITOR specs/starwars_service.yml # or open with your preferred editor
 ```
 
-In your editor (make sure yaml is properly indented)
+In your editor (make sure YAML is properly indented)
 
 ```yaml
 meta:
@@ -108,7 +108,7 @@ Duration: 1.6s
 
 Following example tests a GraphQL API that returns location for a given ip address.
 
-Create the yaml suite file and run just-api.
+Create the YAML suite file and run just-api.
 
 ```yaml
 meta:
