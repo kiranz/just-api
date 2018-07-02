@@ -36,6 +36,9 @@ specs:
               var body = JSON.parse(this.response.body);
               if (body.key1 !== 'value1')
                   throw new Error("Value of key1 is not value1");
+                  
+              if (!this.response.duration || this.response.duration > 25)
+                  throw new Error("Response duration is missing or greater than 25 ms");
             }
 
   - name: inline custom validator async function
