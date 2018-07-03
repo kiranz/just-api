@@ -186,15 +186,19 @@
 
 <p>Reporters in Just-API are JavaScript constructors. When instantiated, a reporter receives the test launcher object  along with program options.
 Just-API emits events on launcher object and suite object, So a reporter should listen to these events and implement  custom reporting.</p>
-<p>Following are events emitted on launcher object
- - start
- - end
- - new suite (Indicates the start of a new suite)</p>
-<p>And these events are emitted on each suite object
-  - test pass
-  - test fail
-  - test skip
-  - end (Indicates the end of a suite)</p>
+<p>Following are events emitted on launcher object</p>
+<ul>
+<li>start</li>
+<li>end</li>
+<li>new suite (Indicates the start of a new suite)</li>
+</ul>
+<p>And these events are emitted on each suite object</p>
+<ul>
+<li>test pass</li>
+<li>test fail</li>
+<li>test skip</li>
+<li>end (Indicates the end of a suite)</li>
+</ul>
 <p>If you are looking to write a custom reporter, take a look at Just-API's <a href="https://github.com/kiranz/just-api/blob/master/lib/reporters/json.js">JSON Reporter</a> </p></div>
         
     </div>
