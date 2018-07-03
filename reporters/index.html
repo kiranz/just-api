@@ -152,6 +152,8 @@
                 <li class="third-level"><a href="#a-sample-html-report">A sample html report:</a></li>
             <li class="second-level"><a href="#generating-reports-in-multiple-formats">Generating reports in multiple formats</a></li>
                 
+            <li class="second-level"><a href="#custom-reporters">Custom Reporters</a></li>
+                
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -172,7 +174,28 @@
 <pre><code class="sh">./node_modules/.bin/just-api --reporter html,json
 </code></pre>
 
-<p>This way you can generate reports in multiple formats for the same run.</p></div>
+<p>This way you can generate reports in multiple formats for the same run.</p>
+<h3 id="custom-reporters">Custom Reporters</h3>
+<p>When built-in reporters do not provide the information you need, you can write a custom reporter and use it like:</p>
+<pre><code class="sh">./node_modules/.bin/just-api --reporter html,custom-reporter-module-name
+</code></pre>
+
+<p>or if the reporter is local js file </p>
+<pre><code class="sh">./node_modules/.bin/just-api --reporter html,/absolute/path/to/js/file
+</code></pre>
+
+<p>Reporters in Just-API are JavaScript constructors. When instantiated, a reporter receives the test launcher object  along with program options.
+Just-API emits events on launcher object and suite object, So a reporter should listen to these events and implement  custom reporting.</p>
+<p>Following are events emitted on launcher object
+ - start
+ - end
+ - new suite (Indicates the start of a new suite)</p>
+<p>And these events are emitted on each suite object
+  - test pass
+  - test fail
+  - test skip
+  - end (Indicates the end of a suite)</p>
+<p>If you are looking to write a custom reporter, take a look at Just-API's <a href="https://github.com/kiranz/just-api/blob/master/lib/reporters/json.js">JSON Reporter</a> </p></div>
         
     </div>
 

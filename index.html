@@ -163,14 +163,17 @@
         <div class="col-md-9" role="main">
 
 <h1 id="just-api-docs">Just-API docs</h1>
-<p><br></p>
-<p>Just-API is a robust, specification based, codeless testing framework that tests <code>REST</code>, <code>GraphQL</code> (or any HTTP based) APIs.  It runs on <a href="http://nodejs.org/">node.js</a>. Just-API allows users to test APIs without writing code.
-Just-API takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.</p>
 <p><br>
-In simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server
-and validates response as per the specification.</p>
-<p>You can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.
+Just-API is a robust, specification based test framework for <code>REST</code>, <code>GraphQL</code> (or any HTTP-based) APIs.  It runs on <a href="http://nodejs.org/">node.js</a>. Just-API allows users to test APIs without writing code, but users can tap into code when they want to. It takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.
 <br></p>
+<p>In simple terms, users build a suite by providing request and response validation specification in a YAML file. Each suite can contain one or more specs. Just-API builds the request, makes a call to server and validates response as per the specification. You can choose to validate any or all of</p>
+<ul>
+<li>Response Status code</li>
+<li>Response Headers</li>
+<li>Response JSON body</li>
+<li>Response JSON schema</li>
+</ul>
+<p><em>or Provide your own custom Javascript validator function</em></p>
 <h2 id="contents">Contents</h2>
 <h3 id="documentation">Documentation</h3>
 <ul>
@@ -250,5 +253,5 @@ and validates response as per the specification.</p>
 
 <!--
 MkDocs version : 0.17.4
-Build Date UTC : 2018-06-24 14:50:05
+Build Date UTC : 2018-07-03 18:28:55
 -->

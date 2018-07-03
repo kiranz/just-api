@@ -438,7 +438,16 @@ When <code>type</code> is file, you need to provide the relative path to schema 
 <p>More examples on response JSON data validation can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/jsondata.suite.yml">here</a></p>
 <h3 id="user-defined-custom-response-validator-functions">User defined custom response validator functions</h3>
 <p>When you need to validate a response using your custom logic, you can do so by providing a <code>inline</code> or <code>module</code> custom javascript function to <code>custom_validator</code> attribute.</p>
-<p>Just-API will invoke the custom function by passing the response to function's this context, so you can access the response using <code>this.response</code>: </p>
+<p>Just-API will invoke the custom function by passing the response to function's this context, so you can access the response using <code>this.response</code>.</p>
+<p>So when you need more details from response, <code>this.response</code> will also have following properties.</p>
+<ul>
+<li>body</li>
+<li>statusCode</li>
+<li>statusMessage</li>
+<li>headers</li>
+<li>body</li>
+<li>duration</li>
+</ul>
 <p>Here's a sample on how to specify a custom inline Javascript function to validate the response</p>
 <pre><code class="yaml">  - name: get users
     request:
@@ -537,7 +546,7 @@ and provide a custom JS function to set suite configuration.</p>
       function: !!js/function &gt;
         function() {
           if (process.env.TEST_ENVIRONMENT === 'Dev') {
-             this.host = 'dev-host.com'
+             this.host = 'dev-host.com';
           }
 
           if (process.env.TEST_ENVIRONMENT === 'QA') { 
