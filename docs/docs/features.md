@@ -283,7 +283,16 @@ More examples on response JSON data validation can be found [here](https://githu
 
 When you need to validate a response using your custom logic, you can do so by providing a `inline` or `module` custom javascript function to `custom_validator` attribute.
 
-Just-API will invoke the custom function by passing the response to function's this context, so you can access the response using `this.response`: 
+Just-API will invoke the custom function by passing the response to function's this context, so you can access the response using `this.response`.
+
+So when you need more details from response, `this.response` will also have following properties.
+
+ - body
+ - statusCode
+ - statusMessage
+ - headers
+ - body
+ - duration
 
 Here's a sample on how to specify a custom inline Javascript function to validate the response
 
@@ -413,7 +422,7 @@ configuration:
       function: !!js/function >
         function() {
           if (process.env.TEST_ENVIRONMENT === 'Dev') {
-             this.host = 'dev-host.com'
+             this.host = 'dev-host.com';
           }
           
           if (process.env.TEST_ENVIRONMENT === 'QA') { 

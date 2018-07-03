@@ -5,13 +5,17 @@
 [![Join the chat at https://gitter.im/just-api/Lobby](https://badges.gitter.im/just-api/Lobby.svg)](https://gitter.im/just-api/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
-Just-API is a robust, specification based, codeless testing framework that tests REST, GraphQL (or any HTTP based) APIs.  It runs on [node.js](http://nodejs.org/). Just-API allows users to test APIs without writing code.
-It takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.
+Just-API is a robust, specification based test framework for REST, GraphQL (or any HTTP-based) APIs.  It runs on [node.js](http://nodejs.org/). Just-API allows users to test APIs without writing code, but users can tap into code when they want to. It takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.
 <br>
 
-In simple terms, how it works is that you provide request and response validation specification in an yaml file. Just-API builds the request, makes a call to server
-and validates response as per the specification.
-You can choose to validate any or all of response status code, headers, JSON data, JSON schema or provide your own custom validator function.
+In simple terms, users build a suite by providing request and response validation specification in a YAML file. Each suite can contain one or more specs. Just-API builds the request, makes a call to server and validates response as per the specification. You can choose to validate any or all of
+
+- Response Status code
+- Response Headers
+- Response JSON body
+- Response JSON schema
+
+_or Provide your own custom Javascript validator function_
 
 [Find more](http://kiranz.github.io/just-api/)
 <br>
@@ -66,7 +70,7 @@ $ mkdir specs
 $ $EDITOR specs/starwars_service.yml # or open with your preferred editor
 ```
 
-In your editor (make sure yaml is properly indented)
+In your editor
 
 ```yaml
 meta:
@@ -146,7 +150,7 @@ specs:
 
 ```
 
-### Chained Dynamic request construction with hooks and Custom response validation
+### Chained API flow construction with hooks and Custom response validation
 
 When you need to test complex chained API flows, you can run dependencies in hooks to fetch prerequisite data 
 and pass it to actual test.
@@ -194,7 +198,8 @@ specs:
               var jsonData = JSON.parse(this.response.body);
               var r2d2 = jsonData.results.find(result => result.name === 'R2-D2');
               
-              if (!r2d2) throw new Error('R2-D2 not returned in search results');
+              if (!r2d2) 
+                throw new Error('R2-D2 not returned in search results');
             }
 ```
 Note that you can also place your custom JS functions in separate JS file and specify the function name in YAML to import.
@@ -209,3 +214,7 @@ Kiran kiran.6d.hex@gmail.com
 ## License
 
 Just-API is [MIT-licensed](https://github.com/kiranz/just-api/blob/master/LICENSE)
+
+## References
+
+ - [Just-API, Testing HTTP-based APIs (REST, GraphQL)](https://medium.com/@kiranz.m/testing-http-based-apis-rest-graphql-f215fba989ca)
