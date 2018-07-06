@@ -150,3 +150,7 @@ specs:
 ```
 
 Note that you can also place your custom JS functions in separate JS file and specify the function name in YAML to import.
+
+### Using docker to run Just-API tests
+If you are looking to use Docker to run Just-API, you might want to checkout
+Just-API docker boilerplate [here](https://github.com/kiranz/docker-just-api-sample)

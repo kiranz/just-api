@@ -207,6 +207,9 @@ Note that you can also place your custom JS functions in separate JS file and sp
 You can do much more advanced stuff with Just-API. Our documentation says it all.
 Take a look at [Just-API Website](http://kiranz.github.io/just-api/) for detailed documentation.
 
+If you are looking to use Docker to run Just-API, you might want to checkout
+Just-API docker boilerplate [here](https://github.com/kiranz/docker-just-api-sample)
+
 ## Maintainer
 
 Kiran kiran.6d.hex@gmail.com
