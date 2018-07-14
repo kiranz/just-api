@@ -2,13 +2,15 @@
 
 [![npm package](https://nodei.co/npm/just-api.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/just-api)
 
-[![Join the chat at https://gitter.im/just-api/Lobby](https://badges.gitter.im/just-api/Lobby.svg)](https://gitter.im/just-api/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/just-api/Lobby](https://badges.gitter.im/just-api/Lobby.svg)](https://gitter.im/just-api/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+[![Twitter](https://img.shields.io/twitter/follow/just_api_.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=just_api_)
 
 
-Just-API is a robust, specification based test framework for REST, GraphQL (or any HTTP-based) APIs.  It runs on [node.js](http://nodejs.org/). Just-API allows users to test APIs without writing code, but users can tap into code when they want to. It takes API test specification from YAML files and runs them either in serial mode or in parallel mode as instructed by the user. It also reports errors and test results in several formats including HTML and JSON.
+Just-API is a robust, specification based test framework for `REST`, `GraphQL` (or any HTTP-based) APIs.  It runs on [node.js](http://nodejs.org/). Users can test APIs without writing code, or they can tap into code when they want to. It takes API test specification from YAML files and runs them either in serial or in parallel mode. Reports errors and test results in several formats including HTML and JSON.
 <br>
 
-In simple terms, users build a suite by providing request and response validation specification in a YAML file. Each suite can contain one or more specs. Just-API builds the request, makes a call to server and validates response as per the specification. You can choose to validate any or all of
+
+In simple terms, users build a suite by providing a set of request and response validation specification in a YAML file. Each suite can contain one or more specs. Just-API builds the request, sends it to server and validates response as per the specification. You can choose to validate any or all of following
 
 - Response Status code
 - Response Headers
@@ -150,7 +152,7 @@ specs:
 
 ```
 
-### Chained API flow construction with hooks and Custom response validation
+### A chained request flow with hook and custom validation
 
 When you need to test complex chained API flows, you can run dependencies in hooks to fetch prerequisite data 
 and pass it to actual test.

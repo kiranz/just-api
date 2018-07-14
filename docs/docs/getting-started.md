@@ -8,11 +8,9 @@ $ npm install just-api
 
 >To run just-api, you will need Node.js v7.10.0 or newer.
 
-
 ## Getting Started
 
 ```
-$ npm install just-api
 $ mkdir specs
 $ $EDITOR specs/starwars_service.yml # or open with your preferred editor
 ```
@@ -94,10 +92,9 @@ specs:
       json_data:
         - path: $.data.getLocation.country.iso_code
           value: "US"
-
 ```
 
-### A complex suite
+### A chained request flow with hook and custom validation
 
 When you need to test complex chained API flows, you can run dependencies in hooks to fetch prerequisite data 
 and pass it to actual test.

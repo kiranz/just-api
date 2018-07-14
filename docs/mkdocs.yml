@@ -1,7 +1,10 @@
 site_name: Just-API
 theme:
-  name: null
-  custom_dir: cinder
+  name: material
+  palette:
+    accent: blue
+extra_javascript:
+  - js/extra.js  
 pages:
   - Home: index.md
   - Getting Started: getting-started.md
@@ -15,5 +18,13 @@ pages:
 google_analytics:
   - UA-120233669-1
   - auto
-
+repo_name: Just-API
+repo_url: https://github.com/kiranz/just-api
+edit_uri: ""
+extra:
+    social:
+      - type: 'github'
+        link: 'https://github.com/kiranz/just-api'
+      - type: 'twitter'
+        link: 'https://twitter.com/just_api_'
 
