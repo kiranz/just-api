@@ -294,8 +294,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#a-complex-suite" title="A complex suite" class="md-nav__link">
-    A complex suite
+  <a href="#a-chained-request-flow-with-hook-and-custom-validation" title="A chained request flow with hook and custom validation" class="md-nav__link">
+    A chained request flow with hook and custom validation
   </a>
   
 </li>
@@ -460,8 +460,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#a-complex-suite" title="A complex suite" class="md-nav__link">
-    A complex suite
+  <a href="#a-chained-request-flow-with-hook-and-custom-validation" title="A chained request flow with hook and custom validation" class="md-nav__link">
+    A chained request flow with hook and custom validation
   </a>
   
 </li>
@@ -506,8 +506,7 @@
 <p>To run just-api, you will need Node.js v7.10.0 or newer.</p>
 </blockquote>
 <h2 id="getting-started">Getting Started</h2>
-<pre><code>$ npm install just-api
-$ mkdir specs
+<pre><code>$ mkdir specs
 $ $EDITOR specs/starwars_service.yml # or open with your preferred editor
 </code></pre>
 
@@ -580,10 +579,9 @@ specs:
       json_data:
         - path: $.data.getLocation.country.iso_code
           value: &quot;US&quot;
-
 </code></pre>
 
-<h3 id="a-complex-suite">A complex suite</h3>
+<h3 id="a-chained-request-flow-with-hook-and-custom-validation">A chained request flow with hook and custom validation</h3>
 <p>When you need to test complex chained API flows, you can run dependencies in hooks to fetch prerequisite data 
 and pass it to actual test.</p>
 <p>Following example shows how to get data from dependencies with hooks and using custom validator functions to validate the response.</p>
