@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Just-API docs\n\n\nJust-API is a robust, specification based test framework for \nREST\n, \nGraphQL\n (or any HTTP-based) APIs.  It runs on \nnode.js\n. Users can test APIs without writing code, or they can tap into code when they want to. It takes API test specification from YAML files and runs them either in serial or in parallel mode. Reports errors and test results in several formats including HTML and JSON.\n\n\n\nIn simple terms, users build a suite by providing a set of request and response validation specification in a YAML file. Each suite can contain one or more specs. Just-API builds the request, sends it to server and validates response as per the specification. You can choose to validate any or all of following\n\n\n\n\nResponse Status code\n\n\nResponse Headers\n\n\nResponse JSON body\n\n\nResponse JSON schema\n\n\n\n\nor Provide your own custom Javascript validator function\n\n\nContents\n\n\nDocumentation\n\n\n\n\nGetting Started\n\n\nBasic Concepts\n\n\nCLI\n\n\nFeatures\n\n\nReporters\n\n\nExamples\n\n\n\n\nFind it on npm\n\n\n\n\nStay In Touch\n\n\nFollow @just_api_\n\n\n\n\nIf you are having problems with Just-API, or have a question, chat with the community on gitter.\n\n\n\n\nJust-API Google group", 
+            "text": "Just-API docs\n\n\nJust-API is a robust, specification based test framework for \nREST\n, \nGraphQL\n (or any HTTP-based) APIs.  It runs on \nnode.js\n. Users can test APIs without writing code, or they can tap into code when they want to. It takes API test specification from YAML files and runs them either in serial or in parallel mode. Reports errors and test results in several formats including HTML and JSON.\n\n\n\nIn simple terms, users build a suite by providing a set of request and response validation specification in a YAML file. Each suite can contain one or more specs. Just-API builds the request, sends it to server and validates response as per the specification. You can choose to validate any or all of following\n\n\n\n\nResponse Status code\n\n\nResponse Headers\n\n\nResponse JSON body\n\n\nResponse JSON schema\n\n\n\n\nor Provide your own custom Javascript validator function\n\n\nContents\n\n\nDocumentation\n\n\n\n\nGetting Started\n\n\nBasic Concepts\n\n\nCLI\n\n\nFeatures\n\n\nReporters\n\n\nExamples\n\n\n\n\nFind it on npm\n\n\n\n\nStay In Touch\n\n\n     \n\n\nIf you are having problems with Just-API, or have a question, chat with the community on gitter.\n\n\n\n\nJust-API Google group", 
             "title": "Home"
         }, 
         {
@@ -27,7 +27,7 @@
         }, 
         {
             "location": "/#stay-in-touch", 
-            "text": "Follow @just_api_   If you are having problems with Just-API, or have a question, chat with the community on gitter.   Just-API Google group", 
+            "text": "If you are having problems with Just-API, or have a question, chat with the community on gitter.   Just-API Google group", 
             "title": "Stay In Touch"
         }, 
         {
