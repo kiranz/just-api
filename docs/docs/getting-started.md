@@ -2,62 +2,66 @@
 
 Install with [npm](https://npmjs.org):
 
-```sh
-$ npm install just-api
+``` bash
+npm install just-api
 ```
 
->To run just-api, you will need Node.js v7.10.0 or newer.
+!!! note
+      To run just-api, you will need Node.js v7.10.0 or newer.
 
 ## Getting Started
 
-```
-$ mkdir specs
-$ $EDITOR specs/starwars_service.yml # or open with your preferred editor
+``` bash
+mkdir specs
 ```
 
-API test specification is written in yaml files, Enter below specification in the yaml file
+``` bash
+vim specs/starwars_service.yml
+```
 
-```yaml
+Enter below specification in YAML file
+
+``` yaml
 meta:
-  name: Star Wars suite
+  name: "Star Wars suite"
 configuration:
-  scheme: https
-  host: swapi.co
-  base_path: /api
+  scheme: "https"
+  host: "swapi.co"
+  base_path: "/api"
 specs:
-  - name: get "Luke Skywalker" info
+  - name: "get Luke Skywalker info"
     request:
-      path: /people/1/
-      method: get
+      path: "/people/1/"
+      method: "get"
     response:
       status_code: 200
       headers:
-        - name: content-type
+        - name: "content-type"
           value: !!js/regexp application/json      
       json_data:
-        - path: $.name
-          value: Luke Skywalker
+        - path: "$.name"
+          value: "Luke Skywalker"
 ```
 
 Back in the terminal
 
-```
+``` text
 $ ./node_modules/.bin/just-api
 
-   ✓ get Luke Skywalker info (1516ms)
+   ✓ get Luke Skywalker info (1216ms)
 
-  Done: specs/suite.yml (Passed)
+  Done: specs/starwars_service.yml (Passed)
 
 0 skipped, 0 failed, 1 passed (1 tests)
 0 skipped, 0 failed, 1 passed (1 suites)
-Duration: 1.6s
+Duration: 1.3s
 ```
 
 ### Testing GraphQL APIs
 
 Following example tests a GraphQL API that returns location for a given ip address.
 
-Create the yaml suite file and run just-api.
+Create a YAML suite and run just-api.
 
 ```yaml
 meta:
@@ -66,7 +70,7 @@ configuration:
   host: api.graphloc.com
   scheme: https
 specs:
-  - name: Get Location of a an ip address
+  - name: Get Location of a given ip address
     request:
       method: post
       path: /graphql
@@ -91,15 +95,15 @@ specs:
       status_code: 200
       json_data:
         - path: $.data.getLocation.country.iso_code
-          value: "US"
+          value: US
 ```
 
 ### A chained request flow with hook and custom validation
 
-When you need to test complex chained API flows, you can run dependencies in hooks to fetch prerequisite data 
+When you need to test complex chained API flows, run dependencies in hooks to fetch pre-requisite data 
 and pass it to actual test.
 
-Following example shows how to get data from dependencies with hooks and using custom validator functions to validate the response.
+Following example shows how to run dependencies using a hook, get data and validating response with a custom validator function.
 
 ```yaml
 meta:
@@ -146,7 +150,9 @@ specs:
             }
 ```
 
-Note that you can also place your custom JS functions in separate JS file and specify the function name in YAML to import.
+
+!!! note
+    You can also place custom JS functions in a module and specify the function name and path to module in YAML.
 
 ### Using docker to run Just-API tests
 If you are looking to use Docker to run Just-API, you might want to checkout

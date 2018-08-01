@@ -1,6 +1,6 @@
 {
   "name": "just-api",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Specification based API test framework for HTTP APIs (REST, GraphQL)",
   "homepage": "https://kiranz.github.io/just-api/",
   "keywords": [
@@ -43,7 +43,7 @@
     "install_testapi": "cd test/api && npm install",
     "start_testapi": "npm run install_testapi && cd test/api && node server.js",
     "clean_testlogs": "rm -rf test/cli/src/logs && mkdir test/cli/src/logs",
-    "test": "npm run clean_testlogs  && ./node_modules/.bin/mocha --timeout 5000 test/cli/*.spec.js"
+    "test": "npm run clean_testlogs  && ./node_modules/.bin/mocha --timeout 10000 test/cli/*.spec.js"
   },
   "dependencies": {
     "commander": "2.11.0",

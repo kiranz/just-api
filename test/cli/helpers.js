@@ -25,6 +25,7 @@ function runJustAPIJSON(suiteName, args) {
 
 function invokeJustAPI (args) {
     args = [path.join(__dirname, '..', '..', 'bin', 'just-api')].concat(args);
+    
     return spawn.sync(process.execPath, args, { cwd: path.resolve('./test/cli/src') });
 }
 

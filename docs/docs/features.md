@@ -2,11 +2,11 @@
 
 ## Request Specification
 
-A typical request specification includes request path, headers, query params, path params, and payload (if applicable).
+A typical request specification includes request method, path, headers, query params, path params, and payload (if applicable).
 
 ### Request Methods
-Just-API supports following HTTP request methods. You can have a request specification which
-includes any of these methods.
+Just-API supports following HTTP request methods. You can have a request specification with
+any of these HTTP methods.
 
 * GET
 * POST
@@ -16,14 +16,14 @@ includes any of these methods.
 * HEAD
 * OPTIONS
 
-Note that when a request is POST, PUT or PATCH, payload details can be provided and it will
-be sent as request body. More on this in later sections.
-
 ### Specifying Headers, Query params, Path params
 
-Request headers can be specified to `headers` key as list of name, value pair.
-Request Query params can be specified to `query_params` key as list of name, value pair.
-Request Path params can be specified to `path_params` key as list of name, value pair.
+Specify Request headers to `headers` key as a list of name, value pairs.
+<br>
+Specify Request Query params to `query_params` key as a list of name, value pairs.
+<br>
+Specify Request Path params to `path_params` key as a list of name, value pairs.
+<br>
 
 A sample test specification with method, headers, query params and path params:
 
@@ -39,7 +39,7 @@ A sample test specification with method, headers, query params and path params:
           - name: userId
             value: 12876
           - name: postId
-            value: 92
+            value: 2
        query_params:
           - name: limit
             value: 10
@@ -49,7 +49,7 @@ A sample test specification with method, headers, query params and path params:
 
 ### Request Body Specification
 
-When you need to send body for POST, PUT and PATCH requests, you can specify the body to `payload` key.
+When you need to send request body for POST, PUT and PATCH requests, you can specify the body to `payload` key.
 
 You will need to specify `content-type` header and body `type` as shown below
 Here's how to send JSON body with a POST request
@@ -72,7 +72,7 @@ Here's how to send JSON body with a POST request
       status_code: 201
 ```
 
-You can also send binary data as body by reading from a file as shown below.
+You can also send binary data as body from a file as shown below.
 
 ```yaml
   - name: post binary data (file) as body
@@ -84,19 +84,19 @@ You can also send binary data as body by reading from a file as shown below.
           value: image/png
       payload:
           body:
-            type: binary
-            content: static/assets/image.png
+            type: binary 
+            content: static/assets/image.png # Image path
     response:
       status_code: 200
 ```
 
-Note that the image path should be relative to process's current working directory.
+Note that the image path should be relative to Node process's current working directory or relative to suite's path if you set `locate_files_relative` to true in `meta` section of the suite.
 
-Please checkout more examples on how to specify request body [here](https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/postrawbody.suite.yml)
+Checkout more examples on how to specify request body [here](https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/postrawbody.suite.yml)
 
-### Form, multipart requests, file uploads
+### x-www-form-urlencoded, Multipart requests, file uploads
 
-Just-API supports `x-www-form-urlencoded` and `multipart/form-data` requests using which you can upload files and perform tests on complex requests.
+Just-API supports `x-www-form-urlencoded` and `multipart/form-data` requests, using which you can upload files and perform tests on complex requests.
 
 #### **specify `x-www-form-urlencoded` request**
 To create a `x-www-form-urlencoded` request test, you will need to specify the `content-type` header and form body like below:
@@ -137,7 +137,7 @@ Note that `payload` should have a key `form_data` and it should contain list of 
       payload:
           form_data:
             - name: image_name
-              content: static/assets/logo.png
+              content: static/assets/logo.png # file path
               type: file
             - name: field1
               content: value1
@@ -150,19 +150,19 @@ More examples on `multipart/form-data` tests can be found [here](https://github.
 
 ## Response Validation
 
-Just-API allows you to validate responses without writing any code, you can validate following in a response by specifying what to validate.
+Just-API allows you to validate response without writing any code, you can validate following in a response by specifying what to validate.
 
 * Status code
 * Headers
 * JSON schema
 * JSON body
 
-You can also have a custom validator function that will validate the response.
+You can also have a custom validator function that implements your custom validation logic.
 
 ### Status code validation
 
-You can provide `status_code` attribute in response and Just-API matches actual response's Status code against the specification.
-Test will fail when actual response's Status code does not match with specified value.
+Provide `status_code` attribute in response and Just-API matches Response's Status code against the specification.
+Test will fail when Actual response's status code does not match with specified value.
 
 A sample:
 
@@ -178,7 +178,7 @@ A sample:
 ### Headers validation
 When you specify headers in response, Just-API will validate response headers against your specification.
 
-A sample on how to specify headers validation.
+A sample on how to write headers validation.
 
 ```yaml
   - name: get users
@@ -210,7 +210,7 @@ More examples on response header validation can be found [here](https://github.c
 
 ### Response JSON schema validation
 
-Some times you may want to validate the schema of JSON received in response's body, which will allow you to ensure that server is sending data exactly what you are expecting.
+Sometimes you may want to validate the schema of JSON received in response's body, which will allow you to ensure that server is sending data exactly what you are expecting.
 
 with Just-API, you can validate the response JSON schema by specifying the `json_schema` attribute in response.
 
@@ -225,10 +225,10 @@ When `type` is file, you need to provide the relative path to schema file to `$r
     response:
       json_schema:
           type: file
-          $ref: static/schema/expected_schema_for_users.json
+          $ref: static/schema/expected_schema_for_users.json #path to the expected schema file
 ```
 
-You can also specify expected JSON schema in yaml by setting type as `inline` and assigning a string to `$ref` like below:
+You can also specify expected JSON schema in YAML by setting type as `inline` and assigning a string to `$ref` like below:
 
 ```yaml
   - name: get users
@@ -260,7 +260,7 @@ More examples on response JSON schema validation can be found [here](https://git
 
 When you want to validate one or many fields of response JSON, you can do so by providing `json_data` as part of response specification.
 
-`json_data` should have a list of pair of path & value, where path tells Just-API how to locate the field, and value is the expected value for that field.
+`json_data` should have a list of pairs of path & value, where path tells Just-API how to locate the field, and value is the expected value for that field.
 
 Following sample shows that.
 
@@ -283,9 +283,9 @@ More examples on response JSON data validation can be found [here](https://githu
 
 When you need to validate a response using your custom logic, you can do so by providing a `inline` or `module` custom javascript function to `custom_validator` attribute.
 
-Just-API will invoke the custom function by passing the response to function's this context, so you can access the response using `this.response`.
+Just-API will invoke the custom function by passing the response to function's context, so you can access the response using `this.response`.
 
-So when you need more details from response, `this.response` will also have following properties.
+When you need more details from response, `this.response` will also have following properties.
 
  - body
  - statusCode
@@ -315,7 +315,7 @@ Here's a sample on how to specify a custom inline Javascript function to validat
             }
 ```
 
-You can also specify a custom function defined and exported in a module by providing `run_type` as module and module path like below.
+You can also specify a custom function defined & exported in a module by providing `run_type` as module and module path like below.
 
 ```yaml
   - name: get users
@@ -327,7 +327,7 @@ You can also specify a custom function defined and exported in a module by provi
       custom_validator:
         run_type: module
         module:
-          module_path: modules/custom_module.js
+          module_path: modules/custom_module.js # module path
           function_name: validateUsersResponse
 ```
 More examples on validating response using custom functions can be found [here](https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/customvalidator.suite.yml)
@@ -336,9 +336,9 @@ More examples on validating response using custom functions can be found [here](
 
 Just-API allows users to specify custom Javascript functions for (hooks and custom validator).
 
-These custom Javascript function can be inline or defined in a module. They can synchronous or asynchronous defined with (async keyword). 
+These custom Javascript functions can be inline or defined in a module. They can be synchronous or asynchronous (defined with async keyword). 
 
-### cutom inline and module functions
+### Cutom inline and module functions
 
 #### custom inline function
 
@@ -354,7 +354,7 @@ An `inline` synchronous function is defined as below.
         }
 ```
 
-Note that run_type is `inline` and function is mapped to function key of `inline` attribute. `!!js/function` is how you tell Just-API parse to consider it as custom synchronous functions.
+Note that run_type is `inline` and function is mapped to function key of `inline` attribute. Tagging with `!!js/function` is how you tell Just-API parser to consider it as a custom synchronous function.
 
 #### custom module function
 
@@ -368,13 +368,15 @@ A `module` synchronous function is specified as below.
      function_name: customFunctionName
 ```
 
-Note that run_type is `module` and function details are mapped to `module` attribute. `module_path` has the relative path to the JS file.
+Note that run_type is `module` and function details are mapped to `module` attribute. `module_path` has the relative path to the JS file from Node's process's current working directory or relative to suite's path if you set `locate_files_relative` to true in `meta` section of the suite.
 The JS file is expected to be a standard Node.js module.
 `function_name` is the function exported in the module.
 
 ### Async support for custom functions with promises
 
-Custom functions can be asynchronous defined with async keyword, Just-API waits until promise returned by function is resolved or rejected.
+Just-API does not support callback mechanism, Wrap async opeartions with promises and return a promise.
+
+Custom functions can be asynchronous defined with async keyword, Just-API waits until the promise returned by the async function is resolved or rejected.
 
 An `inline` asynchronous function is defined as below.
 
@@ -388,8 +390,7 @@ An `inline` asynchronous function is defined as below.
         }
 ```
 
-Note that run_type is `inline` and function is mapped to function key of `inline` attribute. `!js/asyncFunction` is how you tell Just-API parse to consider it as custom asynchronous functions.
-
+Note that run_type is `inline` and function is mapped to function key of `inline` attribute. Tagging with `!js/asyncFunction` is how you tell Just-API parser to consider it as a custom asynchronous function.
 
 A `module` asynchronous function is specified as below.
 
@@ -401,12 +402,12 @@ A `module` asynchronous function is specified as below.
      function_name: customAsyncFunctionName
 ```
 
-Note that run_type is `module` and function details are mapped to `module` attribute. `module_path` has the relative path to the JS file.The JS file is expected to be a standard Node.js module.
-`function_name` is the async function defined async keyword in the module.
+Note that run_type is `module` and function details are mapped to `module` attribute. `module_path` has the relative path to the JS file from Node's process's current working directory or relative to suite's path if you set `locate_files_relative` to true in `meta` section of the suite. The JS file is expected to be a standard Node.js module.
+`function_name` is the async function defined with async keyword and exported in the module.
 
 ## Suite configuration
 
-When you are running tests, you would want to configure API host, port etc according to the environment you are testing against.
+When you are running tests, you would want to configure API host, port etc, according to the environment you are testing.
 
 In order to facilitate this, Just-API provides a `configuration` section in each suite, where you can have a `custom_configuration` attribute 
 and provide a custom JS function to set suite configuration.
@@ -431,7 +432,7 @@ configuration:
         }
 ```
 
-you can also have a module based custom JS function to configure the suite.
+you can also have a module based custom JS function to configure a suite.
 
 Note that `custom_configuration` is optional. you can always specify static suite configuration if test environment details does not change for you.
 
@@ -443,11 +444,11 @@ configuration:
   base_path: /api
 ```
 
-More examples [here](https://github.com/kiranz/just-api/tree/master/test/cli/src/suites/suiteconfig)
+See More examples [here](https://github.com/kiranz/just-api/tree/master/test/cli/src/suites/suiteconfig)
 
 ## Hooks
 
-If you are familiar with mocha, you might have used hooks. Just-API supports following hooks so it's easy setup your tests.
+Just-API supports following hooks so it's easy to manage tests.
 
 **Suite specific hooks**
   
@@ -460,25 +461,23 @@ If you are familiar with mocha, you might have used hooks. Just-API supports fol
 
 **Test specific hooks**
    
-   These can be specified for each as required.
+   These can be specified for each test as required.
 
- - Before test  (runs before a spec, you can use this hook to setup test prerequisites )
- - After test  (runs after a passed spec, you can use this hook to teardown/clear any test specific data  )
+ - Before test  (runs before the spec, you can use this hook to setup test pre-requisites )
+ - After test  (runs after the spec if spec passes, you can use this hook to teardown/clear any test specific data  )
 
-Checkout some samples of hooks [here](https://github.com/kiranz/just-api/tree/master/test/cli/src/suites/hooks)
+Check out some samples of hooks [here](https://github.com/kiranz/just-api/tree/master/test/cli/src/suites/hooks)
 
 ## Dynamic request construction
 
-Static specification of request is not possible for all sort of test. Sometimes a test depends on data returned by another request, where you would want 
-to run the dependency spec first and fetch required data from it and pass it on to request. To handle usecases like this, Just-API provides a
-`before_test` hook for every test. Using this hook you can run test prerequisites and update request data for actual test.
+Static specification of a request is not possible all the time. Sometimes a test depends on data returned by another request, where you would want to run the dependency spec first and fetch required data from it and pass it on to current test request. To handle usecases like this, Just-API provides a `before_test` hook for every test. Using this hook you can run test pre-requisites and update request data for actual test.
 
 Typically we need to build dynamic requests when a request depends on the data received from another request. In such cases, you 
 can run the dependency spec in before_test hook and use the response to build the actual request for test.
 
 ### Headers 
 
-Updating or overriding request headers in before test:
+Updating or overriding request headers in `before test` hook:
 
 ```yaml
   - name: send headers specified in before test hook
@@ -498,7 +497,7 @@ Updating or overriding request headers in before test:
 
 ### Query params
 
-Updating or overriding request query params in before test:
+Updating or overriding request query params in `before test` hook:
 
 ```yaml
   - name: Query params added in hook
@@ -517,7 +516,7 @@ Updating or overriding request query params in before test:
 ```
 ### Path params
 
-Updating or overriding request Path params in before test:
+Updating or overriding request Path params in `before test` hook:
 
 ```yaml
   - name: path params added in hook
@@ -537,7 +536,7 @@ Updating or overriding request Path params in before test:
 
 ### Body
 
-You can also define request payload at runtime using hooks
+You can also define request payload at runtime using hook like below:
 
 ```yaml
   - name: Payload defined in hook
@@ -568,7 +567,7 @@ Test context can be accessed in test specific hooks using 'this.test'.
 
 ### Storing suite & test data in context for reuse
 
-When you have some data that you want to use later in some tests, you can store the data into suite context in `before_all` hook.
+When you have some data that you want to use later in some tests, you can store the data in suite context in `before_all` hook.
 
 ```yaml
   before_all:
@@ -602,10 +601,7 @@ Similarly you can set test context in before_test hook using `this.test` and acc
 
 ## Spec dependencies
 
-This is probably one of best features of Just-API.
-
-Just-API allows testing APIs in flow, where one request depends on response data from another request. This is really useful when you are
-testing complex transaction APIs etc.
+Just-API allows testing APIs in a flow, where one request depends on response data from another request. This is really useful when you are testing complex transaction APIs.
 
 ### Running dependencies
 
@@ -615,19 +611,16 @@ If you have a dependency specific to a test, then you might want to use `before_
 
 There is support for 2 types of dependencies, `Intrasuite` & `Intersuite` spec.
 
-You will need to first provide dependency specification so that you can run it from other specs.
-
 ### Intrasuite spec dependencies
 
 Intrasuite dependency is when you have a dependency that is specified in the same suite. You can then run the dependency by
-using `this.runSpec()` in a hook. runSpec function takes 2 arguments. First argument is the name of your dependency spec and second argument
-is an object with additional information you want to pass to the request such as headers, query params, path params, and body.
+using `this.runSpec()` in a hook. runSpec function takes 2 arguments. First argument is the name of your dependency spec and second argument is an object with additional information you want to pass to the request such as headers, query params, path params, and body.
 
 Following set of specs show how to run dependencies as part of a test and use the data for subsequent requests.
 
 ```yaml
 specs:
-  - name: thisis the dependency
+  - name: this is the dependency spec
     enabled: false
     request:
       path: /token
@@ -641,9 +634,9 @@ specs:
       inline:
         function: !js/asyncFunction >
           async function() {
-            var response = await this.runSpec('thisis the dependency');
+            var response = await this.runSpec('this is the dependency spec');
             var tokenResponse = JSON.parse(response.body);
-            this.test.headers = {Authorization:  tokenResponse.token};
+            this.test.headers = { Authorization:  tokenResponse.token };
           }
     request:
       path: /users
@@ -654,18 +647,19 @@ specs:
 
 ### Intersuite spec dependencies
 
-Intersuite is when you have a dependency that is specified in the another suite but you import it using `spec_dependencies` construct.
+Intersuite dependency is when you have a dependency that is specified in another suite but you import it using `spec_dependencies` construct.
 
 Running Intersuite dependency is similar to running Intrasuite dependency.
 
-You can import specs defined in another by specifying relative path to the suite.
+You can import specs defined in another suite by providing the path of the suite to `spec_dependencies`.
 
 ```yaml
 spec_dependencies:
-  - suites/anothersuite.yml
+  - suites/anothersuite.yml 
 ```
+Path is relative to current working directory of Node process or relative to suite's path if you set `locate_files_relative` to true in `meta` section of the suite.
 
-And you can import specs from multiple suites by listing their relative paths.
+You can import specs from one or more suites by listing their paths.
 
 Note that these imported specs will only be available when you run them using `this.runSpec`.
 
@@ -675,12 +669,12 @@ Please find some examples on dependencies [here](https://github.com/kiranz/just-
 You can explicitly skip suites and tests with specification.
 
 ### Skipping a suite
- When you have written a suite in a directory, but want to skip running it for some reason, you can do so by providing
-  `false` as value for enabled key under `meta` in a suite, Just-API will skip the suite.
+ When you have a suite in a directory, but want to skip running it for some reason, you can do so by providing
+  `false` as value for enabled key of `meta` section in a suite, Just-API will skip the suite.
  
 ```yaml
  meta:
-  name: Disabled sute
+  name: Disabled suite
   enabled: false
 configuration:
   scheme: http
@@ -694,11 +688,11 @@ specs:
       status_code: 200
 ``` 
  
- Note that if any error occurs before Just-API reads `meta` info of the suite, then suite will be marked as failure.
+Note that if any error occurs before Just-API reads `meta` info of the suite, then suite will be marked as failure.
  
 ### Skipping a test
 
-When you written a set of specs in a suite, but want to skip a spec, you can do so by providing `false` as value for enabled key of the spec.
+When you have a set of specs in a suite, but want to skip a spec, you can do so by providing `false` as value for enabled key of the spec.
 
 ```yaml
   - name: disabled spec
@@ -714,11 +708,11 @@ Just-API will mark the spec as a skipped test.
 
 ## reusing test specification
 
-Apart from readability, an awesome thing about yaml is that you can reuse parts of your specification.
+Apart from readability, an awesome thing about YAML is that you can reuse parts of the specification.
 
-Refer to [dry](https://blog.daemonl.com/2016/02/yaml.html) to see how you can reuse stuff in yaml.
+Refer to [dry](https://blog.daemonl.com/2016/02/yaml.html) to see how you can reuse stuff in YAML.
 
-you can see how response specification is being reused below
+you can see how response specification is being reused below with `&` and `*`
 
 ```yaml
 meta:
@@ -741,15 +735,13 @@ specs:
     response: *default_response
 ```
 
-
 ## Retrying failed tests
 
 Sometimes a resource takes a bit of time to get to a state you expect, for instance when you are polling a job status and it goes 
 to completed state after a while. In such cases, you would want to retry hitting the same request few times. 
 
-If you see below sample, response validation says expect 200 status code. If the response validation fails then Just-API attempt to retry the request
-if you have specified `retry` attribute.
-Here the request is attempted 3 times denoted by `count` with 10ms wait before each attempt.
+If you see below sample, response specification says expect 200 status code. If the response validation fails then Just-API attempts to retry the request if you have specified a `retry` attribute.
+Here the request will be attempted 3 times denoted by `count` with 10ms wait before each attempt.
 
 `wait_before_each` is an optional attribute to specify how many milliseconds you want to wait before each attempt.
 
@@ -831,9 +823,9 @@ Following are some additional features offered by Just-API.
 
 ### reports test duration
 
-Just-API includes duration of each test run in all formats of reports.
+Just-API reports duration of each test run in all formats of reports.
 
-### running only tests match with a given pattern/text
+### running only tests matching with a given pattern/text
 
 If you want to run only specs matches with a given text or pattern, you can do so by using `--grep` option.
 
@@ -843,7 +835,7 @@ Following invocation will run all specs whose name matches with 'user' string.
 ./node_modules/.bin/just-api --grep user specs
 ```
 
-### additional request options
+### Additional request options
 
 Following additional request options are supported.
 
@@ -852,7 +844,7 @@ Following additional request options are supported.
  - followOriginalHttpMethod - by default we redirect to HTTP method GET. you can enable this property to redirect to the original HTTP method (default: false)
  - encoding - encoding to be used on setEncoding of response data. If null, the body is returned as a Buffer. 
    Anything else (including the default value of undefined) will be passed as the encoding parameter to toString() (meaning this is effectively utf8 by default). (Note: if you expect binary data, you should set encoding: null.)
- - gzip - if true, add an Accept-Encoding header to request compressed content encodings from the server (if not already present) and decode supported content encodings in the response.
+ - gzip - if true, adds an Accept-Encoding header to request compressed content encodings from the server (if not already present) and decodes supported content encodings in the response.
 
 A sample spec on how to specify these options:
 
@@ -863,6 +855,7 @@ A sample spec on how to specify these options:
       method: get
       additional_options:
         followRedirect: false
+        gzip: true
     response:
       status_code: 200
 ```
@@ -880,12 +873,11 @@ When a test or suite fails, Just-API provides the correct error, that caused the
 ### Exit code for CI support
 Just-API exits with proper exit code, so you can use it in CI to determine the status of your tests.
 
-Usually exit code is equal to number of failed suite unless some unexpected error occurs.
+Usually exit code is equal to number of failed suites unless some unexpected error occurs.
 
 ### Logging HTTP request/response data for failed tests
 
-When a test with multiple dependencies fails it's hard to track which request has failed. To make failure tracking easy, Just-API allows you to 
-ask for HTTP call details for failed tests. You would be able to see all HTTP calls made for a failed test n HTML or JSON report.
+When a test with multiple dependencies fails it's hard to track which request has failed. To make failure tracking easy, Just-API allows you to ask for HTTP call details for failed tests. You would be able to see all HTTP calls made for a failed test in HTML or JSON report.
 
 To enable this feature you need to invoke Just-API with `--reporter-options logRequests`
 
@@ -895,17 +887,17 @@ To enable this feature you need to invoke Just-API with `--reporter-options logR
 
 ### No callbacks
 
-You might have observed that there is mention of callbacks anywhere. yes, Just-API does not support callback mechanism when running custom JS functions.
+You might have observed that there is no mention of callbacks anywhere. yes, Just-API does not support callback mechanism when running custom JS functions.
 This is to encourage usage of promises for asynchronous operations.
 
-When you are dealing with asynchronous tasks, wrap them in an async function.
+When you are dealing with asynchronous tasks, wrap them in a async function and return a promise.
 
 ## Running suites in parallel
 
-Please see [page](running-suites-in-parallel) 
+See [page](running-suites-in-parallel) 
 
 ## Reporters 
 
-Please see [page](reporters) 
+See [page](reporters) 
 
 
