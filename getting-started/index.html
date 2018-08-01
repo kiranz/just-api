@@ -475,137 +475,150 @@
                 
                 <h2 id="installation">Installation</h2>
 <p>Install with <a href="https://npmjs.org">npm</a>:</p>
-<pre><code class="sh">$ npm install just-api
-</code></pre>
+<div class="codehilite"><pre><span></span>npm install just-api
+</pre></div>
 
-<blockquote>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>To run just-api, you will need Node.js v7.10.0 or newer.</p>
-</blockquote>
+</div>
 <h2 id="getting-started">Getting Started</h2>
-<pre><code>$ mkdir specs
-$ $EDITOR specs/starwars_service.yml # or open with your preferred editor
-</code></pre>
+<div class="codehilite"><pre><span></span>mkdir specs
+</pre></div>
 
-<p>API test specification is written in yaml files, Enter below specification in the yaml file</p>
-<pre><code class="yaml">meta:
-  name: Star Wars suite
-configuration:
-  scheme: https
-  host: swapi.co
-  base_path: /api
-specs:
-  - name: get &quot;Luke Skywalker&quot; info
-    request:
-      path: /people/1/
-      method: get
-    response:
-      status_code: 200
-      headers:
-        - name: content-type
-          value: !!js/regexp application/json      
-      json_data:
-        - path: $.name
-          value: Luke Skywalker
-</code></pre>
+
+<div class="codehilite"><pre><span></span>vim specs/starwars_service.yml
+</pre></div>
+
+
+<p>Enter below specification in YAML file</p>
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">meta</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">&quot;Star</span><span class="nv"> </span><span class="s">Wars</span><span class="nv"> </span><span class="s">suite&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">configuration</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">scheme</span><span class="p p-Indicator">:</span> <span class="s">&quot;https&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="s">&quot;swapi.co&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">base_path</span><span class="p p-Indicator">:</span> <span class="s">&quot;/api&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">specs</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">&quot;get</span><span class="nv"> </span><span class="s">Luke</span><span class="nv"> </span><span class="s">Skywalker</span><span class="nv"> </span><span class="s">info&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="s">&quot;/people/1/&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="s">&quot;get&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+      <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">&quot;content-type&quot;</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="kt">!!js/regexp</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>      
+      <span class="l l-Scalar l-Scalar-Plain">json_data</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="s">&quot;$.name&quot;</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="s">&quot;Luke</span><span class="nv"> </span><span class="s">Skywalker&quot;</span>
+</pre></div>
+
 
 <p>Back in the terminal</p>
-<pre><code>$ ./node_modules/.bin/just-api
+<div class="codehilite"><pre><span></span>$ ./node_modules/.bin/just-api
 
-   ✓ get Luke Skywalker info (1516ms)
+   ✓ get Luke Skywalker info (1216ms)
 
-  Done: specs/suite.yml (Passed)
+  Done: specs/starwars_service.yml (Passed)
 
 0 skipped, 0 failed, 1 passed (1 tests)
 0 skipped, 0 failed, 1 passed (1 suites)
-Duration: 1.6s
-</code></pre>
+Duration: 1.3s
+</pre></div>
+
 
 <h3 id="testing-graphql-apis">Testing GraphQL APIs</h3>
 <p>Following example tests a GraphQL API that returns location for a given ip address.</p>
-<p>Create the yaml suite file and run just-api.</p>
-<pre><code class="yaml">meta:
-  name: GraphQL location service
-configuration:
-  host: api.graphloc.com
-  scheme: https
-specs:
-  - name: Get Location of a an ip address
-    request:
-      method: post
-      path: /graphql
-      headers:
-        - name: content-type
-          value: application/json
-      payload:
-        body:
-          type: json
-          content:
-            query: &gt;
-                   {
-                    getLocation(ip: &quot;8.8.8.8&quot;) {
-                      country {
-                        iso_code
-                      }
-                     }
-                    }
-            variables: null
-            operationName: null
-    response:
-      status_code: 200
-      json_data:
-        - path: $.data.getLocation.country.iso_code
-          value: &quot;US&quot;
-</code></pre>
+<p>Create a YAML suite and run just-api.</p>
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">meta</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">GraphQL location service</span>
+<span class="l l-Scalar l-Scalar-Plain">configuration</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">api.graphloc.com</span>
+  <span class="l l-Scalar l-Scalar-Plain">scheme</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https</span>
+<span class="l l-Scalar l-Scalar-Plain">specs</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Get Location of a given ip address</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">post</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/graphql</span>
+      <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">content-type</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+      <span class="l l-Scalar l-Scalar-Plain">payload</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">body</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">json</span>
+          <span class="l l-Scalar l-Scalar-Plain">content</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">query</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">&gt;</span>
+                   <span class="no">{</span>
+                    <span class="no">getLocation(ip: &quot;8.8.8.8&quot;) {</span>
+                      <span class="no">country {</span>
+                        <span class="no">iso_code</span>
+                      <span class="no">}</span>
+                     <span class="no">}</span>
+                    <span class="no">}</span>
+            <span class="l l-Scalar l-Scalar-Plain">variables</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
+            <span class="l l-Scalar l-Scalar-Plain">operationName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+      <span class="l l-Scalar l-Scalar-Plain">json_data</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.data.getLocation.country.iso_code</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">US</span>
+</pre></div>
+
 
 <h3 id="a-chained-request-flow-with-hook-and-custom-validation">A chained request flow with hook and custom validation</h3>
-<p>When you need to test complex chained API flows, you can run dependencies in hooks to fetch prerequisite data 
+<p>When you need to test complex chained API flows, run dependencies in hooks to fetch pre-requisite data 
 and pass it to actual test.</p>
-<p>Following example shows how to get data from dependencies with hooks and using custom validator functions to validate the response.</p>
-<pre><code class="yaml">meta:
-  name: Starwars suite
-configuration:
-  scheme: https
-  host: swapi.co
-  base_path: /api
-specs:
-  - name: get R2-D2 info
-    request:
-      path: /people/3/
-      method: get
-    response:
-      status_code: 200
-      json_data:
-        - path: $.name
-          value: R2-D2
+<p>Following example shows how to run dependencies using a hook, get data and validating response with a custom validator function.</p>
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">meta</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Starwars suite</span>
+<span class="l l-Scalar l-Scalar-Plain">configuration</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">scheme</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https</span>
+  <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">swapi.co</span>
+  <span class="l l-Scalar l-Scalar-Plain">base_path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/api</span>
+<span class="l l-Scalar l-Scalar-Plain">specs</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get R2-D2 info</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/people/3/</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+      <span class="l l-Scalar l-Scalar-Plain">json_data</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.name</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">R2-D2</span>
 
-  - name: search R2-D2 info
-    before_test:
-      run_type: inline
-      inline:
-        function: !js/asyncFunction &gt;
-          async function() {
-            var response = await this.runSpec('get R2-D2 info');
-            var jsonData = JSON.parse(response.body);
-            this.test.query_params = { name:  jsonData.name };
-          }
-    request:
-      path: /people
-      method: get
-    response:
-      status_code: 200
-      custom_validator:
-        run_type: inline
-        inline:
-          function: !!js/function &gt;
-            function() {
-              var jsonData = JSON.parse(this.response.body);
-              var r2d2 = jsonData.results.find(result =&gt; result.name === 'R2-D2');
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">search R2-D2 info</span>
+    <span class="l l-Scalar l-Scalar-Plain">before_test</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+      <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!js/asyncFunction</span> <span class="p p-Indicator">&gt;</span>
+          <span class="no">async function() {</span>
+            <span class="no">var response = await this.runSpec(&#39;get R2-D2 info&#39;);</span>
+            <span class="no">var jsonData = JSON.parse(response.body);</span>
+            <span class="no">this.test.query_params = { name:  jsonData.name };</span>
+          <span class="no">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/people</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+      <span class="l l-Scalar l-Scalar-Plain">custom_validator</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+        <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+            <span class="no">function() {</span>
+              <span class="no">var jsonData = JSON.parse(this.response.body);</span>
+              <span class="no">var r2d2 = jsonData.results.find(result =&gt; result.name === &#39;R2-D2&#39;);</span>
 
-              if (!r2d2) throw new Error('R2-D2 not returned in search results');
-            }
-</code></pre>
+              <span class="no">if (!r2d2) throw new Error(&#39;R2-D2 not returned in search results&#39;);</span>
+            <span class="no">}</span>
+</pre></div>
 
-<p>Note that you can also place your custom JS functions in separate JS file and specify the function name in YAML to import.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also place custom JS functions in a module and specify the function name and path to module in YAML.</p>
+</div>
 <h3 id="using-docker-to-run-just-api-tests">Using docker to run Just-API tests</h3>
 <p>If you are looking to use Docker to run Just-API, you might want to checkout
 Just-API docker boilerplate <a href="https://github.com/kiranz/docker-just-api-sample">here</a></p>

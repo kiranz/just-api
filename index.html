@@ -464,16 +464,17 @@
                 
                 
                 <h1 id="just-api">Just-API</h1>
-<p>Just-API is a robust, specification based test framework for <code>REST</code>, <code>GraphQL</code> (or any HTTP-based) APIs.  It runs on <a href="http://nodejs.org/">node.js</a>. Users can test APIs without writing code, or they can tap into code when they want to. It takes API test specification from YAML files and runs them either in serial or in parallel mode. Reports errors and test results in several formats including HTML and JSON.
+<p>Just-API is a declarative, specification based test framework for <code>REST</code>, <code>GraphQL</code> (or any HTTP-based) APIs. Users can test APIs without writing code, but they can also tap into code when they want to. It reads API test specification from YAML files and runs them in serial/parallel mode. Test reports can be generated in several formats including HTML and JSON.
 <br></p>
-<p>In simple terms, users build a suite by providing a set of request and response validation specification in a YAML file. Each suite can contain one or more specs. Just-API builds the request, sends it to server and validates response as per the specification. You can choose to validate any or all of following</p>
+<p>In simple terms, users build a test suite by providing a set of request and response validation specification in a YAML file. Each suite can have one or more specs. Just-API builds the request, sends it to server and validates response as per the specification.
+One can choose to validate any or all of following</p>
 <ul>
 <li>Response Status code</li>
 <li>Response Headers</li>
 <li>Response JSON body</li>
 <li>Response JSON schema</li>
 </ul>
-<p><em>or Provide your own custom Javascript validator function</em></p>
+<p><em>or Provide a custom Javascript function to validate the response</em></p>
 <h2 id="contents">Contents</h2>
 <h3 id="documentation">Documentation</h3>
 <ul>

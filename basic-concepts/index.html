@@ -492,59 +492,67 @@
                 
                 
                 <h1 id="basic-concepts">Basic Concepts</h1>
-<p>This section covers some high level basic concepts that are important to understand for day to day Just-API usage. We highly recommend that you read this
-page before proceeding to use Just-API.</p>
+<p>This section covers some high level basic concepts that are important to understand for day to day Just-API usage. We highly recommend that you read this page before proceeding to use Just-API.</p>
 <h2 id="the-high-level-view">The High-level View</h2>
-<p>Just-API is a framework that you can use to run HTTP based API tests.</p>
-<p>You write your API test specification and tell Just-API to run them. API test specifications are written in YAML and we call each YAML file a test suite, with the option to write Javascript (using any <code>npm</code> module if needed) to write custom logic.</p>
-<p>Just-API's main purpose is to test HTTP based APIs without code, and make API testing easy, free and fast for everyone.</p>
-<p>Just-API is written with parallelism as priority while running suites, so your test execution takes as less time as possible.</p>
+<p>Just-API's main purpose is to test HTTP-based APIs without code, and make API testing easy, free and fast for everyone.</p>
+<p>Write your API test specification and tell Just-API to run them. API test specification is written in YAML and we call each YAML file a test suite, with the option to write Javascript (using any <code>npm</code> module if needed) to implement custom logic.</p>
+<p>Just-API is written with parallelism as high priority when running test suites, so your test execution takes as less time as possible.</p>
 <h2 id="putting-a-test-suite-together">Putting a test suite together</h2>
 <p>A test suite has three required sections - <code>meta</code>, <code>configuration</code> and <code>specs</code>.</p>
 <p>And optional sections <code>hooks</code> and <code>spec_dependencies</code> (you can find more about these optional parts in later sections of the documentation).</p>
 <h3 id="the-meta-section">The <code>meta</code> Section</h3>
-<p>This is where you specify <code>name</code> for the suite and other suite related metadata.</p>
+<p>Specify following suite attributes in this section</p>
+<ul>
+<li><code>name</code> (<em>required attribute</em>)</li>
+<li><code>locate_files_relative</code> (<em>optional attribute</em>)</li>
+</ul>
+<p><em>name</em>[String]: Give a name that describes the suite (e.g: like a microservice name)</p>
+<p><em>locate_files_relative</em>[Boolean]: Tells Just-API if file paths provided in the suite are relative to suite path or not. If false, Just-API will try to find files relative to Node process's current working directory.
+If true, Just-API will try to find files relative to the suite's path.
+Default value is false.</p>
+<p>Note: This attribute value applies to every file path you provide in a suite.</p>
 <h3 id="the-configuration-section">The <code>configuration</code> Section</h3>
-<p>You can use <code>configuration</code> section to specify API's host, scheme, port etc. you can also provide a custom Javascript function to <code>custom_configuration</code> key, so it's easy to 
+<p>You can use <code>configuration</code> section to specify API's host, protocol, port etc. You can also provide a custom Javascript function to <code>custom_configuration</code> attribute, so it's easy to 
 dynamically configure your suite at runtime.</p>
 <h3 id="the-specs-section">The <code>specs</code> Section</h3>
-<p><code>specs</code> section is a list of tests. Each test contains name, request, response validation specification etc.</p>
+<p><code>specs</code> section is a list of tests. Each test contains name, request, response validation specification, and a few other additional attributes.</p>
 <h3 id="an-example-suite">An Example Suite</h3>
 <p>A sample suite for Star Wars API service would look like this:</p>
-<pre><code class="yaml">meta:
-  name: Star Wars service
-configuration:
-  scheme: https
-  base_path: /api
-  custom_configuration:
-    run_type: inline
-    inline:
-      function: !!js/function &gt;
-        function() {
-          this.host = 'swapi.co';
-        }  
-specs:
-  - name: get Luke Skywalker info
-    request: 
-      path: /people/1/
-      method: get
-    response:
-      status_code: 200
-      json_data:
-        - path: $.name
-          value: Luke Skywalker     
-  - name: get all Star Wars Films
-    request: 
-      path: /films/   
-      method: get
-    response:
-      status_code: 200  
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">meta</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Star Wars service</span>
+<span class="l l-Scalar l-Scalar-Plain">configuration</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">scheme</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https</span>
+  <span class="l l-Scalar l-Scalar-Plain">base_path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/api</span>
+  <span class="l l-Scalar l-Scalar-Plain">custom_configuration</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+    <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+        <span class="no">function() {</span>
+          <span class="no">this.host = &#39;swapi.co&#39;;</span>
+        <span class="no">}  </span>
+<span class="l l-Scalar l-Scalar-Plain">specs</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get Luke Skywalker info</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span> 
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/people/1/</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+      <span class="l l-Scalar l-Scalar-Plain">json_data</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.name</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Luke Skywalker</span>     
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get all Star Wars Films</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span> 
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/films/</span>   
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>  
+</pre></div>
+
 
 <p><strong>Next:</strong></p>
 <ul>
 <li>See the full set of features available in <a href="../features">Features</a>.</li>
-<li>Learn about  <strong>reports</strong> in <a href="../reporters">Reporters</a>.</li>
+<li>Learn about  <strong>reporters</strong> in <a href="../reporters">Reporters</a>.</li>
 </ul>
                 
                   

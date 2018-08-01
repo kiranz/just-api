@@ -365,12 +365,13 @@
                 
                 
                 <h1 id="executing-suites-in-parallel">Executing suites in parallel</h1>
-<p>When you have lots of test suites, it might take a while to execute all of them serially. 
-To reduce the test execution time, Just-API is built with parallelism as high priority. You can invoke just-api with <code>--parallel</code> option to trigger parallel execution mode.
+<p>When you have lots of test suites, it might take a while to execute all of them serially. </p>
+<p>To reduce the test execution time, Just-API is built with parallelism. You can invoke just-api with <code>--parallel</code> option to trigger parallel execution mode.
 All reporters respect parallel mode and generate correct reports with properly mapped errors if any.</p>
 <p>This is how you can execute suites in parallel with just-api</p>
-<pre><code class="sh">./node_modules/.bin/just-api --parallel 8
-</code></pre>
+<div class="codehilite"><pre><span></span>./node_modules/.bin/just-api --parallel <span class="m">8</span>
+</pre></div>
+
 
 <p>Above command will start test execution in parallel mode with 8 suites at a time. </p>
 <p><strong>Note</strong>: Maximum number of suites you can run in parallel is 24.</p>

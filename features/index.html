@@ -341,8 +341,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#form-multipart-requests-file-uploads" title="Form, multipart requests, file uploads" class="md-nav__link">
-    Form, multipart requests, file uploads
+  <a href="#x-www-form-urlencoded-multipart-requests-file-uploads" title="x-www-form-urlencoded, Multipart requests, file uploads" class="md-nav__link">
+    x-www-form-urlencoded, Multipart requests, file uploads
   </a>
   
     <nav class="md-nav">
@@ -429,8 +429,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cutom-inline-and-module-functions" title="cutom inline and module functions" class="md-nav__link">
-    cutom inline and module functions
+  <a href="#cutom-inline-and-module-functions" title="Cutom inline and module functions" class="md-nav__link">
+    Cutom inline and module functions
   </a>
   
     <nav class="md-nav">
@@ -640,15 +640,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#running-only-tests-match-with-a-given-patterntext" title="running only tests match with a given pattern/text" class="md-nav__link">
-    running only tests match with a given pattern/text
+  <a href="#running-only-tests-matching-with-a-given-patterntext" title="running only tests matching with a given pattern/text" class="md-nav__link">
+    running only tests matching with a given pattern/text
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#additional-request-options" title="additional request options" class="md-nav__link">
-    additional request options
+  <a href="#additional-request-options" title="Additional request options" class="md-nav__link">
+    Additional request options
   </a>
   
 </li>
@@ -804,8 +804,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#form-multipart-requests-file-uploads" title="Form, multipart requests, file uploads" class="md-nav__link">
-    Form, multipart requests, file uploads
+  <a href="#x-www-form-urlencoded-multipart-requests-file-uploads" title="x-www-form-urlencoded, Multipart requests, file uploads" class="md-nav__link">
+    x-www-form-urlencoded, Multipart requests, file uploads
   </a>
   
     <nav class="md-nav">
@@ -892,8 +892,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cutom-inline-and-module-functions" title="cutom inline and module functions" class="md-nav__link">
-    cutom inline and module functions
+  <a href="#cutom-inline-and-module-functions" title="Cutom inline and module functions" class="md-nav__link">
+    Cutom inline and module functions
   </a>
   
     <nav class="md-nav">
@@ -1103,15 +1103,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#running-only-tests-match-with-a-given-patterntext" title="running only tests match with a given pattern/text" class="md-nav__link">
-    running only tests match with a given pattern/text
+  <a href="#running-only-tests-matching-with-a-given-patterntext" title="running only tests matching with a given pattern/text" class="md-nav__link">
+    running only tests matching with a given pattern/text
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#additional-request-options" title="additional request options" class="md-nav__link">
-    additional request options
+  <a href="#additional-request-options" title="Additional request options" class="md-nav__link">
+    Additional request options
   </a>
   
 </li>
@@ -1189,10 +1189,10 @@
                 
                 <h1 id="just-api-features">Just-API Features</h1>
 <h2 id="request-specification">Request Specification</h2>
-<p>A typical request specification includes request path, headers, query params, path params, and payload (if applicable).</p>
+<p>A typical request specification includes request method, path, headers, query params, path params, and payload (if applicable).</p>
 <h3 id="request-methods">Request Methods</h3>
-<p>Just-API supports following HTTP request methods. You can have a request specification which
-includes any of these methods.</p>
+<p>Just-API supports following HTTP request methods. You can have a request specification with
+any of these HTTP methods.</p>
 <ul>
 <li>GET</li>
 <li>POST</li>
@@ -1202,221 +1202,233 @@ includes any of these methods.</p>
 <li>HEAD</li>
 <li>OPTIONS</li>
 </ul>
-<p>Note that when a request is POST, PUT or PATCH, payload details can be provided and it will
-be sent as request body. More on this in later sections.</p>
 <h3 id="specifying-headers-query-params-path-params">Specifying Headers, Query params, Path params</h3>
-<p>Request headers can be specified to <code>headers</code> key as list of name, value pair.
-Request Query params can be specified to <code>query_params</code> key as list of name, value pair.
-Request Path params can be specified to <code>path_params</code> key as list of name, value pair.</p>
+<p>Specify Request headers to <code>headers</code> key as a list of name, value pairs.
+<br>
+Specify Request Query params to <code>query_params</code> key as a list of name, value pairs.
+<br>
+Specify Request Path params to <code>path_params</code> key as a list of name, value pairs.
+<br></p>
 <p>A sample test specification with method, headers, query params and path params:</p>
-<pre><code class="yaml">  - name: A sample test
-    request:
-       path: /user/{userId}/posts/{postId}
-       method: get
-       headers:
-         - name: Accept
-           value: application/json
-       path_params:
-          - name: userId
-            value: 12876
-          - name: postId
-            value: 92
-       query_params:
-          - name: limit
-            value: 10
-    response:
-       status_code: 200
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">A sample test</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+       <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/user/{userId}/posts/{postId}</span>
+       <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+       <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Accept</span>
+           <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+       <span class="l l-Scalar l-Scalar-Plain">path_params</span><span class="p p-Indicator">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">userId</span>
+            <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">12876</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">postId</span>
+            <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+       <span class="l l-Scalar l-Scalar-Plain">query_params</span><span class="p p-Indicator">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">limit</span>
+            <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+       <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <h3 id="request-body-specification">Request Body Specification</h3>
-<p>When you need to send body for POST, PUT and PATCH requests, you can specify the body to <code>payload</code> key.</p>
+<p>When you need to send request body for POST, PUT and PATCH requests, you can specify the body to <code>payload</code> key.</p>
 <p>You will need to specify <code>content-type</code> header and body <code>type</code> as shown below
 Here's how to send JSON body with a POST request</p>
-<pre><code class="yaml">  - name: create a new user
-    request: 
-      path: /users
-      method: post
-      headers:
-        - name: content-type
-          value: application/json
-      payload:
-          body:
-            type: json
-            content:
-              firstName: john
-              lastName: doe
-    response:
-      status_code: 201
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">create a new user</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span> 
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">post</span>
+      <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">content-type</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+      <span class="l l-Scalar l-Scalar-Plain">payload</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">body</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">json</span>
+            <span class="l l-Scalar l-Scalar-Plain">content</span><span class="p p-Indicator">:</span>
+              <span class="l l-Scalar l-Scalar-Plain">firstName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">john</span>
+              <span class="l l-Scalar l-Scalar-Plain">lastName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">doe</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">201</span>
+</pre></div>
 
-<p>You can also send binary data as body by reading from a file as shown below.</p>
-<pre><code class="yaml">  - name: post binary data (file) as body
-    request:
-      path: /uploadImage
-      method: post
-      headers:
-        - name: content-type
-          value: image/png
-      payload:
-          body:
-            type: binary
-            content: static/assets/image.png
-    response:
-      status_code: 200
-</code></pre>
 
-<p>Note that the image path should be relative to process's current working directory.</p>
-<p>Please checkout more examples on how to specify request body <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/postrawbody.suite.yml">here</a></p>
-<h3 id="form-multipart-requests-file-uploads">Form, multipart requests, file uploads</h3>
-<p>Just-API supports <code>x-www-form-urlencoded</code> and <code>multipart/form-data</code> requests using which you can upload files and perform tests on complex requests.</p>
+<p>You can also send binary data as body from a file as shown below.</p>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">post binary data (file) as body</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/uploadImage</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">post</span>
+      <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">content-type</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">image/png</span>
+      <span class="l l-Scalar l-Scalar-Plain">payload</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">body</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">binary</span> 
+            <span class="l l-Scalar l-Scalar-Plain">content</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">static/assets/image.png</span> <span class="c1"># Image path</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
+
+<p>Note that the image path should be relative to Node process's current working directory or relative to suite's path if you set <code>locate_files_relative</code> to true in <code>meta</code> section of the suite.</p>
+<p>Checkout more examples on how to specify request body <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/postrawbody.suite.yml">here</a></p>
+<h3 id="x-www-form-urlencoded-multipart-requests-file-uploads">x-www-form-urlencoded, Multipart requests, file uploads</h3>
+<p>Just-API supports <code>x-www-form-urlencoded</code> and <code>multipart/form-data</code> requests, using which you can upload files and perform tests on complex requests.</p>
 <h4 id="specify-x-www-form-urlencoded-request"><strong>specify <code>x-www-form-urlencoded</code> request</strong></h4>
 <p>To create a <code>x-www-form-urlencoded</code> request test, you will need to specify the <code>content-type</code> header and form body like below:</p>
 <p>Note that <code>payload</code> should have a key <code>form</code> and it should contain form data in key value pairs.</p>
-<pre><code class="yaml">  - name: Authenticate a user
-    request:
-      path: /authenticate
-      method: post
-      headers:
-        - name: content-type
-          value: application/x-www-form-urlencoded
-      payload:
-          form:
-            userName: john.doe
-            password: john.doe.password
-    response:
-      status_code: 200
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Authenticate a user</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/authenticate</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">post</span>
+      <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">content-type</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">application/x-www-form-urlencoded</span>
+      <span class="l l-Scalar l-Scalar-Plain">payload</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">form</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">userName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">john.doe</span>
+            <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">john.doe.password</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <p>More examples on <code>x-www-form-urlencoded</code> tests can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/urlencodeformpost.suite.yml">here</a></p>
 <h4 id="specify-multipartform-data-request"><strong>specify <code>multipart/form-data</code> request</strong></h4>
 <p>Here's how you can specify a multipart request.</p>
 <p>Note that <code>payload</code> should have a key <code>form_data</code> and it should contain list of form data fields.</p>
-<pre><code class="yaml">  - name: post multipart form data - single file and field
-    request:
-      path: /imageNText
-      method: post
-      headers:
-        - name: content-type
-          value: multipart/form-data
-      payload:
-          form_data:
-            - name: image_name
-              content: static/assets/logo.png
-              type: file
-            - name: field1
-              content: value1
-              type: text
-    response:
-      status_code: 200
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">post multipart form data - single file and field</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/imageNText</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">post</span>
+      <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">content-type</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">multipart/form-data</span>
+      <span class="l l-Scalar l-Scalar-Plain">payload</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">form_data</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">image_name</span>
+              <span class="l l-Scalar l-Scalar-Plain">content</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">static/assets/logo.png</span> <span class="c1"># file path</span>
+              <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">field1</span>
+              <span class="l l-Scalar l-Scalar-Plain">content</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">value1</span>
+              <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <p>More examples on <code>multipart/form-data</code> tests can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/multipartformpost.suite.yml">here</a></p>
 <h2 id="response-validation">Response Validation</h2>
-<p>Just-API allows you to validate responses without writing any code, you can validate following in a response by specifying what to validate.</p>
+<p>Just-API allows you to validate response without writing any code, you can validate following in a response by specifying what to validate.</p>
 <ul>
 <li>Status code</li>
 <li>Headers</li>
 <li>JSON schema</li>
 <li>JSON body</li>
 </ul>
-<p>You can also have a custom validator function that will validate the response.</p>
+<p>You can also have a custom validator function that implements your custom validation logic.</p>
 <h3 id="status-code-validation">Status code validation</h3>
-<p>You can provide <code>status_code</code> attribute in response and Just-API matches actual response's Status code against the specification.
-Test will fail when actual response's Status code does not match with specified value.</p>
+<p>Provide <code>status_code</code> attribute in response and Just-API matches Response's Status code against the specification.
+Test will fail when Actual response's status code does not match with specified value.</p>
 <p>A sample:</p>
-<pre><code class="yaml">  - name: get users
-    request:
-      path: /users
-      method: get
-    response:
-      status_code: 400
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get users</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">400</span>
+</pre></div>
+
 
 <h3 id="headers-validation">Headers validation</h3>
 <p>When you specify headers in response, Just-API will validate response headers against your specification.</p>
-<p>A sample on how to specify headers validation.</p>
-<pre><code class="yaml">  - name: get users
-    request:
-      path: /users
-      method: get
-    response:
-      headers:
-        - name: content-type
-          value: application/json
-</code></pre>
+<p>A sample on how to write headers validation.</p>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get users</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">content-type</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+</pre></div>
+
 
 <p>You can even match header against a regex instead of exact value, like below:</p>
 <p>Following response specification would check if response header <em>content-type</em> matches with regex pattern <em>'json'</em>.</p>
-<pre><code class="yaml">  - name: get users
-    request:
-      path: /users
-      method: get
-    response:
-      headers:
-        - name: content-type
-          value: !!js/regexp json
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get users</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">content-type</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="kt">!!js/regexp</span> <span class="l l-Scalar l-Scalar-Plain">json</span>
+</pre></div>
+
 
 <p>More examples on response header validation can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/headers.suite.yaml">here</a></p>
 <h3 id="response-json-schema-validation">Response JSON schema validation</h3>
-<p>Some times you may want to validate the schema of JSON received in response's body, which will allow you to ensure that server is sending data exactly what you are expecting.</p>
+<p>Sometimes you may want to validate the schema of JSON received in response's body, which will allow you to ensure that server is sending data exactly what you are expecting.</p>
 <p>with Just-API, you can validate the response JSON schema by specifying the <code>json_schema</code> attribute in response.</p>
 <p>Following sample shows how to read expected schema from a file and validate response JSON body against it. Here json_schema has two fields, <code>type</code> key can be either file or inline.
 When <code>type</code> is file, you need to provide the relative path to schema file to <code>$ref</code> key.</p>
-<pre><code class="yaml">  - name: get users
-    request: 
-      path: /users
-      method: get
-    response:
-      json_schema:
-          type: file
-          $ref: static/schema/expected_schema_for_users.json
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get users</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span> 
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">json_schema</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file</span>
+          <span class="l l-Scalar l-Scalar-Plain">$ref</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">static/schema/expected_schema_for_users.json</span> <span class="c1">#path to the expected schema file</span>
+</pre></div>
 
-<p>You can also specify expected JSON schema in yaml by setting type as <code>inline</code> and assigning a string to <code>$ref</code> like below:</p>
-<pre><code class="yaml">  - name: get users
-    request: 
-      path: /users
-      method: get
-    response:
-      json_schema:
-          type: inline
-          $ref: &gt;
-                {
-                  &quot;$id&quot;: &quot;http://example.com/example.json&quot;,
-                  &quot;type&quot;: &quot;object&quot;,
-                  &quot;$schema&quot;: &quot;http://json-schema.org/draft-06/schema#&quot;,
-                  &quot;properties&quot;: {
-                    &quot;firstName&quot;: {
-                      &quot;$id&quot;: &quot;/properties/firstName&quot;,
-                      &quot;type&quot;: &quot;string&quot;
-                    }
-                  }
-                }
-</code></pre>
+
+<p>You can also specify expected JSON schema in YAML by setting type as <code>inline</code> and assigning a string to <code>$ref</code> like below:</p>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get users</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span> 
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">json_schema</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+          <span class="l l-Scalar l-Scalar-Plain">$ref</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">&gt;</span>
+                <span class="no">{</span>
+                  <span class="no">&quot;$id&quot;: &quot;http://example.com/example.json&quot;,</span>
+                  <span class="no">&quot;type&quot;: &quot;object&quot;,</span>
+                  <span class="no">&quot;$schema&quot;: &quot;http://json-schema.org/draft-06/schema#&quot;,</span>
+                  <span class="no">&quot;properties&quot;: {</span>
+                    <span class="no">&quot;firstName&quot;: {</span>
+                      <span class="no">&quot;$id&quot;: &quot;/properties/firstName&quot;,</span>
+                      <span class="no">&quot;type&quot;: &quot;string&quot;</span>
+                    <span class="no">}</span>
+                  <span class="no">}</span>
+                <span class="no">}</span>
+</pre></div>
+
 
 <p>If you are not sure about JSON schema standard, Please refer to <a href="http://json-schema.org/">JSON schema</a></p>
 <p>More examples on response JSON schema validation can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/jsonschema.suite.yml">here</a></p>
 <h3 id="response-json-body-validation">Response JSON body validation</h3>
 <p>When you want to validate one or many fields of response JSON, you can do so by providing <code>json_data</code> as part of response specification.</p>
-<p><code>json_data</code> should have a list of pair of path &amp; value, where path tells Just-API how to locate the field, and value is the expected value for that field.</p>
+<p><code>json_data</code> should have a list of pairs of path &amp; value, where path tells Just-API how to locate the field, and value is the expected value for that field.</p>
 <p>Following sample shows that.</p>
-<pre><code class="yaml">  - name: get users
-    request: 
-      path: /users
-      method: get
-    response:
-      json_data:
-        - path: $.[0].firstName
-          value: john
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get users</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span> 
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">json_data</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.[0].firstName</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">john</span>
+</pre></div>
+
 
 <p>If you are not sure on how to generate JSON path, Please refer to <a href="https://github.com/dchester/jsonpath">JSON path</a></p>
 <p>More examples on response JSON data validation can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/jsondata.suite.yml">here</a></p>
 <h3 id="user-defined-custom-response-validator-functions">User defined custom response validator functions</h3>
 <p>When you need to validate a response using your custom logic, you can do so by providing a <code>inline</code> or <code>module</code> custom javascript function to <code>custom_validator</code> attribute.</p>
-<p>Just-API will invoke the custom function by passing the response to function's this context, so you can access the response using <code>this.response</code>.</p>
-<p>So when you need more details from response, <code>this.response</code> will also have following properties.</p>
+<p>Just-API will invoke the custom function by passing the response to function's context, so you can access the response using <code>this.response</code>.</p>
+<p>When you need more details from response, <code>this.response</code> will also have following properties.</p>
 <ul>
 <li>body</li>
 <li>statusCode</li>
@@ -1426,124 +1438,133 @@ When <code>type</code> is file, you need to provide the relative path to schema 
 <li>duration</li>
 </ul>
 <p>Here's a sample on how to specify a custom inline Javascript function to validate the response</p>
-<pre><code class="yaml">  - name: get users
-    request:
-      path: /users
-      method: get
-    response:
-      status_code: 200
-      custom_validator:
-        run_type: inline
-        inline:
-          function: !!js/function &gt;
-            function() {
-              var body = JSON.parse(this.response.body);
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get users</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+      <span class="l l-Scalar l-Scalar-Plain">custom_validator</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+        <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+            <span class="no">function() {</span>
+              <span class="no">var body = JSON.parse(this.response.body);</span>
 
-              if (body.users[0].firstName !== 'john')
-                  throw new Error(&quot;first user's name is not john&quot;);
-            }
-</code></pre>
+              <span class="no">if (body.users[0].firstName !== &#39;john&#39;)</span>
+                  <span class="no">throw new Error(&quot;first user&#39;s name is not john&quot;);</span>
+            <span class="no">}</span>
+</pre></div>
 
-<p>You can also specify a custom function defined and exported in a module by providing <code>run_type</code> as module and module path like below.</p>
-<pre><code class="yaml">  - name: get users
-    request:
-      path: /users
-      method: get
-    response:
-      status_code: 200
-      custom_validator:
-        run_type: module
-        module:
-          module_path: modules/custom_module.js
-          function_name: validateUsersResponse
-</code></pre>
+
+<p>You can also specify a custom function defined &amp; exported in a module by providing <code>run_type</code> as module and module path like below.</p>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get users</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+      <span class="l l-Scalar l-Scalar-Plain">custom_validator</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">module</span>
+        <span class="l l-Scalar l-Scalar-Plain">module</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">module_path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">modules/custom_module.js</span> <span class="c1"># module path</span>
+          <span class="l l-Scalar l-Scalar-Plain">function_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">validateUsersResponse</span>
+</pre></div>
+
 
 <p>More examples on validating response using custom functions can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/customvalidator.suite.yml">here</a></p>
 <h2 id="custom-javascript-functions">Custom Javascript functions</h2>
 <p>Just-API allows users to specify custom Javascript functions for (hooks and custom validator).</p>
-<p>These custom Javascript function can be inline or defined in a module. They can synchronous or asynchronous defined with (async keyword). </p>
-<h3 id="cutom-inline-and-module-functions">cutom inline and module functions</h3>
+<p>These custom Javascript functions can be inline or defined in a module. They can be synchronous or asynchronous (defined with async keyword). </p>
+<h3 id="cutom-inline-and-module-functions">Cutom inline and module functions</h3>
 <h4 id="custom-inline-function">custom inline function</h4>
 <p>An <code>inline</code> synchronous function is defined as below.</p>
-<pre><code class="yaml">  custom_validator:
-    run_type: inline
-    inline:
-      function: !!js/function &gt;
-        function() {
-          // some custom code here...
-        }
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="l l-Scalar l-Scalar-Plain">custom_validator</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+    <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+        <span class="no">function() {</span>
+          <span class="no">// some custom code here...</span>
+        <span class="no">}</span>
+</pre></div>
 
-<p>Note that run_type is <code>inline</code> and function is mapped to function key of <code>inline</code> attribute. <code>!!js/function</code> is how you tell Just-API parse to consider it as custom synchronous functions.</p>
+
+<p>Note that run_type is <code>inline</code> and function is mapped to function key of <code>inline</code> attribute. Tagging with <code>!!js/function</code> is how you tell Just-API parser to consider it as a custom synchronous function.</p>
 <h4 id="custom-module-function">custom module function</h4>
 <p>A <code>module</code> synchronous function is specified as below.</p>
-<pre><code class="yaml"> custom_validator:
-   run_type: module
-   module:
-     module_path: modules/custom_module.js
-     function_name: customFunctionName
-</code></pre>
+<div class="codehilite"><pre><span></span> <span class="l l-Scalar l-Scalar-Plain">custom_validator</span><span class="p p-Indicator">:</span>
+   <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">module</span>
+   <span class="l l-Scalar l-Scalar-Plain">module</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">module_path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">modules/custom_module.js</span>
+     <span class="l l-Scalar l-Scalar-Plain">function_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">customFunctionName</span>
+</pre></div>
 
-<p>Note that run_type is <code>module</code> and function details are mapped to <code>module</code> attribute. <code>module_path</code> has the relative path to the JS file.
+
+<p>Note that run_type is <code>module</code> and function details are mapped to <code>module</code> attribute. <code>module_path</code> has the relative path to the JS file from Node's process's current working directory or relative to suite's path if you set <code>locate_files_relative</code> to true in <code>meta</code> section of the suite.
 The JS file is expected to be a standard Node.js module.
 <code>function_name</code> is the function exported in the module.</p>
 <h3 id="async-support-for-custom-functions-with-promises">Async support for custom functions with promises</h3>
-<p>Custom functions can be asynchronous defined with async keyword, Just-API waits until promise returned by function is resolved or rejected.</p>
+<p>Just-API does not support callback mechanism, Wrap async opeartions with promises and return a promise.</p>
+<p>Custom functions can be asynchronous defined with async keyword, Just-API waits until the promise returned by the async function is resolved or rejected.</p>
 <p>An <code>inline</code> asynchronous function is defined as below.</p>
-<pre><code class="yaml">  custom_validator:
-    run_type: inline
-    inline:
-      function: !js/asyncFunction &gt;
-        async function() {
-          // some custom asynchrounous code here...
-        }
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="l l-Scalar l-Scalar-Plain">custom_validator</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+    <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!js/asyncFunction</span> <span class="p p-Indicator">&gt;</span>
+        <span class="no">async function() {</span>
+          <span class="no">// some custom asynchrounous code here...</span>
+        <span class="no">}</span>
+</pre></div>
 
-<p>Note that run_type is <code>inline</code> and function is mapped to function key of <code>inline</code> attribute. <code>!js/asyncFunction</code> is how you tell Just-API parse to consider it as custom asynchronous functions.</p>
+
+<p>Note that run_type is <code>inline</code> and function is mapped to function key of <code>inline</code> attribute. Tagging with <code>!js/asyncFunction</code> is how you tell Just-API parser to consider it as a custom asynchronous function.</p>
 <p>A <code>module</code> asynchronous function is specified as below.</p>
-<pre><code class="yaml"> custom_validator:
-   run_type: module
-   module:
-     module_path: modules/custom_module.js
-     function_name: customAsyncFunctionName
-</code></pre>
+<div class="codehilite"><pre><span></span> <span class="l l-Scalar l-Scalar-Plain">custom_validator</span><span class="p p-Indicator">:</span>
+   <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">module</span>
+   <span class="l l-Scalar l-Scalar-Plain">module</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">module_path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">modules/custom_module.js</span>
+     <span class="l l-Scalar l-Scalar-Plain">function_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">customAsyncFunctionName</span>
+</pre></div>
 
-<p>Note that run_type is <code>module</code> and function details are mapped to <code>module</code> attribute. <code>module_path</code> has the relative path to the JS file.The JS file is expected to be a standard Node.js module.
-<code>function_name</code> is the async function defined async keyword in the module.</p>
+
+<p>Note that run_type is <code>module</code> and function details are mapped to <code>module</code> attribute. <code>module_path</code> has the relative path to the JS file from Node's process's current working directory or relative to suite's path if you set <code>locate_files_relative</code> to true in <code>meta</code> section of the suite. The JS file is expected to be a standard Node.js module.
+<code>function_name</code> is the async function defined with async keyword and exported in the module.</p>
 <h2 id="suite-configuration">Suite configuration</h2>
-<p>When you are running tests, you would want to configure API host, port etc according to the environment you are testing against.</p>
+<p>When you are running tests, you would want to configure API host, port etc, according to the environment you are testing.</p>
 <p>In order to facilitate this, Just-API provides a <code>configuration</code> section in each suite, where you can have a <code>custom_configuration</code> attribute 
 and provide a custom JS function to set suite configuration.</p>
 <p>Here's an example to do that with an inline custom JS function.</p>
-<pre><code class="yaml">configuration:
-  scheme: https
-  custom_configuration:
-    run_type: inline
-    inline:
-      function: !!js/function &gt;
-        function() {
-          if (process.env.TEST_ENVIRONMENT === 'Dev') {
-             this.host = 'dev-host.com';
-          }
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">configuration</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">scheme</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https</span>
+  <span class="l l-Scalar l-Scalar-Plain">custom_configuration</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+    <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+        <span class="no">function() {</span>
+          <span class="no">if (process.env.TEST_ENVIRONMENT === &#39;Dev&#39;) {</span>
+             <span class="no">this.host = &#39;dev-host.com&#39;;</span>
+          <span class="no">}</span>
 
-          if (process.env.TEST_ENVIRONMENT === 'QA') { 
-            this.host = 'qa-host.com';
-          }
-        }
-</code></pre>
+          <span class="no">if (process.env.TEST_ENVIRONMENT === &#39;QA&#39;) { </span>
+            <span class="no">this.host = &#39;qa-host.com&#39;;</span>
+          <span class="no">}</span>
+        <span class="no">}</span>
+</pre></div>
 
-<p>you can also have a module based custom JS function to configure the suite.</p>
+
+<p>you can also have a module based custom JS function to configure a suite.</p>
 <p>Note that <code>custom_configuration</code> is optional. you can always specify static suite configuration if test environment details does not change for you.</p>
-<pre><code class="yaml">configuration:
-  scheme: https
-  host: testhost.com
-  port: 8000
-  base_path: /api
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">configuration</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">scheme</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https</span>
+  <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">testhost.com</span>
+  <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8000</span>
+  <span class="l l-Scalar l-Scalar-Plain">base_path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/api</span>
+</pre></div>
 
-<p>More examples <a href="https://github.com/kiranz/just-api/tree/master/test/cli/src/suites/suiteconfig">here</a></p>
+
+<p>See More examples <a href="https://github.com/kiranz/just-api/tree/master/test/cli/src/suites/suiteconfig">here</a></p>
 <h2 id="hooks">Hooks</h2>
-<p>If you are familiar with mocha, you might have used hooks. Just-API supports following hooks so it's easy setup your tests.</p>
+<p>Just-API supports following hooks so it's easy to manage tests.</p>
 <p><strong>Suite specific hooks</strong></p>
 <p>These can be specified as part of <code>hooks</code> attribute.</p>
 <ul>
@@ -1553,310 +1574,319 @@ and provide a custom JS function to set suite configuration.</p>
 <li>After each  (runs after each passed spec in a suite )</li>
 </ul>
 <p><strong>Test specific hooks</strong></p>
-<p>These can be specified for each as required.</p>
+<p>These can be specified for each test as required.</p>
 <ul>
-<li>Before test  (runs before a spec, you can use this hook to setup test prerequisites )</li>
-<li>After test  (runs after a passed spec, you can use this hook to teardown/clear any test specific data  )</li>
+<li>Before test  (runs before the spec, you can use this hook to setup test pre-requisites )</li>
+<li>After test  (runs after the spec if spec passes, you can use this hook to teardown/clear any test specific data  )</li>
 </ul>
-<p>Checkout some samples of hooks <a href="https://github.com/kiranz/just-api/tree/master/test/cli/src/suites/hooks">here</a></p>
+<p>Check out some samples of hooks <a href="https://github.com/kiranz/just-api/tree/master/test/cli/src/suites/hooks">here</a></p>
 <h2 id="dynamic-request-construction">Dynamic request construction</h2>
-<p>Static specification of request is not possible for all sort of test. Sometimes a test depends on data returned by another request, where you would want 
-to run the dependency spec first and fetch required data from it and pass it on to request. To handle usecases like this, Just-API provides a
-<code>before_test</code> hook for every test. Using this hook you can run test prerequisites and update request data for actual test.</p>
+<p>Static specification of a request is not possible all the time. Sometimes a test depends on data returned by another request, where you would want to run the dependency spec first and fetch required data from it and pass it on to current test request. To handle usecases like this, Just-API provides a <code>before_test</code> hook for every test. Using this hook you can run test pre-requisites and update request data for actual test.</p>
 <p>Typically we need to build dynamic requests when a request depends on the data received from another request. In such cases, you 
 can run the dependency spec in before_test hook and use the response to build the actual request for test.</p>
 <h3 id="headers">Headers</h3>
-<p>Updating or overriding request headers in before test:</p>
-<pre><code class="yaml">  - name: send headers specified in before test hook
-    before_test:
-      run_type: inline
-      inline:
-        function: !!js/function &gt;
-          function() {
-            this.test.headers = { Authorization: 'some token' };
-          }
-    request:
-      path: /users
-      method: get
-    response:
-      status_code: 200
-</code></pre>
+<p>Updating or overriding request headers in <code>before test</code> hook:</p>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">send headers specified in before test hook</span>
+    <span class="l l-Scalar l-Scalar-Plain">before_test</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+      <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+          <span class="no">function() {</span>
+            <span class="no">this.test.headers = { Authorization: &#39;some token&#39; };</span>
+          <span class="no">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <h3 id="query-params">Query params</h3>
-<p>Updating or overriding request query params in before test:</p>
-<pre><code class="yaml">  - name: Query params added in hook
-    before_test:
-      run_type: inline
-      inline:
-        function: !!js/function &gt;
-          function() {
-            this.test.query_params = { limit: 10 };
-          }
-    request:
-       path: /users
-       method: get
-    response:
-       status_code: 200
-</code></pre>
+<p>Updating or overriding request query params in <code>before test</code> hook:</p>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Query params added in hook</span>
+    <span class="l l-Scalar l-Scalar-Plain">before_test</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+      <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+          <span class="no">function() {</span>
+            <span class="no">this.test.query_params = { limit: 10 };</span>
+          <span class="no">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+       <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+       <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+       <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <h3 id="path-params">Path params</h3>
-<p>Updating or overriding request Path params in before test:</p>
-<pre><code class="yaml">  - name: path params added in hook
-    before_test:
-      run_type: inline
-      inline:
-        function: !!js/function &gt;
-          function() {
-            this.test.path_params = { id: 1 };
-          }
-    request:
-       path: /user/{id}
-       method: get
-    response:
-       status_code: 200
-</code></pre>
+<p>Updating or overriding request Path params in <code>before test</code> hook:</p>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">path params added in hook</span>
+    <span class="l l-Scalar l-Scalar-Plain">before_test</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+      <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+          <span class="no">function() {</span>
+            <span class="no">this.test.path_params = { id: 1 };</span>
+          <span class="no">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+       <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/user/{id}</span>
+       <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+       <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <h3 id="body">Body</h3>
-<p>You can also define request payload at runtime using hooks</p>
-<pre><code class="yaml">  - name: Payload defined in hook
-    before_test:
-      run_type: inline
-      inline:
-        function: !!js/function &gt;
-          function() {
-            this.test.payload = { body: {type: 'json', content: { firstName: 'john',
-             lastName: 'doe'}} };
-          }
-    request:
-       path: /users
-       method: post
-       headers:
-         - name: content-type
-           value: application/json
-    response:
-       status_code: 201
-</code></pre>
+<p>You can also define request payload at runtime using hook like below:</p>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Payload defined in hook</span>
+    <span class="l l-Scalar l-Scalar-Plain">before_test</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+      <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+          <span class="no">function() {</span>
+            <span class="no">this.test.payload = { body: {type: &#39;json&#39;, content: { firstName: &#39;john&#39;,</span>
+             <span class="no">lastName: &#39;doe&#39;}} };</span>
+          <span class="no">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+       <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+       <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">post</span>
+       <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">content-type</span>
+           <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+       <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">201</span>
+</pre></div>
+
 
 <h2 id="custom-context">Custom context</h2>
 <p>You will have access to suite context and test context in hooks, So you can use them as a way to store custom data to use in later hooks.</p>
 <p>Suite context can be accessed in hooks using <code>this.suite</code>.
 Test context can be accessed in test specific hooks using 'this.test'.</p>
 <h3 id="storing-suite-test-data-in-context-for-reuse">Storing suite &amp; test data in context for reuse</h3>
-<p>When you have some data that you want to use later in some tests, you can store the data into suite context in <code>before_all</code> hook.</p>
-<pre><code class="yaml">  before_all:
-    run_type: inline
-    inline:
-      function: !!js/function &gt;
-        function() {
-           this.suite.serviceSecret = 'secret';
-        }
-</code></pre>
+<p>When you have some data that you want to use later in some tests, you can store the data in suite context in <code>before_all</code> hook.</p>
+<div class="codehilite"><pre><span></span>  <span class="l l-Scalar l-Scalar-Plain">before_all</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+    <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+        <span class="no">function() {</span>
+           <span class="no">this.suite.serviceSecret = &#39;secret&#39;;</span>
+        <span class="no">}</span>
+</pre></div>
+
 
 <p>and later when you need the secret in a test, you can access it in before_test hook.</p>
-<pre><code class="yaml">  - name: using suite context in before test hook
-    before_test:
-      run_type: inline
-      inline:
-        function: !!js/function &gt;
-          function() {
-              this.test.headers = { Authorization: this.suite.serviceSecret };
-          }
-    request:
-      path: /users
-      method: get
-    response: 
-      status_code: 200
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">using suite context in before test hook</span>
+    <span class="l l-Scalar l-Scalar-Plain">before_test</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+      <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+          <span class="no">function() {</span>
+              <span class="no">this.test.headers = { Authorization: this.suite.serviceSecret };</span>
+          <span class="no">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span> 
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <p>Similarly you can set test context in before_test hook using <code>this.test</code> and access it using `this.test' in after_test hook.</p>
 <h2 id="spec-dependencies">Spec dependencies</h2>
-<p>This is probably one of best features of Just-API.</p>
-<p>Just-API allows testing APIs in flow, where one request depends on response data from another request. This is really useful when you are
-testing complex transaction APIs etc.</p>
+<p>Just-API allows testing APIs in a flow, where one request depends on response data from another request. This is really useful when you are testing complex transaction APIs.</p>
 <h3 id="running-dependencies">Running dependencies</h3>
 <p>Running pre-requisite requests can be done using hooks. There is <code>before_each</code> and <code>before_test</code> hooks.</p>
 <p>If you have a dependency specific to a test, then you might want to use <code>before_test</code> hook to run the dependecy spec.</p>
 <p>There is support for 2 types of dependencies, <code>Intrasuite</code> &amp; <code>Intersuite</code> spec.</p>
-<p>You will need to first provide dependency specification so that you can run it from other specs.</p>
 <h3 id="intrasuite-spec-dependencies">Intrasuite spec dependencies</h3>
 <p>Intrasuite dependency is when you have a dependency that is specified in the same suite. You can then run the dependency by
-using <code>this.runSpec()</code> in a hook. runSpec function takes 2 arguments. First argument is the name of your dependency spec and second argument
-is an object with additional information you want to pass to the request such as headers, query params, path params, and body.</p>
+using <code>this.runSpec()</code> in a hook. runSpec function takes 2 arguments. First argument is the name of your dependency spec and second argument is an object with additional information you want to pass to the request such as headers, query params, path params, and body.</p>
 <p>Following set of specs show how to run dependencies as part of a test and use the data for subsequent requests.</p>
-<pre><code class="yaml">specs:
-  - name: thisis the dependency
-    enabled: false
-    request:
-      path: /token
-      method: get
-    response:
-      status_code: 200
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">specs</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">this is the dependency spec</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/token</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
 
-  - name: actual test spec
-    before_test:
-      run_type: inline
-      inline:
-        function: !js/asyncFunction &gt;
-          async function() {
-            var response = await this.runSpec('thisis the dependency');
-            var tokenResponse = JSON.parse(response.body);
-            this.test.headers = {Authorization:  tokenResponse.token};
-          }
-    request:
-      path: /users
-      method: get
-    response:
-      status_code: 200
-</code></pre>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">actual test spec</span>
+    <span class="l l-Scalar l-Scalar-Plain">before_test</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+      <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!js/asyncFunction</span> <span class="p p-Indicator">&gt;</span>
+          <span class="no">async function() {</span>
+            <span class="no">var response = await this.runSpec(&#39;this is the dependency spec&#39;);</span>
+            <span class="no">var tokenResponse = JSON.parse(response.body);</span>
+            <span class="no">this.test.headers = { Authorization:  tokenResponse.token };</span>
+          <span class="no">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <h3 id="intersuite-spec-dependencies">Intersuite spec dependencies</h3>
-<p>Intersuite is when you have a dependency that is specified in the another suite but you import it using <code>spec_dependencies</code> construct.</p>
+<p>Intersuite dependency is when you have a dependency that is specified in another suite but you import it using <code>spec_dependencies</code> construct.</p>
 <p>Running Intersuite dependency is similar to running Intrasuite dependency.</p>
-<p>You can import specs defined in another by specifying relative path to the suite.</p>
-<pre><code class="yaml">spec_dependencies:
-  - suites/anothersuite.yml
-</code></pre>
+<p>You can import specs defined in another suite by providing the path of the suite to <code>spec_dependencies</code>.</p>
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">spec_dependencies</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">suites/anothersuite.yml</span> 
+</pre></div>
 
-<p>And you can import specs from multiple suites by listing their relative paths.</p>
+
+<p>Path is relative to current working directory of Node process or relative to suite's path if you set <code>locate_files_relative</code> to true in <code>meta</code> section of the suite.</p>
+<p>You can import specs from one or more suites by listing their paths.</p>
 <p>Note that these imported specs will only be available when you run them using <code>this.runSpec</code>.</p>
 <p>Please find some examples on dependencies <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/suitedependencies/intersuitedeps.suite.yml">here</a></p>
 <h2 id="skipping">Skipping</h2>
 <p>You can explicitly skip suites and tests with specification.</p>
 <h3 id="skipping-a-suite">Skipping a suite</h3>
-<p>When you have written a suite in a directory, but want to skip running it for some reason, you can do so by providing
-  <code>false</code> as value for enabled key under <code>meta</code> in a suite, Just-API will skip the suite.</p>
-<pre><code class="yaml"> meta:
-  name: Disabled sute
-  enabled: false
-configuration:
-  scheme: http
-  host: 127.0.0.1
-specs:
-  - name: get users
-    request:
-      path: /users
-      method: get
-    response:
-      status_code: 200
-</code></pre>
+<p>When you have a suite in a directory, but want to skip running it for some reason, you can do so by providing
+  <code>false</code> as value for enabled key of <code>meta</code> section in a suite, Just-API will skip the suite.</p>
+<div class="codehilite"><pre><span></span> <span class="l l-Scalar l-Scalar-Plain">meta</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Disabled suite</span>
+  <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="l l-Scalar l-Scalar-Plain">configuration</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">scheme</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http</span>
+  <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span>
+<span class="l l-Scalar l-Scalar-Plain">specs</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get users</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <p>Note that if any error occurs before Just-API reads <code>meta</code> info of the suite, then suite will be marked as failure.</p>
 <h3 id="skipping-a-test">Skipping a test</h3>
-<p>When you written a set of specs in a suite, but want to skip a spec, you can do so by providing <code>false</code> as value for enabled key of the spec.</p>
-<pre><code class="yaml">  - name: disabled spec
-    enabled: false
-    request:
-      path: /
-      method: get
-    response:
-      status_code: 200
-</code></pre>
+<p>When you have a set of specs in a suite, but want to skip a spec, you can do so by providing <code>false</code> as value for enabled key of the spec.</p>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">disabled spec</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <p>Just-API will mark the spec as a skipped test.</p>
 <h2 id="reusing-test-specification">reusing test specification</h2>
-<p>Apart from readability, an awesome thing about yaml is that you can reuse parts of your specification.</p>
-<p>Refer to <a href="https://blog.daemonl.com/2016/02/yaml.html">dry</a> to see how you can reuse stuff in yaml.</p>
-<p>you can see how response specification is being reused below</p>
-<pre><code class="yaml">meta:
-  name: suite name
-configuration:
-  scheme: http
-  host: example.com
-specs:
-  - name: get user1
-    request:
-      path: /users/1
-      method: get
-    response: &amp;default_response
-      status_code: 200
+<p>Apart from readability, an awesome thing about YAML is that you can reuse parts of the specification.</p>
+<p>Refer to <a href="https://blog.daemonl.com/2016/02/yaml.html">dry</a> to see how you can reuse stuff in YAML.</p>
+<p>you can see how response specification is being reused below with <code>&amp;</code> and <code>*</code></p>
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">meta</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">suite name</span>
+<span class="l l-Scalar l-Scalar-Plain">configuration</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">scheme</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http</span>
+  <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">specs</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get user1</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users/1</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span> <span class="nl">&amp;default_response</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
 
-  - name: get user2
-    request: &amp;default_request
-      path: /users/1
-      method: get
-    response: *default_response
-</code></pre>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get user2</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span> <span class="nl">&amp;default_request</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users/1</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span> <span class="nv">*default_response</span>
+</pre></div>
+
 
 <h2 id="retrying-failed-tests">Retrying failed tests</h2>
 <p>Sometimes a resource takes a bit of time to get to a state you expect, for instance when you are polling a job status and it goes 
 to completed state after a while. In such cases, you would want to retry hitting the same request few times. </p>
-<p>If you see below sample, response validation says expect 200 status code. If the response validation fails then Just-API attempt to retry the request
-if you have specified <code>retry</code> attribute.
-Here the request is attempted 3 times denoted by <code>count</code> with 10ms wait before each attempt.</p>
+<p>If you see below sample, response specification says expect 200 status code. If the response validation fails then Just-API attempts to retry the request if you have specified a <code>retry</code> attribute.
+Here the request will be attempted 3 times denoted by <code>count</code> with 10ms wait before each attempt.</p>
 <p><code>wait_before_each</code> is an optional attribute to specify how many milliseconds you want to wait before each attempt.</p>
-<pre><code class="yaml">  - name: retry example
-    request:
-      path: /retryPath
-      method: get
-    retry:
-      count: 3
-      wait_before_each: 10
-    response:
-      status_code: 200
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">retry example</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/retryPath</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">retry</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">count</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+      <span class="l l-Scalar l-Scalar-Plain">wait_before_each</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <h2 id="looping">Looping</h2>
 <p>You can use the loop construct to loop through a list of items, each item generating a test.</p>
 <p>The list of items can be specified in spec beforehand or you can specify a custom JS function which returns a list of items.</p>
 <p>Here's how a static loop is specified, <code>type</code> is static and loop list is mapped to <code>static</code> field as list of items.
 You will have access to that item in before_test hook by accessing <code>this.loopItem</code>.</p>
-<pre><code class="yaml">  - name: static loop test
-    loop:
-      type: static
-      static:
-        - 2
-        - 3
-    before_test:
-      run_type: inline
-      inline:
-        function: !!js/function &gt;
-          function() {
-            this.test.query_params = { limit : this.loopItem };
-          }
-    request:
-      path: /users
-      method: get
-    response:
-      status_code: 200
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">static loop test</span>
+    <span class="l l-Scalar l-Scalar-Plain">loop</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">static</span>
+      <span class="l l-Scalar l-Scalar-Plain">static</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+    <span class="l l-Scalar l-Scalar-Plain">before_test</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+      <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+          <span class="no">function() {</span>
+            <span class="no">this.test.query_params = { limit : this.loopItem };</span>
+          <span class="no">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <p>There's another way to provide a list of items, with <code>dynamic</code> type and a custom JS function.</p>
-<pre><code class="yaml">  - name: dynamic loop test
-    loop:
-      type: dynamic
-      dynamic:
-        run_type: inline
-        inline:
-          function: !!js/function  &gt;
-            function() {
-              return [2, 3];
-            }           
-    before_test:
-      run_type: inline
-      inline:
-        function: !!js/function &gt;
-          function() {
-            this.test.query_params = { limit : this.loopItem };
-          }           
-    request:
-      path: /users
-      method: get
-    response:
-      status_code: 200
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dynamic loop test</span>
+    <span class="l l-Scalar l-Scalar-Plain">loop</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dynamic</span>
+      <span class="l l-Scalar l-Scalar-Plain">dynamic</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+        <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span>  <span class="p p-Indicator">&gt;</span>
+            <span class="no">function() {</span>
+              <span class="no">return [2, 3];</span>
+            <span class="no">}           </span>
+    <span class="l l-Scalar l-Scalar-Plain">before_test</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+      <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+          <span class="no">function() {</span>
+            <span class="no">this.test.query_params = { limit : this.loopItem };</span>
+          <span class="no">}           </span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <p>Note that if your loop has a list of n items, n tests will be generated at runtime.</p>
 <h2 id="additional-features">Additional features</h2>
 <p>Following are some additional features offered by Just-API.</p>
 <h3 id="reports-test-duration">reports test duration</h3>
-<p>Just-API includes duration of each test run in all formats of reports.</p>
-<h3 id="running-only-tests-match-with-a-given-patterntext">running only tests match with a given pattern/text</h3>
+<p>Just-API reports duration of each test run in all formats of reports.</p>
+<h3 id="running-only-tests-matching-with-a-given-patterntext">running only tests matching with a given pattern/text</h3>
 <p>If you want to run only specs matches with a given text or pattern, you can do so by using <code>--grep</code> option.</p>
 <p>Following invocation will run all specs whose name matches with 'user' string.</p>
-<pre><code class="sh">./node_modules/.bin/just-api --grep user specs
-</code></pre>
+<div class="codehilite"><pre><span></span>./node_modules/.bin/just-api --grep user specs
+</pre></div>
 
-<h3 id="additional-request-options">additional request options</h3>
+
+<h3 id="additional-request-options">Additional request options</h3>
 <p>Following additional request options are supported.</p>
 <ul>
 <li>followRedirect - follow HTTP 3xx responses as redirects.</li>
@@ -1864,44 +1894,47 @@ You will have access to that item in before_test hook by accessing <code>this.lo
 <li>followOriginalHttpMethod - by default we redirect to HTTP method GET. you can enable this property to redirect to the original HTTP method (default: false)</li>
 <li>encoding - encoding to be used on setEncoding of response data. If null, the body is returned as a Buffer. 
    Anything else (including the default value of undefined) will be passed as the encoding parameter to toString() (meaning this is effectively utf8 by default). (Note: if you expect binary data, you should set encoding: null.)</li>
-<li>gzip - if true, add an Accept-Encoding header to request compressed content encodings from the server (if not already present) and decode supported content encodings in the response.</li>
+<li>gzip - if true, adds an Accept-Encoding header to request compressed content encodings from the server (if not already present) and decodes supported content encodings in the response.</li>
 </ul>
 <p>A sample spec on how to specify these options:</p>
-<pre><code class="yaml">  - name: spec with redirection disabled
-    request: 
-      path: /home
-      method: get
-      additional_options:
-        followRedirect: false
-    response:
-      status_code: 200
-</code></pre>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">spec with redirection disabled</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span> 
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/home</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+      <span class="l l-Scalar l-Scalar-Plain">additional_options</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">followRedirect</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="l l-Scalar l-Scalar-Plain">gzip</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
 
 <h3 id="finding-suites-recursively">Finding suites recursively</h3>
 <p>When you want to run suites stored in a directory hierarchy spanning more than one nested level, you can invoke the Just-API with <code>--recursive</code> option.</p>
-<pre><code class="sh">./node_modules/.bin/just-api --recursive specs
-</code></pre>
+<div class="codehilite"><pre><span></span>./node_modules/.bin/just-api --recursive specs
+</pre></div>
+
 
 <h3 id="proper-error-reporting">Proper error reporting</h3>
 <p>When a test or suite fails, Just-API provides the correct error, that caused the failure in reports.</p>
 <h3 id="exit-code-for-ci-support">Exit code for CI support</h3>
 <p>Just-API exits with proper exit code, so you can use it in CI to determine the status of your tests.</p>
-<p>Usually exit code is equal to number of failed suite unless some unexpected error occurs.</p>
+<p>Usually exit code is equal to number of failed suites unless some unexpected error occurs.</p>
 <h3 id="logging-http-requestresponse-data-for-failed-tests">Logging HTTP request/response data for failed tests</h3>
-<p>When a test with multiple dependencies fails it's hard to track which request has failed. To make failure tracking easy, Just-API allows you to 
-ask for HTTP call details for failed tests. You would be able to see all HTTP calls made for a failed test n HTML or JSON report.</p>
+<p>When a test with multiple dependencies fails it's hard to track which request has failed. To make failure tracking easy, Just-API allows you to ask for HTTP call details for failed tests. You would be able to see all HTTP calls made for a failed test in HTML or JSON report.</p>
 <p>To enable this feature you need to invoke Just-API with <code>--reporter-options logRequests</code></p>
-<pre><code class="sh">./node_modules/.bin/just-api --reporter html --reporter-options logRequests specs
-</code></pre>
+<div class="codehilite"><pre><span></span>./node_modules/.bin/just-api --reporter html --reporter-options logRequests specs
+</pre></div>
+
 
 <h3 id="no-callbacks">No callbacks</h3>
 <p>You might have observed that there is no mention of callbacks anywhere. yes, Just-API does not support callback mechanism when running custom JS functions.
 This is to encourage usage of promises for asynchronous operations.</p>
-<p>When you are dealing with asynchronous tasks, wrap them in an async function.</p>
+<p>When you are dealing with asynchronous tasks, wrap them in a async function and return a promise.</p>
 <h2 id="running-suites-in-parallel">Running suites in parallel</h2>
-<p>Please see <a href="../running-suites-in-parallel">page</a> </p>
+<p>See <a href="../running-suites-in-parallel">page</a> </p>
 <h2 id="reporters">Reporters</h2>
-<p>Please see <a href="../reporters">page</a> </p>
+<p>See <a href="../reporters">page</a> </p>
                 
                   
                 

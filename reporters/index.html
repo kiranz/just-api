@@ -465,39 +465,43 @@
                 
                 <h1 id="reporters">Reporters</h1>
 <h3 id="generating-a-report">Generating a report</h3>
-<p>Just-API has several built-in reporters, <code>json</code>, 'specs', 'html' etc.</p>
-<p>When you need an HTML report, you can invoke just-api with the <code>--reporter</code> option</p>
-<pre><code class="sh">./node_modules/.bin/just-api --reporter html
-</code></pre>
+<p>Just-API has several built-in reporters, <code>json</code>, <code>specs</code>, <code>html</code> etc.</p>
+<p>When you need a HTML report, you can invoke just-api with the <code>--reporter</code> option</p>
+<div class="codehilite"><pre><span></span>./node_modules/.bin/just-api --reporter html
+</pre></div>
+
 
 <h4 id="a-sample-html-report">A sample html report:</h4>
 <p><img alt="Report" src="../img/html-report.png" /></p>
-<p><em>Did you notice that the report has all request, response details for failed tests?</em></p>
+<p><em>Notice that report has request, response details for the failed test</em></p>
 <h3 id="generating-reports-in-multiple-formats">Generating reports in multiple formats</h3>
-<p>Just-API has the ability to generate reports in multiple formats.</p>
-<p>When you need an HTML report and a JSON report too, you could do something like this</p>
-<pre><code class="sh">./node_modules/.bin/just-api --reporter html,json
-</code></pre>
+<p>Just-API can generate reports in multiple formats.</p>
+<p>When you need a HTML report and a JSON report too, you could do something like this</p>
+<div class="codehilite"><pre><span></span>./node_modules/.bin/just-api --reporter html,json
+</pre></div>
+
 
 <p>This way you can generate reports in multiple formats for the same run.</p>
 <h3 id="custom-reporters">Custom Reporters</h3>
-<p>When built-in reporters do not provide the information you need, you can write a custom reporter and use it like:</p>
-<pre><code class="sh">./node_modules/.bin/just-api --reporter html,custom-reporter-module-name
-</code></pre>
+<p>When built-in reporters do not provide the information you need, you can write a custom reporter and use it:</p>
+<div class="codehilite"><pre><span></span>./node_modules/.bin/just-api --reporter html,custom-reporter-module-name
+</pre></div>
+
 
 <p>or if the reporter is local js file </p>
-<pre><code class="sh">./node_modules/.bin/just-api --reporter html,/absolute/path/to/js/file
-</code></pre>
+<div class="codehilite"><pre><span></span>./node_modules/.bin/just-api --reporter html,/absolute/path/to/js/file
+</pre></div>
 
-<p>Reporters in Just-API are JavaScript constructors. When instantiated, a reporter receives the test launcher object  along with program options.
-Just-API emits events on launcher object and suite object, So a reporter should listen to these events and implement  custom reporting.</p>
-<p>Following are events emitted on launcher object</p>
+
+<p>Reporters in Just-API are JavaScript constructors. When instantiated, a reporter receives the test launcher object  along with program options.</p>
+<p>Just-API emits events on launcher object and suite object, So a custom reporter should listen to these events and implement  reporting.</p>
+<p>Following events are emitted on the launcher object</p>
 <ul>
 <li>start</li>
 <li>end</li>
 <li>new suite (Indicates the start of a new suite)</li>
 </ul>
-<p>And these events are emitted on each suite object</p>
+<p>And below events are emitted on each suite object</p>
 <ul>
 <li>test pass</li>
 <li>test fail</li>
