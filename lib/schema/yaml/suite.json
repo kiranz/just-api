@@ -17,6 +17,10 @@
           "$id": "/properties/meta/properties/enabled",
           "type": "boolean"
         },
+        "locate_files_relative": {
+          "$id": "/properties/meta/properties/locate_files_relative",
+          "type": "boolean"
+        },
         "version": {
           "$id": "/properties/meta/properties/version"
         }
