@@ -369,6 +369,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#reporter-options" title="Reporter options" class="md-nav__link">
+    Reporter options
+  </a>
+  
+</li>
+      
       
       
       
@@ -446,6 +453,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#reporter-options" title="Reporter options" class="md-nav__link">
+    Reporter options
+  </a>
+  
+</li>
+      
       
       
       
@@ -509,6 +523,25 @@
 <li>end (Indicates the end of a suite)</li>
 </ul>
 <p>If you are looking to write a custom reporter, take a look at Just-API's <a href="https://github.com/kiranz/just-api/blob/master/lib/reporters/json.js">JSON Reporter</a> </p>
+<h3 id="reporter-options">Reporter options</h3>
+<p>Just-API accepts an additonal command line option <code>--reporter-options</code> that you can use to customize how and where reports are generated and saved.</p>
+<p>You must pass a comma separated list of key and value pairs to this option as <code>k=v,k2=v2,...</code></p>
+<p>Following keys are supported currently.</p>
+<ul>
+<li>jsonReportDir</li>
+<li>jsonReportName</li>
+<li>htmlReportDir</li>
+<li>htmlReportName</li>
+<li>logRequests</li>
+</ul>
+<p><code>jsonReportDir</code>: Provide an existing directory path that is relative to Just-API node process's cwd. JSON report will be saved to this directory.</p>
+<p><code>htmlReportDir</code>: Provide an existing directory path that is relative to Just-API node process's cwd. HTML report will be saved to this directory.</p>
+<p><code>jsonReportName</code>: Provide a name for the JSON report file. JSON report will be saved with this name.</p>
+<p><code>htmlReportName</code>: Provide a name for the HTML report file. HTML report will be saved with this name.</p>
+<p><code>logRequests</code>: Tells Just-API to log HTTP request &amp; response details in reports for failed tests. Omit this if you don't want to log details.</p>
+<p>A sample Just-API invocation would look like:</p>
+<div class="codehilite"><pre><span></span>./node_modules/.bin/just-api --reporter html,json --reporter-options <span class="nv">jsonReportDir</span><span class="o">=</span>reports,jsonReportName<span class="o">=</span>json-report,htmlReportDir<span class="o">=</span>reports,htmlReportName<span class="o">=</span>html-report,logRequests     
+</pre></div>
                 
                   
                 
