@@ -60,3 +60,35 @@ Following events are emitted on the launcher object
   - end (Indicates the end of a suite)
 
 If you are looking to write a custom reporter, take a look at Just-API's [JSON Reporter](https://github.com/kiranz/just-api/blob/master/lib/reporters/json.js) 
+
+### Reporter options ###
+
+Just-API accepts an additonal command line option `--reporter-options` that you can use to customize how and where reports are generated and saved.
+
+You must pass a comma separated list of key and value pairs to this option as `k=v,k2=v2,...`
+
+Following keys are supported currently.
+
+  - jsonReportDir
+  - jsonReportName
+  - htmlReportDir
+  - htmlReportName
+  - logRequests
+
+`jsonReportDir`: Provide an existing directory path that is relative to Just-API node process's cwd. JSON report will be saved to this directory.
+
+`htmlReportDir`: Provide an existing directory path that is relative to Just-API node process's cwd. HTML report will be saved to this directory.
+
+`jsonReportName`: Provide a name for the JSON report file. JSON report will be saved with this name.
+
+`htmlReportName`: Provide a name for the HTML report file. HTML report will be saved with this name.
+
+`logRequests`: Tells Just-API to log HTTP request & response details in reports for failed tests. Omit this if you don't want to log details.
+
+
+A sample Just-API invocation would look like:
+
+
+```sh
+./node_modules/.bin/just-api --reporter html,json --reporter-options jsonReportDir=reports,jsonReportName=json-report,htmlReportDir=reports,htmlReportName=html-report,logRequests     
+```
