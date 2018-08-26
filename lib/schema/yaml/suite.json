@@ -484,6 +484,52 @@
                   "options"
                 ]
               },
+              "headers": {
+                "$id": "/properties/specs/items/properties/request/properties/headers",
+                "type": "array",
+                "items": {
+                  "$id": "/properties/specs/items/properties/request/properties/headers/items",
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "$id": "/properties/specs/items/properties/request/properties/headers/items/properties/name",
+                      "type": ["string", "number"],
+                      "minLength": 1
+                    },
+                    "value": {
+                      "$id": "/properties/specs/items/properties/request/properties/headers/items/properties/value",
+                      "type": ["string", "number"]
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "value"
+                  ]
+                }
+              },
+              "cookies": {
+                "$id": "/properties/specs/items/properties/request/properties/cookies",
+                "type": "array",
+                "items": {
+                  "$id": "/properties/specs/items/properties/request/properties/cookies/items",
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "$id": "/properties/specs/items/properties/request/properties/cookies/items/properties/name",
+                      "type": ["string", "number"],
+                      "minLength": 1
+                    },
+                    "value": {
+                      "$id": "/properties/specs/items/properties/request/properties/cookies/items/properties/value",
+                      "type": ["string", "number"]
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "value"
+                  ]
+                }
+              },
               "read_timeout": {
                 "$id": "/properties/specs/items/properties/request/properties/read_timeout",
                 "type": "integer"
@@ -610,6 +656,28 @@
                     },
                     "value": {
                       "$id": "/properties/specs/items/properties/response/properties/headers/items/properties/value"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "value"
+                  ]
+                }
+              },
+              "cookies": {
+                "$id": "/properties/specs/items/properties/response/properties/cookies",
+                "type": "array",
+                "items": {
+                  "$id": "/properties/specs/items/properties/response/properties/cookies/items",
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "$id": "/properties/specs/items/properties/response/properties/cookies/items/properties/name",
+                      "type": ["string", "number"],
+                      "minLength": 1
+                    },
+                    "value": {
+                      "$id": "/properties/specs/items/properties/response/properties/cookies/items/properties/value"
                     }
                   },
                   "required": [

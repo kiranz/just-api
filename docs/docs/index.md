@@ -5,8 +5,9 @@ Just-API is a declarative, specification based test framework for `REST`, `Graph
 In simple terms, users build a test suite by providing a set of request and response validation specification in a YAML file. Each suite can have one or more specs. Just-API builds the request, sends it to server and validates response as per the specification.
 One can choose to validate any or all of following
 
-- Response Status code
-- Response Headers
+- Status code
+- Headers
+- Cookies
 - Response JSON body
 - Response JSON schema
 

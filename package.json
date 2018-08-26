@@ -1,6 +1,6 @@
 {
   "name": "just-api",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "description": "Specification based API test framework for HTTP APIs (REST, GraphQL)",
   "homepage": "https://kiranz.github.io/just-api/",
   "keywords": [
@@ -64,7 +64,8 @@
     "lodash": "4.17.10",
     "serialize-error": "2.1.0",
     "semver": "5.5.0",
-    "he": "1.1.1"
+    "he": "1.1.1",
+    "request-cookies": "1.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

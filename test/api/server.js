@@ -3,7 +3,10 @@ const server = jsonServer.create();
 const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
 const multer = require('multer');
+const cookieParser = require('cookie-parser');
+
 server.use(middlewares);
+server.use(cookieParser());
 
 var tempData = {
     retries: []
@@ -11,6 +14,31 @@ var tempData = {
 
 server.get('/echoQueryParams', (req, res) => {
     res.jsonp(req.query)
+});
+
+// returns JSON of cookies found in request
+server.get('/echoCookies', (req, res) => {
+    res.jsonp(req.cookies);
+});
+
+// sets cookies found in request body
+server.post('/setCookies', (req, res) => {
+    var data = '';
+
+    req.on('data', function (chunk) {
+        data += chunk;
+    });
+    
+    req.on('end', function () {
+        req.rawBody = data;
+        var cookiesData = JSON.parse(req.rawBody);
+
+        for (const key of Object.keys(cookiesData)) {
+            res.cookie(key, cookiesData[key]); 
+        }
+
+        res.send('');
+    });
 });
 
 server.get('/retry/:id', (req, res) => {

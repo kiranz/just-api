@@ -16,16 +16,18 @@ any of these HTTP methods.
 * HEAD
 * OPTIONS
 
-### Specifying Headers, Query params, Path params
+### Specifying Headers, Cookies, Query params, Path params
 
 Specify Request headers to `headers` key as a list of name, value pairs.
+<br>
+Specify Request cookies to `cookies` key as a list of name, value pairs.
 <br>
 Specify Request Query params to `query_params` key as a list of name, value pairs.
 <br>
 Specify Request Path params to `path_params` key as a list of name, value pairs.
 <br>
 
-A sample test specification with method, headers, query params and path params:
+A sample test specification with method, headers, cookies, query params and path params:
 
 ```yaml
   - name: A sample test
@@ -35,6 +37,9 @@ A sample test specification with method, headers, query params and path params:
        headers:
          - name: Accept
            value: application/json
+       cookies:
+         - name: uid
+           value: 399do284kds32odh28 
        path_params:
           - name: userId
             value: 12876
@@ -154,6 +159,7 @@ Just-API allows you to validate response without writing any code, you can valid
 
 * Status code
 * Headers
+* Cookies
 * JSON schema
 * JSON body
 
@@ -203,10 +209,43 @@ Following response specification would check if response header _content-type_ m
     response:
       headers:
         - name: content-type
-          value: !!js/regexp json
+          value: !!js/regexp /json/
 ```
 
 More examples on response header validation can be found [here](https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/headers.suite.yaml)
+
+### Cookies validation
+When you specify cookies in response, Just-API will validate response cookies against your specification.
+
+A sample on how to write cookies validation.
+
+```yaml
+  - name: get users
+    request:
+      path: /users
+      method: get
+    response:
+      cookies:
+        - name: uid
+          value: xxxxxx
+```
+
+You can even match cookie value against a regex instead of exact value, like below:
+
+Following response specification would check if response cookie _uid_ matches with regex pattern _/[0-9]+/_.
+
+```yaml
+  - name: get users
+    request:
+      path: /users
+      method: get
+    response:
+      cookies:
+        - name: uid
+          value: !!js/regexp /[0-9]+/
+```
+
+More examples on response cookie validation can be found [here](https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/cookies.suite.yml)
 
 ### Response JSON schema validation
 
@@ -487,6 +526,26 @@ Updating or overriding request headers in `before test` hook:
         function: !!js/function >
           function() {
             this.test.headers = { Authorization: 'some token' };
+          }
+    request:
+      path: /users
+      method: get
+    response:
+      status_code: 200
+```
+
+### Cookies 
+
+Updating or overriding request cookies in `before test` hook:
+
+```yaml
+  - name: send cookies specified in before test hook
+    before_test:
+      run_type: inline
+      inline:
+        function: !!js/function >
+          function() {
+            this.test.cookies = { uid: 'some token' };
           }
     request:
       path: /users
