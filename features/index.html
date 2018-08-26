@@ -327,8 +327,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#specifying-headers-query-params-path-params" title="Specifying Headers, Query params, Path params" class="md-nav__link">
-    Specifying Headers, Query params, Path params
+  <a href="#specifying-headers-cookies-query-params-path-params" title="Specifying Headers, Cookies, Query params, Path params" class="md-nav__link">
+    Specifying Headers, Cookies, Query params, Path params
   </a>
   
 </li>
@@ -390,6 +390,13 @@
           <li class="md-nav__item">
   <a href="#headers-validation" title="Headers validation" class="md-nav__link">
     Headers validation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cookies-validation" title="Cookies validation" class="md-nav__link">
+    Cookies validation
   </a>
   
 </li>
@@ -492,6 +499,13 @@
           <li class="md-nav__item">
   <a href="#headers" title="Headers" class="md-nav__link">
     Headers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cookies" title="Cookies" class="md-nav__link">
+    Cookies
   </a>
   
 </li>
@@ -790,8 +804,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#specifying-headers-query-params-path-params" title="Specifying Headers, Query params, Path params" class="md-nav__link">
-    Specifying Headers, Query params, Path params
+  <a href="#specifying-headers-cookies-query-params-path-params" title="Specifying Headers, Cookies, Query params, Path params" class="md-nav__link">
+    Specifying Headers, Cookies, Query params, Path params
   </a>
   
 </li>
@@ -853,6 +867,13 @@
           <li class="md-nav__item">
   <a href="#headers-validation" title="Headers validation" class="md-nav__link">
     Headers validation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cookies-validation" title="Cookies validation" class="md-nav__link">
+    Cookies validation
   </a>
   
 </li>
@@ -955,6 +976,13 @@
           <li class="md-nav__item">
   <a href="#headers" title="Headers" class="md-nav__link">
     Headers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cookies" title="Cookies" class="md-nav__link">
+    Cookies
   </a>
   
 </li>
@@ -1202,14 +1230,16 @@ any of these HTTP methods.</p>
 <li>HEAD</li>
 <li>OPTIONS</li>
 </ul>
-<h3 id="specifying-headers-query-params-path-params">Specifying Headers, Query params, Path params</h3>
+<h3 id="specifying-headers-cookies-query-params-path-params">Specifying Headers, Cookies, Query params, Path params</h3>
 <p>Specify Request headers to <code>headers</code> key as a list of name, value pairs.
+<br>
+Specify Request cookies to <code>cookies</code> key as a list of name, value pairs.
 <br>
 Specify Request Query params to <code>query_params</code> key as a list of name, value pairs.
 <br>
 Specify Request Path params to <code>path_params</code> key as a list of name, value pairs.
 <br></p>
-<p>A sample test specification with method, headers, query params and path params:</p>
+<p>A sample test specification with method, headers, cookies, query params and path params:</p>
 <div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">A sample test</span>
     <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
        <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/user/{userId}/posts/{postId}</span>
@@ -1217,6 +1247,9 @@ Specify Request Path params to <code>path_params</code> key as a list of name, v
        <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Accept</span>
            <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+       <span class="l l-Scalar l-Scalar-Plain">cookies</span><span class="p p-Indicator">:</span>
+         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">uid</span>
+           <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">399do284kds32odh28</span> 
        <span class="l l-Scalar l-Scalar-Plain">path_params</span><span class="p p-Indicator">:</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">userId</span>
             <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">12876</span>
@@ -1322,6 +1355,7 @@ Here's how to send JSON body with a POST request</p>
 <ul>
 <li>Status code</li>
 <li>Headers</li>
+<li>Cookies</li>
 <li>JSON schema</li>
 <li>JSON body</li>
 </ul>
@@ -1362,11 +1396,39 @@ Test will fail when Actual response's status code does not match with specified 
     <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
       <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">content-type</span>
-          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="kt">!!js/regexp</span> <span class="l l-Scalar l-Scalar-Plain">json</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="kt">!!js/regexp</span> <span class="l l-Scalar l-Scalar-Plain">/json/</span>
 </pre></div>
 
 
 <p>More examples on response header validation can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/headers.suite.yaml">here</a></p>
+<h3 id="cookies-validation">Cookies validation</h3>
+<p>When you specify cookies in response, Just-API will validate response cookies against your specification.</p>
+<p>A sample on how to write cookies validation.</p>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get users</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">cookies</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">uid</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">xxxxxx</span>
+</pre></div>
+
+
+<p>You can even match cookie value against a regex instead of exact value, like below:</p>
+<p>Following response specification would check if response cookie <em>uid</em> matches with regex pattern <em>/[0-9]+/</em>.</p>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get users</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">cookies</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">uid</span>
+          <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="kt">!!js/regexp</span> <span class="l l-Scalar l-Scalar-Plain">/[0-9]+/</span>
+</pre></div>
+
+
+<p>More examples on response cookie validation can be found <a href="https://github.com/kiranz/just-api/blob/master/test/cli/src/suites/cookies.suite.yml">here</a></p>
 <h3 id="response-json-schema-validation">Response JSON schema validation</h3>
 <p>Sometimes you may want to validate the schema of JSON received in response's body, which will allow you to ensure that server is sending data exactly what you are expecting.</p>
 <p>with Just-API, you can validate the response JSON schema by specifying the <code>json_schema</code> attribute in response.</p>
@@ -1593,6 +1655,24 @@ can run the dependency spec in before_test hook and use the response to build th
         <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
           <span class="no">function() {</span>
             <span class="no">this.test.headers = { Authorization: &#39;some token&#39; };</span>
+          <span class="no">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
+      <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+    <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">status_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+</pre></div>
+
+
+<h3 id="cookies">Cookies</h3>
+<p>Updating or overriding request cookies in <code>before test</code> hook:</p>
+<div class="codehilite"><pre><span></span>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">send cookies specified in before test hook</span>
+    <span class="l l-Scalar l-Scalar-Plain">before_test</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">run_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">inline</span>
+      <span class="l l-Scalar l-Scalar-Plain">inline</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">function</span><span class="p p-Indicator">:</span> <span class="kt">!!js/function</span> <span class="p p-Indicator">&gt;</span>
+          <span class="no">function() {</span>
+            <span class="no">this.test.cookies = { uid: &#39;some token&#39; };</span>
           <span class="no">}</span>
     <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
       <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/users</span>
