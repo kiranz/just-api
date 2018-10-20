@@ -1,6 +1,6 @@
 {
   "name": "just-api",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Specification based API test framework for HTTP APIs (REST, GraphQL)",
   "homepage": "https://kiranz.github.io/just-api/",
   "keywords": [
@@ -53,7 +53,7 @@
     "js-yaml": "3.11.0",
     "jsonschema": "1.2.2",
     "request": "2.85.0",
-    "url-parse": "1.2.0",
+    "url-parse": "1.4.3",
     "chai": "4.1.2",
     "string-template": "1.0.0",
     "esprima": "4.0.0",
