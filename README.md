@@ -5,6 +5,8 @@
 [![Join the chat at https://gitter.im/just-api/Lobby](https://badges.gitter.im/just-api/Lobby.svg)](https://gitter.im/just-api/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 [![Twitter](https://img.shields.io/twitter/follow/just_api_.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=just_api_)
 
+[![Backers on Open Collective](https://opencollective.com/just-api/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/just-api/sponsors/badge.svg)](#sponsors) 
+
 [![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/Just-API/donate)
 
 
@@ -222,6 +224,36 @@ Just-API docker boilerplate [here](https://github.com/kiranz/docker-just-api-sam
 ## Maintainer
 
 Kiran kiran.6d.hex@gmail.com
+
+## Contributors
+
+This project exists thanks to all the people who contribute. 
+<img src="https://opencollective.com/just-api/contributors.svg?width=890&button=false" />
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/just-api#backer)]
+
+<a href="https://opencollective.com/just-api#backers" target="_blank"><img src="https://opencollective.com/just-api/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/just-api#sponsor)]
+
+<a href="https://opencollective.com/just-api/sponsor/0/website" target="_blank"><img src="https://opencollective.com/just-api/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/just-api/sponsor/1/website" target="_blank"><img src="https://opencollective.com/just-api/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/just-api/sponsor/2/website" target="_blank"><img src="https://opencollective.com/just-api/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/just-api/sponsor/3/website" target="_blank"><img src="https://opencollective.com/just-api/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/just-api/sponsor/4/website" target="_blank"><img src="https://opencollective.com/just-api/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/just-api/sponsor/5/website" target="_blank"><img src="https://opencollective.com/just-api/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/just-api/sponsor/6/website" target="_blank"><img src="https://opencollective.com/just-api/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/just-api/sponsor/7/website" target="_blank"><img src="https://opencollective.com/just-api/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/just-api/sponsor/8/website" target="_blank"><img src="https://opencollective.com/just-api/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/just-api/sponsor/9/website" target="_blank"><img src="https://opencollective.com/just-api/sponsor/9/avatar.svg"></a>
+
+
 
 ## License
 
