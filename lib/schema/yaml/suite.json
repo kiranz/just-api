@@ -729,7 +729,8 @@
                         "string",
                         "array",
                         "object",
-                        "boolean"
+                        "boolean",
+                        "null"
                       ]
                     }
                   },
