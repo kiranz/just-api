@@ -19,10 +19,13 @@ specs:
               key1: value1
               key2: value2
               keyn: 4
+              keyBoolean: false
     response:
       json_data:
         - path: $.key2
           value: value2
+        - path: $.keyBoolean
+          value: false  
 
   - name: validate json response with json data functionality - should fail
     request: *default_request
