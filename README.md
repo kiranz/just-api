@@ -5,7 +5,11 @@
 [![Join the chat at https://gitter.im/just-api/Lobby](https://badges.gitter.im/just-api/Lobby.svg)](https://gitter.im/just-api/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 [![Twitter](https://img.shields.io/twitter/follow/just_api_.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=just_api_)
 
-[![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/Just-API/donate)
+If this project helps you in anyway, Please consider making a donation
+
+- [Become a backer or sponsor on Patreon](https://www.patreon.com/just_api).
+- [One-time donation via PayPal](https://paypal.me/kiranzm)
+
 
 
 Just-API is a declarative, specification based test framework for `REST`, `GraphQL` APIs. Users can test APIs without writing code, but they can also tap into code when they want to. It reads API test specification from YAML files and runs them in serial/parallel mode. Test reports can be generated in several formats including HTML and JSON.
@@ -235,5 +239,6 @@ Kiran kiran.6d.hex@gmail.com
  ## Donation
  If this project helps you in anyway, Please consider making a donation
 
- [![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/Just-API/donate)
+- [Become a backer or sponsor on Patreon](https://www.patreon.com/just_api).
+- [One-time donation via PayPal](https://paypal.me/kiranzm)
 
