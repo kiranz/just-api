@@ -129,15 +129,14 @@ Create a YAML suite and run just-api.
 
 ```yaml
 meta:
-  name: GraphQL location service
+  name: GraphQL Starwars service
 configuration:
-  host: api.graphloc.com
+  host: swapi.graph.cool
   scheme: https
 specs:
-  - name: Get Location of a given ip address
+  - name: Get Details of a character
     request:
       method: post
-      path: /graphql
       headers:
         - name: content-type
           value: application/json
@@ -147,10 +146,10 @@ specs:
           content:
             query: >
                    {
-                    getLocation(ip: "8.8.8.8") {
-                      country {
-                        iso_code
-                      }
+                    Person(name: "Luke Skywalker") {
+                      name,
+                      id,
+                      gender
                      }
                     }
             variables: null
@@ -158,8 +157,8 @@ specs:
     response:
       status_code: 200
       json_data:
-        - path: $.data.getLocation.country.iso_code
-          value: US
+        - path: $.data.Person.name
+          value: "Luke Skywalker"
 ```
 
 ### A chained request flow with hook and custom validation
