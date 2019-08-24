@@ -123,7 +123,7 @@ Duration: 1.3s
 
 ### Testing GraphQL APIs
 
-Following example tests a GraphQL API that returns location for a given ip address.
+Following example tests a GraphQL API that returns Person info for a given name.
 
 Create a YAML suite and run just-api.
 
