@@ -2,7 +2,7 @@
 
 [![npm package](https://nodei.co/npm/just-api.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/just-api)
 
-[![Join the chat at https://gitter.im/just-api/Lobby](https://badges.gitter.im/just-api/Lobby.svg)](https://gitter.im/just-api/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+[![Join the chat at https://gitter.im/just-api/Lobby](https://badges.gitter.im/just-api/Lobby.svg)](https://gitter.im/just-api/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Twitter](https://img.shields.io/twitter/follow/just_api_.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=just_api_)
 
 
@@ -42,7 +42,7 @@ If this project helps you in anyway, Please consider making a donation
 - Supports all widely used HTTP methods
 - Supports x-www-form-urlencoded requests, Multipart requests, File uploads
 - Built-in Response Validation Constructs(Headers, Cookies, Status code, JSON body, JSON schema)
-- Custom Response validator functions 
+- Custom Response validator functions
 - Supports running custom inline or module javascript sync/async functions
 - Supports Hooks (Before All, After All, Before Each, After Each, Before Test, After Test)
 - Custom suite configuration
@@ -71,12 +71,12 @@ If this project helps you in anyway, Please consider making a donation
 
 >To run just-api, you will need Node.js v7.10.0 or newer.
 
-### Installation 
+### Installation
 ```sh
 $ npm install just-api
 ```
 
-Following is a simple example showing usage of Just-API. 
+Following is a simple example showing usage of Just-API.
 
 ```sh
 $ mkdir specs
@@ -163,7 +163,7 @@ specs:
 
 ### A chained request flow with hook and custom validation
 
-When you need to test complex chained API flows, run dependencies in hooks to fetch pre-requisite data 
+When you need to test complex chained API flows, run dependencies in hooks to fetch pre-requisite data
 and pass it to actual test.
 
 Following example shows how to run dependencies using a hook, get data and validating response with a custom validator function.
@@ -208,8 +208,8 @@ specs:
             function() {
               var jsonData = JSON.parse(this.response.body);
               var r2d2 = jsonData.results.find(result => result.name === 'R2-D2');
-              
-              if (!r2d2) 
+
+              if (!r2d2)
                 throw new Error('R2-D2 not returned in search results');
             }
 ```
@@ -234,10 +234,30 @@ Kiran kiran.6d.hex@gmail.com
 
  - [Just-API, Testing HTTP-based APIs (REST, GraphQL)](https://medium.com/@kiranz.m/testing-http-based-apis-rest-graphql-f215fba989ca)
 
- 
+
  ## Donation
  If this project helps you in anyway, Please consider making a donation
 
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/just_api).
 - [One-time donation via PayPal](https://paypal.me/kiranzm)
 
+## Contributing
+
+NOTE: recommend Node `v10.x` since `v12.x` has gulp compatibility issue.
+
+1. Install deps `npm install`
+2. Install gulp `npm install -g gulp`
+3. Install test API `npm run install_testapi`
+4. Run test API `npm run start_testapi`
+5. (in a new window) `npm test`
+
+### Test Structure
+
+- `test/cli/src/suites/[suite].spec.yaml` contains sample suites/specs
+- `test/cli/[suite].spec.js` contains JS chai/mocha test assertions about the sample suite/specs
+
+You may need to create/modify both a sample suite/spec and corresponding JS assertion
+
+### Code Quality & Formatting
+
+TODO: add linter/hinter/prettier or whatever spec is used
