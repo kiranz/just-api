@@ -247,6 +247,7 @@ NOTE: recommend Node `v10.x` since `v12.x` has gulp compatibility issue.
 
 1. Install deps `npm install`
 2. Install gulp `npm install -g gulp`
+3. Install test files `gulp`
 3. Install test API `npm run install_testapi`
 4. Run test API `npm run start_testapi`
 5. (in a new window) `npm test`
