@@ -24,11 +24,6 @@ Find more [here](http://kiranz.github.io/just-api/)
 <br>
 
 
-If this project helps you in anyway, Please consider making a donation
-
-- [Become a backer or sponsor on Patreon](https://www.patreon.com/just_api).
-- [One-time donation via PayPal](https://paypal.me/kiranzm)
-
 ## Links
 
 - [Documentation](http://kiranz.github.io/just-api/)
