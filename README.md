@@ -64,7 +64,7 @@ Find more [here](http://kiranz.github.io/just-api/)
 
 ## Getting Started
 
->To run just-api, you will need Node.js v7.10.0 or newer.
+>To run just-api, you will need Node.js v10.x or newer.
 
 ### Installation
 ```sh
