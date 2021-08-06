@@ -1,6 +1,6 @@
 {
   "name": "@blossomfinance/just-api",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Specification based API test framework for HTTP APIs (REST, GraphQL)",
   "homepage": "https://matmar10.github.io/just-api/",
   "keywords": [
