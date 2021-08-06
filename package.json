@@ -80,12 +80,13 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-register": "^6.24.1",
+    "chai": "4.1.2",
+    "cross-spawn": "6.0.5",
+    "del": "3.0.0",
     "gulp": "3.9.1",
     "gulp-babel": "7.0.1",
-    "del": "3.0.0",
     "mocha": "5.2.0",
-    "cross-spawn": "6.0.5",
-    "chai": "4.1.2"
+    "release-it": "^14.10.1"
   },
   "bin": {
     "just-api": "./bin/just-api"
