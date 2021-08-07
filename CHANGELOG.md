@@ -1,3 +1,5 @@
+### [1.2.7](https://github.com/matmar10/just-api/compare/v1.2.6...v1.2.7) (2021-08-07)
+
 ### [1.2.6](https://github.com/matmar10/just-api/compare/v1.2.5...v1.2.6) (2021-08-06)
 
 
