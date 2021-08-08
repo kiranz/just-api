@@ -41,7 +41,7 @@
   },
   "scripts": {
     "clean": "rm -rf ./node_modules",
-    "install_testapi": "cd test/api && npm install",
+    "install_testapi": "cd test/api && npm install && cp db_original.json db.json",
     "start_testapi": "npm run install_testapi && cd test/api && node server.js",
     "clean_testlogs": "rm -rf test/cli/src/logs && mkdir test/cli/src/logs",
     "test": "npm run clean_testlogs  && ./node_modules/.bin/mocha --timeout 10000 test/cli/*.spec.js",
