@@ -6,6 +6,7 @@ src/
 local/
 test/api/node_modules
 test/api/db.json
+test/api/package-lock.json
 !test/cli/src
 test/cli/src/logs/
 test/cli/src/*.html
