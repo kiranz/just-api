@@ -40,7 +40,12 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "clean": "rm -rf ./node_modules",
+    "build": "npm run clean && npm run transpile && npm run dist:files",
+    "transpile": "babel 'lib/**/*.js' --out-dir .tmp/dist && mv .tmp/dist/lib src",
+    "dist:files": "npm run dist:files:json && npm run dist:files:css",
+    "dist:files:json": "mkdir -p src/schema/yaml && cp -r lib/schema/yaml/*.json src/schema/yaml/",
+    "dist:files:css": "mkdir -p src/reporters/html-src/assets && cp -r lib/reporters/html-src/assets/*.css src/reporters/html-src/assets/",
+    "clean": "rm -rf src",
     "install_testapi": "cd test/api && npm install && cp db_original.json db.json",
     "start_testapi": "npm run install_testapi && cd test/api && node server.js",
     "clean_testlogs": "rm -rf test/cli/src/logs && mkdir test/cli/src/logs",
@@ -84,8 +89,6 @@
     "chai": "4.1.2",
     "cross-spawn": "6.0.5",
     "del": "3.0.0",
-    "gulp": "3.9.1",
-    "gulp-babel": "7.0.1",
     "mocha": "5.2.0",
     "release-it": "^14.10.1"
   },
@@ -97,6 +100,9 @@
     "src"
   ],
   "release-it": {
+    "hooks": {
+      "before:init": "npm run build"
+    },
     "plugins": {
       "@release-it/conventional-changelog": {
         "infile": "CHANGELOG.md",
