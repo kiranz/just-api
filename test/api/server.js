@@ -28,13 +28,13 @@ server.post('/setCookies', (req, res) => {
     req.on('data', function (chunk) {
         data += chunk;
     });
-    
+
     req.on('end', function () {
         req.rawBody = data;
         var cookiesData = JSON.parse(req.rawBody);
 
         for (const key of Object.keys(cookiesData)) {
-            res.cookie(key, cookiesData[key]); 
+            res.cookie(key, cookiesData[key]);
         }
 
         res.send('');
@@ -52,13 +52,13 @@ server.get('/retry/:id', (req, res) => {
             tempData.retries.push(newItem);
         }
 
-        res.send(404);
+        res.sendStatus(404);
     } else {
         if (item[id] >= 2) {
-            res.send(200);
+            res.sendStatus(200);
         } else {
             item[id] += 1;
-            res.send(400);
+            res.sendStatus(400);
         }
     }
 
