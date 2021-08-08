@@ -2,6 +2,7 @@
 .vscode/
 *.DS_Store
 
+.tmp/
 src/
 local/
 test/api/node_modules
