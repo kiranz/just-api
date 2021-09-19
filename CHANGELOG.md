@@ -1,3 +1,10 @@
+### [1.3.1](https://github.com/matmar10/just-api/compare/v1.3.0...v1.3.1) (2021-09-19)
+
+
+### Bug Fixes
+
+* properly de-reference $ref inline within specified sub-schema ([88f6e70](https://github.com/matmar10/just-api/commit/88f6e7095e5274ab50251f3db95a12ca00198095))
+
 ## [1.3.0](https://github.com/matmar10/just-api/compare/v1.2.8...v1.3.0) (2021-09-19)
 
 
