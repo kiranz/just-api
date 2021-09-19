@@ -1,3 +1,10 @@
+## [1.3.0](https://github.com/matmar10/just-api/compare/v1.2.8...v1.3.0) (2021-09-19)
+
+
+### Features
+
+* validate json body from compound schema, dereference $refs, & allow specifying json pointer witin file ([de518ee](https://github.com/matmar10/just-api/commit/de518ee4ef1aee0a43f1bc9ed3ed2823e2893a6a))
+
 ### [1.2.8](https://github.com/matmar10/just-api/compare/v1.2.7...v1.2.8) (2021-08-08)
 
 
