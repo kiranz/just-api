@@ -1,6 +1,6 @@
 meta:
   name: File searching with relative paths
-  locate_files_relative: true  
+  locate_files_relative: true
 configuration:
   host: 127.0.0.1
   custom_configuration:
@@ -50,7 +50,7 @@ specs:
       status_code: 200
       json_data:
         - path: $.request_content_size
-          value: 12371            
+          value: 12371
 
   - name: post non existent binary data (file) as body - should fail
     request:
@@ -91,7 +91,7 @@ specs:
       json_data:
         - path: $
           value:
-            param1: value2  
+            param1: value2
   - name: read json schema from file and validate response
     request:
       path: /echoJSONBodyResponse
@@ -107,4 +107,15 @@ specs:
     response:
       json_schema:
           type: file
-          $ref: ./../static/schema/simple_valid.json            
+          $ref: ./../static/schema/simple_valid.json
+  - name: respect suite-level common_headers from module
+    request:
+      path: /echoJSONBodyResponse
+      method: post
+      payload:
+          body:
+            type: json
+            content:
+              key: value
+    response:
+      status_code: 200
