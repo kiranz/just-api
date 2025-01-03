@@ -23,6 +23,9 @@ _or Provide a custom Javascript function to validate the response_
 Find more [here](http://kiranz.github.io/just-api/)
 <br>
 
+## Codebase visualization diagram
+![Codebase as a diagram](./justapi_diagram.png)
+
 
 ## Links
 
