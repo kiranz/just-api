@@ -9,6 +9,8 @@ configuration:
   common_headers:
     - name: customsuiteheader
       value: custom-suite-header-value
+    - name: content-type
+      value: application/json
 specs:
   - name: add suite headers to request headers
     request:
@@ -115,3 +117,14 @@ specs:
       json_data:
         - path: "$.header1"
           value: "header2-value"
+  - name: uses suite-level content-type header
+    request:
+      path: /echoJSONBodyResponse
+      method: post
+      payload:
+          body:
+              type: json
+              content:
+                  name: Kiran
+    response:
+        status_code: 200
