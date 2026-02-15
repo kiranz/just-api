@@ -63,7 +63,7 @@
     "chalk": "2.4.1",
     "lodash": "4.17.10",
     "serialize-error": "2.1.0",
-    "semver": "5.5.0",
+    "semver": "5.7.2",
     "he": "1.1.1",
     "request-cookies": "1.1.0"
   },
